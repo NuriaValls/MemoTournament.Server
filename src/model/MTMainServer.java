@@ -14,16 +14,16 @@ public class MTMainServer {
 		conn.connect();
 		//conn.insertUser("Nick", "solsona");
 		//conn.insertUser("Ruru", ":3");
-		conn.insertMatch("Nunu", "contrarrellotje", 100000);
+		conn.insertGame("Ruru", "contrarrellotje", 100000);
 		//conn.deleteUser("Rafa");
-		conn.updateScore("Ruru", 55);
-		//consulta = conn.selectAllUsers();
-		consulta = conn.selectMatch("Nunu");
+		//conn.updateScore("Ruru", 55);
+		consulta = conn.selectMatches();
+		//consulta = conn.selectMatch("Ruru");
 		
 		try {
 			while (consulta.next())
 			{
-				System.out.println (consulta.getObject("nickname") + " " + consulta.getObject("mode")+ " " + consulta.getObject("score"));
+				System.out.println (consulta.getObject("name") + " " + consulta.getObject("mode")+ " " + consulta.getObject("score"));
 			}
 		} catch (SQLException e) {
 			System.out.println("Problema al recuperar les dades...");

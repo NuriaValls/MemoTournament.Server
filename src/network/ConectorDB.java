@@ -101,8 +101,8 @@ public class ConectorDB {
 		return rs;
     }
     
-    public void insertMatch(String nickname, String mode, int score){
-        String query = new String("INSERT INTO match (id,mode,name,score) VALUES ('1','"+mode+"','"+nickname+"','"+score+"')");
+    public void insertGame(String nickname, String mode, int score){
+        String query = new String("INSERT INTO game (id,mode,name,score) VALUES ('32','"+mode+"','"+nickname+"','"+score+"')");
     	try {
             s =(Statement) conn.createStatement();
             s.executeUpdate(query);
@@ -112,9 +112,22 @@ public class ConectorDB {
         }
     }
     
-    public ResultSet selectMatch(String nickname){
+    public ResultSet selectGame(String nickname){
     	ResultSet rs = null;
-    	String query = new String("SELECT * FROM match WHERE nickname='"+nickname+"'");
+    	String query = new String("SELECT * FROM game");
+    	try {
+            s =(Statement) conn.createStatement();
+            rs = s.executeQuery (query);
+            
+        } catch (SQLException ex) {
+            System.out.println("Problema al Recuperar les dades --> " + ex.getSQLState());
+        }
+		return rs;
+    }
+    
+    public ResultSet selectMatches(){
+    	ResultSet rs = null;
+    	String query = new String("SELECT * FROM match");
     	try {
             s =(Statement) conn.createStatement();
             rs = s.executeQuery (query);
