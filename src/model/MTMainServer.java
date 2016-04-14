@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import network.*;
 
-public class MTMain {
+public class MTMainServer {
 
 	public static void main(String[] args) {
 		
