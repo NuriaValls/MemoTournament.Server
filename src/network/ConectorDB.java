@@ -41,8 +41,9 @@ public class ConectorDB {
 
     }
     
-    public void insertQuery(String query){
-        try {
+    public void insertUser(String nickname, String password){
+        String query = new String("INSERT INTO usuari (nickname,pasword,score) VALUES ('"+nickname+"','"+password+"','0')");
+    	try {
             s =(Statement) conn.createStatement();
             s.executeUpdate(query);
 
@@ -51,36 +52,76 @@ public class ConectorDB {
         }
     }
     
-    public void updateQuery(String query){
-    	 try {
-             s =(Statement) conn.createStatement();
-             s.executeUpdate(query);
+    public void updateScore(String nickname, int score){
+    	String query = new String("UPDATE usuari SET score='"+score+"' WHERE nickname='"+nickname+"'");
+    	try {
+            s =(Statement) conn.createStatement();
+            s.executeUpdate(query);
 
-         } catch (SQLException ex) {
-             System.out.println("Problema al Modificar --> " + ex.getSQLState());
-         }
+        } catch (SQLException ex) {
+            System.out.println("Problema al Modificar --> " + ex.getSQLState());
+        }
     }
     
-    public void deleteQuery(String query){
-    	 try {
-             s =(Statement) conn.createStatement();
-             s.executeUpdate(query);
+    public void deleteUser(String nickname){
+    	String query = new String("DELETE FROM usuari WHERE nickname='"+nickname+"'");
+    	try {
+            s =(Statement) conn.createStatement();
+            s.executeUpdate(query);
              
-         } catch (SQLException ex) {
-             System.out.println("Problema al Eliminar --> " + ex.getSQLState());
-         }
+        } catch (SQLException ex) {
+            System.out.println("Problema al Eliminar --> " + ex.getSQLState());
+        }
     	
     }
     
-    public ResultSet selectQuery(String query){
+    public ResultSet selectAllUsers(){
     	ResultSet rs = null;
-    	 try {
-             s =(Statement) conn.createStatement();
-             rs = s.executeQuery (query);
-             
-         } catch (SQLException ex) {
-             System.out.println("Problema al Recuperar les dades --> " + ex.getSQLState());
-         }
+    	String query = new String("SELECT * FROM usuari");
+    	try {
+            s =(Statement) conn.createStatement();
+            rs = s.executeQuery (query);
+            
+        } catch (SQLException ex) {
+            System.out.println("Problema al Recuperar les dades --> " + ex.getSQLState());
+        }
+		return rs;
+    }
+    
+    public ResultSet selectUser(String nickname){
+    	ResultSet rs = null;
+    	String query = new String("SELECT * FROM usuari WHERE nickname='"+nickname+"'");
+    	try {
+            s =(Statement) conn.createStatement();
+            rs = s.executeQuery (query);
+            
+        } catch (SQLException ex) {
+            System.out.println("Problema al Recuperar les dades --> " + ex.getSQLState());
+        }
+		return rs;
+    }
+    
+    public void insertMatch(String nickname, String mode, int score){
+        String query = new String("INSERT INTO match (id,mode,name,score) VALUES ('1','"+mode+"','"+nickname+"','"+score+"')");
+    	try {
+            s =(Statement) conn.createStatement();
+            s.executeUpdate(query);
+
+        } catch (SQLException ex) {
+            System.out.println("Problema al Inserir --> " + ex.getSQLState());
+        }
+    }
+    
+    public ResultSet selectMatch(String nickname){
+    	ResultSet rs = null;
+    	String query = new String("SELECT * FROM match WHERE nickname='"+nickname+"'");
+    	try {
+            s =(Statement) conn.createStatement();
+            rs = s.executeQuery (query);
+            
+        } catch (SQLException ex) {
+            System.out.println("Problema al Recuperar les dades --> " + ex.getSQLState());
+        }
 		return rs;
     }
     

@@ -12,14 +12,18 @@ public class MTMainServer {
 		ResultSet consulta;
 		ConectorDB conn = new ConectorDB("root", "", "memotournamentdb", 3306);
 		conn.connect();
-		conn.insertQuery("INSERT INTO usuari (nickname,pasword,score) VALUES ('Rafa','4255','2')");
-		conn.insertQuery("INSERT INTO usuari (nickname,pasword,score) VALUES ('Gonzalo','2244','100')");
-		consulta = conn.selectQuery("SELECT * FROM usuari");
+		//conn.insertUser("Nick", "solsona");
+		//conn.insertUser("Ruru", ":3");
+		conn.insertMatch("Nunu", "contrarrellotje", 100000);
+		//conn.deleteUser("Rafa");
+		conn.updateScore("Ruru", 55);
+		//consulta = conn.selectAllUsers();
+		consulta = conn.selectMatch("Nunu");
 		
 		try {
 			while (consulta.next())
 			{
-				System.out.println (consulta.getObject("nickname") + " " + consulta.getObject("pasword")+ " " + consulta.getObject("score"));
+				System.out.println (consulta.getObject("nickname") + " " + consulta.getObject("mode")+ " " + consulta.getObject("score"));
 			}
 		} catch (SQLException e) {
 			System.out.println("Problema al recuperar les dades...");
