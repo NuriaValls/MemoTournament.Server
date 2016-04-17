@@ -102,7 +102,7 @@ public class ConectorDB {
     }
     
     public void insertGame(String nickname, String mode, int score){
-        String query = new String("INSERT INTO game (id,mode,name,score) VALUES ('32','"+mode+"','"+nickname+"','"+score+"')");
+        String query = new String("INSERT INTO game (id,mode,name,score) VALUES ('29','"+mode+"','"+nickname+"','"+score+"')");
     	try {
             s =(Statement) conn.createStatement();
             s.executeUpdate(query);
@@ -112,7 +112,7 @@ public class ConectorDB {
         }
     }
     
-    public ResultSet selectGame(String nickname){
+    public ResultSet selectAllGames(){
     	ResultSet rs = null;
     	String query = new String("SELECT * FROM game");
     	try {
@@ -125,9 +125,9 @@ public class ConectorDB {
 		return rs;
     }
     
-    public ResultSet selectMatches(){
+    public ResultSet selectGames(String name){
     	ResultSet rs = null;
-    	String query = new String("SELECT * FROM match");
+    	String query = new String("SELECT * FROM game WHERE name='"+name+"'");
     	try {
             s =(Statement) conn.createStatement();
             rs = s.executeQuery (query);
