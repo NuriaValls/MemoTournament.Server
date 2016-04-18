@@ -14,11 +14,10 @@ public class MTMainServer {
 		conn.connect();
 		//conn.insertUser("Nick", "solsona");
 		//conn.insertUser("Ruru", ":3");
-		//conn.insertGame("Nick", "memoria", 112);
+		conn.insertGame("Nick", "memoria", 112);
 		//conn.deleteUser("Rafa");
 		//conn.updateScore("Ruru", 55);
 		consulta = conn.selectGames("Nick");
-		//consulta = conn.selectMatch("Ruru");
 		
 		try {
 			while (consulta.next())

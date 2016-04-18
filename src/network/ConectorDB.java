@@ -102,7 +102,19 @@ public class ConectorDB {
     }
     
     public void insertGame(String nickname, String mode, int score){
-        String query = new String("INSERT INTO game (id,mode,name,score) VALUES ('29','"+mode+"','"+nickname+"','"+score+"')");
+    	ResultSet consulta = null;
+    	int id = 0;
+    	consulta = selectAllGames();
+    	try {
+			while (consulta.next())
+			{
+				id = (int) consulta.getObject("id");
+			}
+			id++;
+		} catch (SQLException e) {
+			System.out.println("Problema al recuperar les dades... select->insert");
+		}
+        String query = new String("INSERT INTO game (id,mode,name,score) VALUES ('"+id+"','"+mode+"','"+nickname+"','"+score+"')");
     	try {
             s =(Statement) conn.createStatement();
             s.executeUpdate(query);
