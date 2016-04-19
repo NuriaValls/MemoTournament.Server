@@ -12,6 +12,8 @@ public class MTMainServer {
 		ResultSet consulta;
 		ConectorDB conn = new ConectorDB("root", "", "memotournamentdb", 3306);
 		conn.connect();
+		conn.insertUser("Nuria", "12234");
+		
 		conn.disconnect();
 	}
 }
