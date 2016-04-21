@@ -39,18 +39,18 @@ public class MainViewServer extends JFrame{
 		
 		createMenuCard();
 		createRegisterCard();
-		//createUserManageCard();
-		//createRankingCard();
-		//createUserGraphCard(); 
+		createUserManageCard();
+		createRankingCard();
+		createUserGraphCard(); 
 		
 		menu = new JPanel();
 		menu.setLayout(cardLayout);
 		
 		menu.add(menuCard, "1");
 		menu.add(registerCard, "2");
-		//menu.add(userManageCard, "3");
-		//menu.add(rankingCard, "4");
-		//menu.add(userGraphCard, "5");
+		menu.add(userManageCard, "3");
+		menu.add(rankingCard, "4");
+		menu.add(userGraphCard, "5");
 		
 		buttonMenu = new JPanel();
 		
@@ -60,6 +60,7 @@ public class MainViewServer extends JFrame{
 		buttonMenu.add(userGraphB);
 		buttonMenu.add(backB);
 		
+		backB.setVisible(false);
 		buttonMenu.setVisible(true);
 		
 		add(buttonMenu, BorderLayout.SOUTH); 
