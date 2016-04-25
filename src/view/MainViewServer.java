@@ -23,6 +23,7 @@ public class MainViewServer extends JFrame{
 	private static JPanel jpUserGraphCard = new JPanel();
 	
 	private JPanel jpButtonMenu;
+	
 	private static JButton jbRegister = new JButton("Competitors Register");
 	private static JButton jbUserManage = new JButton("Users Management");
 	private static JButton jbRanking = new JButton("Show Ranking");
