@@ -13,21 +13,21 @@ import controller.MainViewControllerS;
 
 public class MainViewServer extends JFrame{
 	
-	private static JPanel menu;
+	private static JPanel jpMenu;
 	private static CardLayout cardLayout = new CardLayout();
 	
-	private static JPanel menuCard = new JPanel();
-	private static JPanel registerCard = new JPanel();
-	private static JPanel userManageCard = new JPanel();
-	private static JPanel rankingCard = new JPanel();
-	private static JPanel userGraphCard = new JPanel();
+	private static JPanel jpMenuCard = new JPanel();
+	private static JPanel jpRegisterCard = new JPanel();
+	private static JPanel jpUserManageCard = new JPanel();
+	private static JPanel jpRankingCard = new JPanel();
+	private static JPanel jpUserGraphCard = new JPanel();
 	
-	private JPanel buttonMenu;
-	private static JButton registerB = new JButton("Competitors Register");
-	private static JButton userManageB = new JButton("Users Management");
-	private static JButton rankingB = new JButton("Show Ranking");
-	private static JButton userGraphB = new JButton("Show User Graphic");
-	private static JButton backB = new JButton("Menu");
+	private JPanel jpButtonMenu;
+	private static JButton jbRegister = new JButton("Competitors Register");
+	private static JButton jbUserManage = new JButton("Users Management");
+	private static JButton jbRanking = new JButton("Show Ranking");
+	private static JButton jbUserGraph = new JButton("Show User Graphic");
+	private static JButton jbBack = new JButton("Menu");
 	
 	private JLabel label = new JLabel("meh");
 	
@@ -43,45 +43,45 @@ public class MainViewServer extends JFrame{
 		createRankingCard();
 		createUserGraphCard(); 
 		
-		menu = new JPanel();
-		menu.setLayout(cardLayout);
+		jpMenu = new JPanel();
+		jpMenu.setLayout(cardLayout);
 		
-		menu.add(menuCard, "1");
-		menu.add(registerCard, "2");
-		menu.add(userManageCard, "3");
-		menu.add(rankingCard, "4");
-		menu.add(userGraphCard, "5");
+		jpMenu.add(jpMenuCard, "1");
+		jpMenu.add(jpRegisterCard, "2");
+		jpMenu.add(jpUserManageCard, "3");
+		jpMenu.add(jpRankingCard, "4");
+		jpMenu.add(jpUserGraphCard, "5");
 		
-		buttonMenu = new JPanel();
+		jpButtonMenu = new JPanel();
 		
-		buttonMenu.add(registerB);
-		buttonMenu.add(userManageB);
-		buttonMenu.add(rankingB);
-		buttonMenu.add(userGraphB);
-		buttonMenu.add(backB);
+		jpButtonMenu.add(jbRegister);
+		jpButtonMenu.add(jbUserManage);
+		jpButtonMenu.add(jbRanking);
+		jpButtonMenu.add(jbUserGraph);
+		jpButtonMenu.add(jbBack);
 		
-		backB.setVisible(false);
-		buttonMenu.setVisible(true);
+		jbBack.setVisible(false);
+		jpButtonMenu.setVisible(true);
 		
-		add(buttonMenu, BorderLayout.SOUTH); 
-		add(menu, BorderLayout.NORTH);
+		add(jpButtonMenu, BorderLayout.SOUTH); 
+		add(jpMenu, BorderLayout.NORTH);
 		pack();
 	}
 	
 	public void registerController(MainViewControllerS actionListener){
-		registerB.addActionListener(actionListener);
-		userManageB.addActionListener(actionListener);
-		rankingB.addActionListener(actionListener);
-		userGraphB.addActionListener(actionListener);
-		backB.addActionListener(actionListener);
+		jbRegister.addActionListener(actionListener);
+		jbUserManage.addActionListener(actionListener);
+		jbRanking.addActionListener(actionListener);
+		jbUserGraph.addActionListener(actionListener);
+		jbBack.addActionListener(actionListener);
 	}
 	
 	public void createMenuCard(){
-		menuCard.add(label);
+		jpMenuCard.add(label);
 	}
 	
 	public void createRegisterCard(){
-		registerCard.add(new JLabel("nunu"));
+		jpRegisterCard.add(new JLabel("nunu"));
 	}
 	
 	public void createUserManageCard(){
@@ -97,57 +97,57 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public static void showRegister(){
-		cardLayout.show(menu, "2");
+		cardLayout.show(jpMenu, "2");
 		
-		registerB.setVisible(false);
-		userManageB.setVisible(false);
-		rankingB.setVisible(false);
-		userGraphB.setVisible(false);
+		jbRegister.setVisible(false);
+		jbUserManage.setVisible(false);
+		jbRanking.setVisible(false);
+		jbUserGraph.setVisible(false);
 		
-		backB.setVisible(true); 
+		jbBack.setVisible(true); 
 	}
 	
 	public static void showUserManage(){
-		cardLayout.show(menu, "3");
+		cardLayout.show(jpMenu, "3");
 		
-		registerB.setVisible(false);
-		userManageB.setVisible(false);
-		rankingB.setVisible(false);
-		userGraphB.setVisible(false);
+		jbRegister.setVisible(false);
+		jbUserManage.setVisible(false);
+		jbRanking.setVisible(false);
+		jbUserGraph.setVisible(false);
 		
-		backB.setVisible(true);
+		jbBack.setVisible(true);
 	}
 	
 	public static void showRanking(){
-		cardLayout.show(menu, "4");
+		cardLayout.show(jpMenu, "4");
 		
-		registerB.setVisible(false);
-		userManageB.setVisible(false);
-		rankingB.setVisible(false);
-		userGraphB.setVisible(false);
+		jbRegister.setVisible(false);
+		jbUserManage.setVisible(false);
+		jbRanking.setVisible(false);
+		jbUserGraph.setVisible(false);
 		
-		backB.setVisible(true);
+		jbBack.setVisible(true);
 	}
 	
 	public static void showUserGraph(){
-		cardLayout.show(menu, "5");
+		cardLayout.show(jpMenu, "5");
 		
-		registerB.setVisible(false);
-		userManageB.setVisible(false);
-		rankingB.setVisible(false);
-		userGraphB.setVisible(false);
+		jbRegister.setVisible(false);
+		jbUserManage.setVisible(false);
+		jbRanking.setVisible(false);
+		jbUserGraph.setVisible(false);
 		
-		backB.setVisible(true);
+		jbBack.setVisible(true);
 	}
 	
 	public static void showMenu(){
-		cardLayout.show(menu, "1");
+		cardLayout.show(jpMenu, "1");
 		
-		registerB.setVisible(true);
-		userManageB.setVisible(true);
-		rankingB.setVisible(true);
-		userGraphB.setVisible(true);
+		jbRegister.setVisible(true);
+		jbUserManage.setVisible(true);
+		jbRanking.setVisible(true);
+		jbUserGraph.setVisible(true);
 		
-		backB.setVisible(false);
+		jbBack.setVisible(false);
 	}
 }
