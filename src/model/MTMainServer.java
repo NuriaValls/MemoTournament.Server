@@ -19,8 +19,8 @@ public class MTMainServer {
 			public void run() {
 				
 				MainViewServer serverView = new MainViewServer();
-				
 				MainViewControllerS controller = new MainViewControllerS();
+				
 				serverView.registerController(controller);
 				serverView.setVisible(true);
 				
