@@ -21,8 +21,12 @@ public class MTMainServer {
 				MainViewServer serverView = new MainViewServer();
 				MainViewControllerS controller = new MainViewControllerS();
 				
+				Server server = new Server();
+				
 				serverView.registerController(controller);
+				server.startServer();
 				serverView.setVisible(true);
+				
 				
 				/* CONNEXIO BASE DE DADES
 				ResultSet consulta;
