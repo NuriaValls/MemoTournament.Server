@@ -41,7 +41,7 @@ public class ConectorDB {
 
     }
     
-    public void insertUser(String nickname, String password){
+    public static boolean insertUser(String nickname, String password){
         String query = new String("INSERT INTO usuari (nickname,pasword,score) VALUES ('"+nickname+"','"+password+"','0')");
     	try {
             s =(Statement) conn.createStatement();
@@ -49,7 +49,9 @@ public class ConectorDB {
 
         } catch (SQLException ex) {
             System.out.println("Problema al Inserir --> " + ex.getSQLState());
+            return false;
         }
+    	return true;
     }
     
     public void updateScore(String nickname, int score){
@@ -88,7 +90,7 @@ public class ConectorDB {
 		return rs;
     }
     
-    public ResultSet selectUser(String nickname){
+    public static ResultSet selectUser(String nickname){
     	ResultSet rs = null;
     	String query = new String("SELECT * FROM usuari WHERE nickname='"+nickname+"'");
     	try {
@@ -106,8 +108,7 @@ public class ConectorDB {
     	int id = 0;
     	consulta = selectAllGames();
     	try {
-			while (consulta.next())
-			{
+			while (consulta.next()){
 				id = (int) consulta.getObject("id");
 			}
 			id++;
