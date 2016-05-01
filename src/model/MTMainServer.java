@@ -27,6 +27,8 @@ public class MTMainServer {
 				server.startServer();
 				serverView.setVisible(true);
 				
+				ConectorDB conn = new ConectorDB("root", "", "memotournamentdb", 3306);
+				conn.connect();
 				
 				/* CONNEXIO BASE DE DADES
 				ResultSet consulta;

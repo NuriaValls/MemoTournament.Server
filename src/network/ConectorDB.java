@@ -54,7 +54,7 @@ public class ConectorDB {
     	return true;
     }
     
-    public void updateScore(String nickname, int score){
+    public static void updateScore(String nickname, int score){
     	String query = new String("UPDATE usuari SET score='"+score+"' WHERE nickname='"+nickname+"'");
     	try {
             s =(Statement) conn.createStatement();
@@ -77,7 +77,7 @@ public class ConectorDB {
     	
     }
     
-    public ResultSet selectAllUsers(){
+    public static ResultSet selectAllUsers(){
     	ResultSet rs = null;
     	String query = new String("SELECT * FROM usuari");
     	try {
@@ -103,7 +103,7 @@ public class ConectorDB {
 		return rs;
     }
     
-    public void insertGame(String nickname, String mode, int score){
+    public static void insertGame(String nickname, String mode, int score){
     	ResultSet consulta = null;
     	int id = 0;
     	consulta = selectAllGames();
@@ -125,7 +125,7 @@ public class ConectorDB {
         }
     }
     
-    public ResultSet selectAllGames(){
+    public static ResultSet selectAllGames(){
     	ResultSet rs = null;
     	String query = new String("SELECT * FROM game");
     	try {
