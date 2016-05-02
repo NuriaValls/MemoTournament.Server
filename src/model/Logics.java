@@ -7,8 +7,6 @@ import network.ConectorDB;
 
 public class Logics {
 	
-	private static boolean competition = false;
-	
 	public static boolean addUser(String message){
 		String[] array = new String[2];
 		
@@ -84,12 +82,7 @@ public class Logics {
 		return ranking;
 	}
 	
-	/*public static String startCompetition(){
-		if(competition){
-			
-			
-		}else{
-			
-		}
-	}*/
+	//public static String startCompetition(){
+		
+	//}
 }
