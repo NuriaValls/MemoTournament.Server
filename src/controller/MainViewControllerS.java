@@ -12,6 +12,14 @@ public class MainViewControllerS implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		String message = new String();
+		
+		if (((JButton)e.getSource()).getText().equals("Create Competition")){
+			message = "START:18/00/5";
+			
+			MainViewServer.showMenu();
+		}
+		
 		if (((JButton)e.getSource()).getText().equals("Competitors Register")){
 			MainViewServer.showRegister();
 		}
