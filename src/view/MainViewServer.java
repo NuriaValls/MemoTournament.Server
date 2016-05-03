@@ -236,6 +236,7 @@ JPanel titol = new JPanel();
 		JLabel jlage = new JLabel("Age");
 		String [] agestring = { "1-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-99"};
 		JComboBox agelist = new JComboBox(agestring);
+		//agelist.setEditable(true);
 		JPanel jpage = new JPanel();
 		jpage.setLayout(new GridLayout(1,4));
 		jpage.add(new JPanel());
