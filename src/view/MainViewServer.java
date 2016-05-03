@@ -105,25 +105,36 @@ public class MainViewServer extends JFrame{
 		
 		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
 	
-		JLabel nomtitol = new JLabel("Server Configuration");
+		JLabel nomtitol = new JLabel("New Competition");
 		nomtitol.setFont(new java.awt.Font("Geneva", 1, 34));
 		titol.add(Box.createVerticalStrut(15));
 		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titol.add(nomtitol);
-		titol.add(Box.createVerticalStrut(25));
+		titol.add(Box.createVerticalStrut(15));
+		JLabel textinfo = new JLabel("Set a time to beggin and the total duration of the competition");
+		textinfo.setFont(new java.awt.Font("Geneva", 2, 16));
+		textinfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(textinfo);
+		titol.add(Box.createVerticalStrut(15));
 		
 		JPanel config = new JPanel();
 		config.setLayout(new BoxLayout(config, BoxLayout.PAGE_AXIS));
 		
-		JLabel jlname = new JLabel("Database");
-		jlname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfname = new JTextField();
+		JLabel jlstart = new JLabel("Start (hh/mm)");
+		jlstart.setFont(new java.awt.Font("Geneva", 1, 14));
+		
+		String [] starthstring = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"};
+		JComboBox starthlist = new JComboBox(starthstring);
+		
+		String [] startmstring = { "00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55" };
+		JComboBox startmlist = new JComboBox(startmstring);
+		
 		JPanel jpname = new JPanel();
 		jpname.setLayout(new GridLayout(1,4));
 		jpname.add(new JPanel());
-		jpname.add(jlname);
-		jpname.add(jtfname);
-		jpname.add(new JPanel());
+		jpname.add(jlstart);
+		jpname.add(starthlist);
+		jpname.add(startmlist);
 		
 		JLabel jluser = new JLabel("User");
 		jluser.setFont(new java.awt.Font("Geneva", 1, 14));
@@ -236,6 +247,7 @@ public class MainViewServer extends JFrame{
 		JLabel jlage = new JLabel("Age");
 		String [] agestring = { "1-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-99"};
 		JComboBox agelist = new JComboBox(agestring);
+		//agelist.setEditable(true);
 		JPanel jpage = new JPanel();
 		jpage.setLayout(new GridLayout(1,4));
 		jpage.add(new JPanel());
