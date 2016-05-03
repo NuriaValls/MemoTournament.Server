@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
@@ -19,13 +20,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controller.MainViewControllerS;
 
 public class MainViewServer extends JFrame{
 	
+	static final int T_MIN = 0;
+	static final int T_MAX = 60;
+	static final int T_INIT = 30;  
 	private static JPanel jpMenu;
 	private static CardLayout cardLayout = new CardLayout();
 	
@@ -110,12 +116,12 @@ public class MainViewServer extends JFrame{
 		titol.add(Box.createVerticalStrut(15));
 		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titol.add(nomtitol);
-		titol.add(Box.createVerticalStrut(15));
-		JLabel textinfo = new JLabel("Set a time to beggin and the total duration of the competition");
+		titol.add(Box.createVerticalStrut(20));
+		JLabel textinfo = new JLabel("Set a time to beggin and the total duration of the competition.");
 		textinfo.setFont(new java.awt.Font("Geneva", 2, 16));
 		textinfo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titol.add(textinfo);
-		titol.add(Box.createVerticalStrut(15));
+		titol.add(Box.createVerticalStrut(40));
 		
 		JPanel config = new JPanel();
 		config.setLayout(new BoxLayout(config, BoxLayout.PAGE_AXIS));
@@ -129,52 +135,43 @@ public class MainViewServer extends JFrame{
 		String [] startmstring = { "00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55" };
 		JComboBox startmlist = new JComboBox(startmstring);
 		
-		JPanel jpname = new JPanel();
-		jpname.setLayout(new GridLayout(1,4));
-		jpname.add(new JPanel());
-		jpname.add(jlstart);
-		jpname.add(starthlist);
-		jpname.add(startmlist);
+		JPanel jpstart = new JPanel();
+		jpstart.setLayout(new GridLayout(1,5));
+		jpstart.add(new JPanel());
+		jpstart.add(jlstart);
+		jpstart.add(starthlist);
+		jpstart.add(startmlist);
+		jpstart.add(new JPanel());
 		
-		JLabel jluser = new JLabel("User");
-		jluser.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfuser = new JTextField();
-		JPanel jpuser = new JPanel();
-		jpuser.setLayout(new GridLayout(1,4));
-		jpuser.add(new JPanel());
-		jpuser.add(jluser);
-		jpuser.add(jtfuser);
-		jpuser.add(new JPanel());
+		JLabel jltime = new JLabel("Duration (mins)");
+		jltime.setFont(new java.awt.Font("Geneva", 1, 14));
 		
-		JLabel jlpassword = new JLabel("Password");
-		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
-		JPasswordField jpfpassword = new JPasswordField();
-		JPanel jppassword = new JPanel();
-		jppassword.setLayout(new GridLayout(1,4));
-		jppassword.add(new JPanel());
-		jppassword.add(jlpassword);
-		jppassword.add(jpfpassword);
-		jppassword.add(new JPanel());
+		JSlider jsduration = new JSlider(JSlider.HORIZONTAL, T_MIN, T_MAX, T_INIT);
+		jsduration.setMajorTickSpacing(10);
+		jsduration.setMinorTickSpacing(2);
+		jsduration.setPaintTicks(true);
+		jsduration.setPaintLabels(true);
+		Font font = new Font("Geneva", 1, 12);
+		jsduration.setFont(font);
 		
-		JLabel jlport = new JLabel("Port");
-		jlport.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfport = new JTextField();
-		JPanel jpport = new JPanel();
-		jpport.setLayout(new GridLayout(1,4));
-		jpport.add(new JPanel());
-		jpport.add(jlport);
-		jpport.add(jtfport);
-		jpport.add(new JPanel());
+		JLabel jlselecttime = new JLabel("X mins",  SwingConstants.CENTER);
 		
-		jpport.setAlignmentX(Component.CENTER_ALIGNMENT);
-		jpname.setAlignmentX(Component.CENTER_ALIGNMENT);
-		jppassword.setAlignmentX(Component.CENTER_ALIGNMENT);
-		jpuser.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jlselecttime.setFont(new java.awt.Font("Geneva", 1, 14));
 		
-		config.add(jpname);
-		config.add(jpuser);
-		config.add(jppassword);
-		config.add(jpport);
+		JPanel jptime = new JPanel();
+		jptime.setLayout(new GridLayout(1,5));
+		jptime.add(new JPanel());
+		jptime.add(jltime);
+		jptime.add(jsduration);
+		jptime.add(jlselecttime);
+		jptime.add(new JPanel());
+
+		jpstart.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jptime.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		config.add(jpstart);
+		config.add(Box.createVerticalStrut(25));
+		config.add(jptime);
 		
 		config.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
