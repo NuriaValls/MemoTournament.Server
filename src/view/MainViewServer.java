@@ -179,7 +179,7 @@ public class MainViewServer extends JFrame{
 	
 	public void createRegisterCard(){
 		
-JPanel titol = new JPanel();
+		JPanel titol = new JPanel();
 		
 		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
 	
@@ -449,5 +449,13 @@ JPanel titol = new JPanel();
 		
 		jbCompetition.setVisible(false);
 		jbBack.setVisible(false);
+	}
+	
+	public static void makeDialog(String message, boolean type){
+		if(type){
+			Dialog.DialogOK(message);
+		}else{
+			Dialog.DialogKO(message);
+		}
 	}
 }

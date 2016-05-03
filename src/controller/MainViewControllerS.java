@@ -5,10 +5,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import network.Server;
 import view.MainViewServer;
 
 public class MainViewControllerS implements ActionListener{
 
+	private static MainViewServer view;
+	
+	public MainViewControllerS(MainViewServer view){
+		this.view = view;
+	}
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -16,8 +24,11 @@ public class MainViewControllerS implements ActionListener{
 		
 		if (((JButton)e.getSource()).getText().equals("Create Competition")){
 			message = "START:18/00/5";
-			
-			MainViewServer.showMenu();
+			if(Server.sendCompetition(message)){
+				MainViewServer.showMenu();
+			}else{
+				makeDialog("Server could not send the competition.",false);
+			}
 		}
 		
 		if (((JButton)e.getSource()).getText().equals("Competitors Register")){
@@ -39,6 +50,10 @@ public class MainViewControllerS implements ActionListener{
 		if (((JButton)e.getSource()).getText().equals("Menu")){
 			MainViewServer.showMenu();
 		}
+	}
+	
+	public static void makeDialog(String message, boolean type){
+		view.makeDialog(message,type);
 	}
 
 }
