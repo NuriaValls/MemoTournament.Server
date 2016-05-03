@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-//import network.Server;
+import network.Server;
 import view.MainViewServer;
 
 public class MainViewControllerS implements ActionListener{
@@ -24,11 +24,11 @@ public class MainViewControllerS implements ActionListener{
 		
 		if (((JButton)e.getSource()).getText().equals("Create Competition")){
 			message = "START:18/00/5";
-			/*if(Server.sendCompetition(message)){
+			if(Server.sendCompetition(message)){
 				MainViewServer.showMenu();
 			}else{
 				makeDialog("Server could not send the competition.",false);
-			}*/
+			}
 		}
 		
 		if (((JButton)e.getSource()).getText().equals("Competitors Register")){
