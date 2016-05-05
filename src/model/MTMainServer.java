@@ -21,10 +21,10 @@ public class MTMainServer {
 				MainViewServer serverView = new MainViewServer();
 				MainViewControllerS controller = new MainViewControllerS(serverView);
 				
-				//Server server = new Server();meh
+				Server server = new Server();
 				
 				serverView.registerController(controller);
-				//server.startServer();
+				server.startServer();
 				serverView.setVisible(true);
 				
 				ConectorDB conn = new ConectorDB("root", "", "memotournamentdb", 3306);
