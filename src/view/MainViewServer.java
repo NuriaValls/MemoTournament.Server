@@ -404,7 +404,7 @@ public class MainViewServer extends JFrame{
 		
 	}
 	
-	public static void showRegister(){
+	public void showRegister(){
 		cardLayout.show(jpMenu, "3");
 		
 		jbRegister.setVisible(false);
@@ -415,7 +415,7 @@ public class MainViewServer extends JFrame{
 		jbBack.setVisible(true); 
 	}
 	
-	public static void showUserManage(){
+	public void showUserManage(){
 		cardLayout.show(jpMenu, "4");
 		
 		jbRegister.setVisible(false);
@@ -426,7 +426,7 @@ public class MainViewServer extends JFrame{
 		jbBack.setVisible(true);
 	}
 	
-	public static void showRanking(){
+	public void showRanking(){
 		cardLayout.show(jpMenu, "5");
 		
 		jbRegister.setVisible(false);
@@ -437,7 +437,7 @@ public class MainViewServer extends JFrame{
 		jbBack.setVisible(true);
 	}
 	
-	public static void showUserGraph(){
+	public void showUserGraph(){
 		cardLayout.show(jpMenu, "6");
 		
 		jbRegister.setVisible(false);
@@ -448,7 +448,7 @@ public class MainViewServer extends JFrame{
 		jbBack.setVisible(true);
 	}
 	
-	public static void showMenu(){
+	public void showMenu(){
 		cardLayout.show(jpMenu, "2");
 		
 		jbRegister.setVisible(true);
@@ -460,7 +460,7 @@ public class MainViewServer extends JFrame{
 		jbBack.setVisible(false);
 	}
 	
-	public static void makeDialog(String message, boolean type){
+	public void makeDialog(String message, boolean type){
 		if(type){
 			Dialog.DialogOK(message);
 		}else{

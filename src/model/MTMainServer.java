@@ -19,9 +19,9 @@ public class MTMainServer {
 			public void run() {
 				
 				MainViewServer serverView = new MainViewServer();
-				MainViewControllerS controller = new MainViewControllerS(serverView);
-				
 				Server server = new Server();
+				
+				MainViewControllerS controller = new MainViewControllerS(serverView,server);
 				
 				serverView.registerController(controller);
 				server.startServer();
