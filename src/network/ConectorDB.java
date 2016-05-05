@@ -29,7 +29,7 @@ public class ConectorDB {
             Class.forName("com.mysql.jdbc.Driver");
             conn = (Connection) DriverManager.getConnection(url, "root", "");
             if (conn != null) {
-                System.out.println("Conexió a base de dades "+url+" ... Ok");
+                System.out.println("Conexiï¿½ a base de dades "+url+" ... Ok");
             }
         }
         catch(SQLException ex) {
@@ -76,7 +76,7 @@ public class ConectorDB {
         }
     	
     }
-    
+   
     public static ResultSet selectAllUsers(){
     	ResultSet rs = null;
     	String query = new String("SELECT * FROM usuari");
@@ -155,7 +155,7 @@ public class ConectorDB {
     	try {
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println("Problema al tancar la connexió --> " + e.getSQLState());
+			System.out.println("Problema al tancar la connexiï¿½ --> " + e.getSQLState());
 		}
     }
 
