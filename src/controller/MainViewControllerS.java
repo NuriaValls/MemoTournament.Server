@@ -59,5 +59,7 @@ public class MainViewControllerS implements ActionListener{
 	public void makeDialog(String message, boolean type){
 		view.makeDialog(message,type);
 	}
+	
+
 
 }

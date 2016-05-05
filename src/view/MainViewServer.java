@@ -274,8 +274,15 @@ public class MainViewServer extends JFrame{
 	public void createUserManageCard(){
 		
 	}
-	
+	public void refreshRanking(){
+		//splits separar nom de puntuacio del string del model que primer haure de passar pel controlador
+		//crear nou tipus usuari al model(logics)  i crear llista arraylist; nous metodes per fer split i per endreçar. top 10 passarho a string
+		//for() dels usuaris.dins del bucle: afegir l'element a la taula.
+	}
 	public void createRankingCard(){
+		
+		
+		//elements Ranking han de ser locals
 		
 		JPanel title = new JPanel();
 		JLabel nameTitle = new JLabel("Top 10 Ranking");
