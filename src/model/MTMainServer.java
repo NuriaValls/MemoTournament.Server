@@ -19,7 +19,7 @@ public class MTMainServer {
 				
 				MainViewServer serverView = new MainViewServer();
 				Logics logics = new Logics();
-				Server server = new Server();
+				ServerS server = new ServerS();
 				
 				MainViewControllerS controller = new MainViewControllerS(serverView,server,logics);
 				
