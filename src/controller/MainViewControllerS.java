@@ -5,15 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import model.Logics;
 import network.Server;
 import view.MainViewServer;
 
 public class MainViewControllerS implements ActionListener{
 
 	private MainViewServer view;
+	
 	private Server server;
 	
-	public MainViewControllerS(MainViewServer view, Server server){
+	public MainViewControllerS(MainViewServer view, Server server, Logics logics){
 		this.view = view;
 		this.server = server;
 	}
