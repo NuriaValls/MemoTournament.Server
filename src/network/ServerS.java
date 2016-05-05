@@ -8,7 +8,7 @@ import java.net.Socket;
 
 import model.Logics;
 
-public class Prova extends Thread{
+public class ServerS extends Thread{
 	
 	private boolean isOn;
 	private static ServerSocket sServer;
@@ -16,7 +16,7 @@ public class Prova extends Thread{
 	private DataInputStream dataIn;
 	private static DataOutputStream dataOut;
 	
-	public Prova(){
+	public ServerS(){
 		try{
 			sServer = new ServerSocket(5200);
 			isOn = false;
