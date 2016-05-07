@@ -16,6 +16,8 @@ public class ServerS extends Thread{
 	private DataInputStream dataIn;
 	private static DataOutputStream dataOut;
 	
+	private String startMessage = new String();
+	
 	public ServerS(){
 		try{
 			sServer = new ServerSocket(5200);
@@ -36,8 +38,9 @@ public class ServerS extends Thread{
 	}
 	
 	public void run(){
-		String message = new String();
 
+		String message = new String();
+		
 		while(isOn){
 			try{
 				System.out.println("Buscant client");
@@ -79,6 +82,14 @@ public class ServerS extends Thread{
 					}
 				}
 				
+				if (message.startsWith("START")){
+					if (startMessage == null){
+						dataOut.writeUTF("NOT STARTED");
+					}else{
+						dataOut.writeUTF(startMessage);
+					}
+				}
+				
 				dataIn.close();
 				dataOut.close();
 				sClient.close();
@@ -87,28 +98,8 @@ public class ServerS extends Thread{
 			}
 		}
 	}
-	
-	public boolean sendCompetition(String message){
-		boolean ok = false;
-		
-		try {
-			System.out.println("1");
-			sClient = sServer.accept();
-			System.out.println("2");
-			dataOut = new DataOutputStream(sClient.getOutputStream());
-			System.out.println("client trobat");
-			dataOut.writeUTF(message);
-			ok = true;
-			
-			dataOut.close();
-			sClient.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			ok = false;
-		}
-		
-		return ok;
-		
+
+	public void setStartMessage(String startMessage) {
+		this.startMessage = startMessage;
 	}
-	//dodengaeojrng
 }

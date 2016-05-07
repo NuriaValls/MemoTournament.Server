@@ -12,7 +12,6 @@ import view.MainViewServer;
 public class MainViewControllerS implements ActionListener{
 
 	private MainViewServer view;
-	
 	private ServerS server;
 	
 	public MainViewControllerS(MainViewServer view, ServerS server, Logics logics){
@@ -28,11 +27,7 @@ public class MainViewControllerS implements ActionListener{
 		
 		if (((JButton)e.getSource()).getText().equals("Create Competition")){
 			message = "START:18/00/5";
-			if(server.sendCompetition(message)){
-				view.showMenu();
-			}else{
-				makeDialog("Server could not send the competition.",false);
-			}
+			server.setStartMessage(message);
 		}
 		
 		if (((JButton)e.getSource()).getText().equals("Competitors Register")){
