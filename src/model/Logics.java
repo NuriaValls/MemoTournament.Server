@@ -84,6 +84,11 @@ public class Logics {
 		return ranking;
 	}
 	public static void toArray(ArrayList<UserRanking> usersRanking, String ranking){
+		for(int i = 0; ;){
+			
+		}
+	}
+	public static void sortRanking(ArrayList<UserRanking> usersRanking){
 		
 	}
 	
