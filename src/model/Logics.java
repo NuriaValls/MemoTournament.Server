@@ -83,7 +83,7 @@ public class Logics {
 		
 		return ranking;
 	}
-	public static void toArray(usersRanking){
+	public static void toArray(ArrayList<UserRanking> usersRanking, String ranking){
 		
 	}
 	
