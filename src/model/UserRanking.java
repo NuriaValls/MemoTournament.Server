@@ -1,10 +1,12 @@
 package model;
 
-public class UserRanking {
+import java.util.Comparator;
+
+public class UserRanking implements Comparator<UserRanking>{
 	private String nickname;
 	private int punctuation;
 	
-	public UserRanking(){
+	public UserRanking(String nickname, int punctuation){
 		this.nickname = nickname;
 		this.punctuation = punctuation;
 	}
@@ -19,5 +21,11 @@ public class UserRanking {
 	}
 	public void setPunctuation(int punctuation) {
 		this.punctuation = punctuation;
+	}
+	
+	
+	@Override
+	public int compare(UserRanking o1, UserRanking o2) {
+		return o1.getPunctuation() - o2.getPunctuation();
 	}
 }
