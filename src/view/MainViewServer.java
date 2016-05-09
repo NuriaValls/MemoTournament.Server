@@ -367,7 +367,7 @@ public class MainViewServer extends JFrame{
 		
 		
 		
-		/*JPanel pRanking = new JPanel();	
+		/* JPanel pRanking = new JPanel();	
 		GridLayout glRanking = new GridLayout(11,2);
 		pRanking.setLayout(glRanking);
 		

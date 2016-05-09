@@ -2,10 +2,13 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import network.ConectorDB;
 
 public class Logics {
+	private ArrayList<UserRanking> usersRanking;
+	
 	
 	public static boolean addUser(String message){
 		String[] array = new String[2];
@@ -81,6 +84,10 @@ public class Logics {
 		
 		return ranking;
 	}
+	//public void toArray(createRanking(),usersRanking){
+		
+	//}
+	
 	
 	//public static String startCompetition(){
 		
