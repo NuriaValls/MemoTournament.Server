@@ -90,25 +90,17 @@ public class Logics {
 		try {
 			while(user.next()){
 				usersRanking.add(new UserRanking(user.getString("nickname"),user.getInt("score")));
-				//userRanking += user.getObject("nickname")+"/"+user.getObject("pasword")+"/"+user.getObject("score")+"#";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		for(UserRanking r : usersRanking){
-			System.out.println("Puntuacio " + r.getPunctuation());
-		}
-		
+	}
+	public static void sortRanking(ArrayList<UserRanking> usersRanking){
 		usersRanking.sort(new UserRanking("",0));
 
 		for(UserRanking r : usersRanking){
 			System.out.println("Puntuacio Ordenada " + r.getPunctuation());
 		}
-		
-	}
-	public static void sortRanking(ArrayList<UserRanking> usersRanking){
-		
 	}
 	
 	
