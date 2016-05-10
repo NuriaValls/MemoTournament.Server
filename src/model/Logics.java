@@ -112,10 +112,4 @@ public class Logics {
 		}
 		return ranking;
 	}
-	
-	
-	
-	//public static String startCompetition(){
-		
-	//}
 }
