@@ -2,7 +2,7 @@ package model;
 
 import java.util.Comparator;
 
-public class UserRanking implements Comparator<UserRanking>{
+public class UserRanking implements Comparator<UserRanking>, Comparable<UserRanking>{
 	private String nickname;
 	private int punctuation;
 	
@@ -27,5 +27,9 @@ public class UserRanking implements Comparator<UserRanking>{
 	@Override
 	public int compare(UserRanking o1, UserRanking o2) {
 		return o1.getPunctuation() - o2.getPunctuation();
+	}
+	@Override
+	public int compareTo(UserRanking o) {
+				return this.getPunctuation() - o.getPunctuation();
 	}
 }

@@ -3,6 +3,7 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import network.ConectorDB;
 
@@ -96,7 +97,8 @@ public class Logics {
 		}
 	}
 	public static void sortRanking(){
-		usersRanking.sort(new UserRanking("",0));
+		Collections.sort(usersRanking);
+		//usersRanking.sort(new UserRanking("",0));
 
 		for(UserRanking r : usersRanking){
 			System.out.println("Puntuacio Ordenada " + r.getPunctuation());
