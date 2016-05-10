@@ -43,9 +43,9 @@ public class ServerS extends Thread{
 		
 		while(isOn){
 			try{
-				System.out.println("Buscant client");
+				//System.out.println("Buscant client");
 				sClient = sServer.accept();
-				System.out.println("client connectat");
+				//System.out.println("client connectat");
 				dataIn = new DataInputStream(sClient.getInputStream());
 				dataOut = new DataOutputStream(sClient.getOutputStream());
 				message = dataIn.readUTF();
