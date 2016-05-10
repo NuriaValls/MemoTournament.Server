@@ -13,12 +13,13 @@ public class MainViewControllerS implements ActionListener{
 
 	private MainViewServer view;
 	private ServerS server;
+	private Logics logics;
 	
 	public MainViewControllerS(MainViewServer view, ServerS server, Logics logics){
 		this.view = view;
 		this.server = server;
+		this.logics = logics;
 	}
-	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -55,6 +56,8 @@ public class MainViewControllerS implements ActionListener{
 		view.makeDialog(message,type);
 	}
 	
-
+	public void createRankingServer(){
+		logics.toArray();
+	}
 
 }

@@ -20,10 +20,10 @@ public class MTMainServer {
 				MainViewServer serverView = new MainViewServer();
 				Logics logics = new Logics();
 				ServerS server = new ServerS();
-				
 				MainViewControllerS controller = new MainViewControllerS(serverView,server,logics);
 				
 				serverView.registerController(controller);
+				server.registerController(controller);
 				server.startServer();
 				serverView.setVisible(true);
 				

@@ -8,7 +8,7 @@ import java.util.Collections;
 import network.ConectorDB;
 
 public class Logics {
-	private static ArrayList<UserRanking> usersRanking;
+	private ArrayList<UserRanking> usersRanking;
 	
 	public static boolean addUser(String message){
 		String[] array = new String[2];
@@ -84,19 +84,20 @@ public class Logics {
 		
 		return ranking;
 	}
-	public static void toArray(){
-		//quan el client afegeixi informació s'ha d'actualitzar
+	public void toArray(){
+		//quan el client afegeixi informacio s'ha d'actualitzar
 		ResultSet user = ConectorDB.selectAllUsers();
 		
 		try {
 			while(user.next()){
-				usersRanking.add(new UserRanking(user.getString("nickname"),user.getInt("score")));
+				System.out.println(user.getObject("nickname")+"/"+user.getObject("pasword")+"/"+user.getObject("score")+"#");
+				UserRanking u = new UserRanking((String)user.getObject("nickname"),(int)user.getObject("score"));
+				//usersRanking.add(new UserRanking(user.getString("nickname"),user.getInt("score")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	public static void sortRanking(){
+	
 		Collections.sort(usersRanking);
 		//usersRanking.sort(new UserRanking("",0));
 
@@ -104,7 +105,8 @@ public class Logics {
 			System.out.println("Puntuacio Ordenada " + r.getPunctuation());
 		}
 	}
-	public static String rankingToString(){
+	
+	public String rankingToString(){
 		String ranking = new String();
 		
 		for (int i = 0; i<usersRanking.size();i++){

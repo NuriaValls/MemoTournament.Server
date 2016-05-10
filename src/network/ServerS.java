@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import controller.MainViewControllerS;
 import model.Logics;
 
 public class ServerS extends Thread{
@@ -15,6 +16,7 @@ public class ServerS extends Thread{
 	private static Socket sClient;
 	private DataInputStream dataIn;
 	private static DataOutputStream dataOut;
+	private MainViewControllerS controller;
 	
 	private String startMessage = new String();
 	
@@ -25,6 +27,10 @@ public class ServerS extends Thread{
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+	}
+	
+	public void registerController(MainViewControllerS controller){
+		this.controller = controller;
 	}
 	
 	public void startServer(){
@@ -69,7 +75,8 @@ public class ServerS extends Thread{
 				if (message.startsWith("RANK")){
 					//retorna una string amb tots els usuaris i puntuacions
 					String ranking = new String();
-					ranking = Logics.createRanking();
+					//ranking = 
+					controller.createRankingServer();
 					dataOut.writeUTF("RANK:"+ranking);
 				}
 				
