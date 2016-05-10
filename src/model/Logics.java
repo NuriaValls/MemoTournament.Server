@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import network.ConectorDB;
 
 public class Logics {
-	private ArrayList<UserRanking> usersRanking;
+	private static ArrayList<UserRanking> usersRanking;
 	
 	public static boolean addUser(String message){
 		String[] array = new String[2];
@@ -83,7 +83,7 @@ public class Logics {
 		
 		return ranking;
 	}
-	public static void toArray(ArrayList<UserRanking> usersRanking){
+	public static void toArray(){
 		//quan el client afegeixi informació s'ha d'actualitzar
 		ResultSet user = ConectorDB.selectAllUsers();
 		
@@ -95,7 +95,7 @@ public class Logics {
 			e.printStackTrace();
 		}
 	}
-	public static void sortRanking(ArrayList<UserRanking> usersRanking){
+	public static void sortRanking(){
 		usersRanking.sort(new UserRanking("",0));
 
 		for(UserRanking r : usersRanking){
