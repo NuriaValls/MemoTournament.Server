@@ -102,6 +102,15 @@ public class Logics {
 			System.out.println("Puntuacio Ordenada " + r.getPunctuation());
 		}
 	}
+	public static String rankingToString(){
+		String ranking = new String();
+		
+		for (int i = 0; i<usersRanking.size();i++){
+			ranking += usersRanking.get(i).getNickname()+"/"+usersRanking.get(i).getPunctuation()+"#";
+		}
+		return ranking;
+	}
+	
 	
 	
 	//public static String startCompetition(){
