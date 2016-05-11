@@ -56,8 +56,8 @@ public class MainViewControllerS implements ActionListener{
 		view.makeDialog(message,type);
 	}
 	
-	public void createRankingServer(){
-		logics.toArray();
+	public String createRankingServer(){
+		return logics.toArray();
 	}
 
 }

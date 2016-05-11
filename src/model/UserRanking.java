@@ -10,6 +10,9 @@ public class UserRanking implements Comparator<UserRanking>, Comparable<UserRank
 		this.nickname = nickname;
 		this.punctuation = punctuation;
 	}
+	public UserRanking() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getNickname() {
 		return nickname;
 	}
@@ -26,10 +29,16 @@ public class UserRanking implements Comparator<UserRanking>, Comparable<UserRank
 	
 	@Override
 	public int compare(UserRanking o1, UserRanking o2) {
-		return o1.getPunctuation() - o2.getPunctuation();
+		if (o1.getPunctuation() - o2.getPunctuation() < 0) {
+			return 1;
+		}
+		return -1;
 	}
 	@Override
 	public int compareTo(UserRanking o) {
-				return this.getPunctuation() - o.getPunctuation();
+		if (this.getPunctuation() - o.getPunctuation() < 0) {
+			return 1;
+		}
+		return -1;
 	}
 }

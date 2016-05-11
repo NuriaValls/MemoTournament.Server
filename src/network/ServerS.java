@@ -76,7 +76,7 @@ public class ServerS extends Thread{
 					//retorna una string amb tots els usuaris i puntuacions
 					String ranking = new String();
 					//ranking = 
-					controller.createRankingServer();
+					ranking = controller.createRankingServer();
 					dataOut.writeUTF("RANK:"+ranking);
 				}
 				
