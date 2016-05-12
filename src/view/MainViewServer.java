@@ -24,6 +24,8 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controller.MainViewControllerS;
 
@@ -41,6 +43,8 @@ public class MainViewServer extends JFrame{
 	private static JPanel jpUserManageCard = new JPanel();
 	private static JPanel jpRankingCard = new JPanel();
 	private static JPanel jpUserGraphCard = new JPanel();
+	
+	private ChangeListener clSlider;
 	
 	private JPanel jpButtonMenu;
 	
@@ -105,6 +109,8 @@ public class MainViewServer extends JFrame{
 		jbBack.addActionListener(actionListener);
 	}
 	
+	
+	
 	public void createConfigCard(){
 		
 		JPanel titol = new JPanel();
@@ -154,10 +160,25 @@ public class MainViewServer extends JFrame{
 		Font font = new Font("Geneva", 1, 12);
 		jsduration.setFont(font);
 		
-		JLabel jlselecttime = new JLabel("X mins",  SwingConstants.CENTER);
+		
+
+		
+		JLabel jlselecttime = new JLabel("30 mins",  SwingConstants.CENTER);
 		
 		jlselecttime.setFont(new java.awt.Font("Geneva", 1, 14));
 		
+		// common listener for all sliders
+	      clSlider = new ChangeListener()
+	         {
+	    	  	@Override
+	            public void stateChanged(ChangeEvent event)
+	            {
+	               // update text field when the slider value changes
+	               JSlider source = (JSlider) event.getSource();
+	               jlselecttime.setText("" + source.getValue() + " mins");
+	            }
+	         };
+		jsduration.addChangeListener(clSlider);
 		JPanel jptime = new JPanel();
 		jptime.setLayout(new GridLayout(1,5));
 		jptime.add(new JPanel());
