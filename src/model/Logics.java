@@ -10,7 +10,7 @@ import network.ConectorDB;
 public class Logics {
 	private ArrayList<UserRanking> usersRanking;
 	private UserRanking comparator = new UserRanking();
-	private static ArrayList<UserRanking> competitionUsers;
+	private static ArrayList<UserRanking> competitionUsers = new ArrayList<UserRanking>();
 	private static boolean competition = false;
 	
 	public static boolean addUser(String message){
@@ -34,6 +34,7 @@ public class Logics {
 	
 	public static boolean checkUser(String message){
 		boolean ok = false;
+		boolean found = false;
 		String[] array = new String[2];
 		
 		message = message.substring(4);
@@ -44,10 +45,14 @@ public class Logics {
 		try {
 			while(user.next()){
 				if(user.getObject("pasword").equals(array[1])){
-					UserRanking u = new UserRanking(array[0],Integer.parseInt(array[1]));
-					if (!competitionUsers.contains(u)){
-						competitionUsers.add(u);
+					if (!competitionUsers.isEmpty()){
+						for (UserRanking u: competitionUsers){
+							if (u.getNickname().equals(array[0])){
+								found = true;
+							}
+						}
 					}
+					if (!found) competitionUsers.add(new UserRanking(array[0],0));
 					ok = true;
 				}else{
 					ok = false;
