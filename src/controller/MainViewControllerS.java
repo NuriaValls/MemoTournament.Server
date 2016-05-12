@@ -27,7 +27,7 @@ public class MainViewControllerS implements ActionListener{
 		String message = new String();
 		
 		if (((JButton)e.getSource()).getText().equals("Create Competition")){
-			message = "START:18/00/5";
+			message = logics.createTimeComp(view.getHourConfig(),view.getMinuteConfig(),view.getDurationConfig());
 			server.setStartMessage(message);
 			view.showMenu();
 		}

@@ -97,37 +97,7 @@ public class Logics {
 		return ok;
 	}
 	
-	/*public static String createRanking(){
-		String ranking = new String();
-		
-		ResultSet user = ConectorDB.selectAllUsers();
-		
-		try {
-			while(user.next()){
-				ranking += user.getObject("nickname")+"/"+user.getObject("pasword")+"/"+user.getObject("score")+"#";
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return ranking;
-	}*/
-	
 	public String toArray(){
-		//quan el client afegeixi informacio s'ha d'actualitzar
-		/*usersRanking = new ArrayList<UserRanking>();
-		
-		ResultSet user = ConectorDB.selectAllUsers();
-		
-		try {
-			while(user.next()){
-				UserRanking u = new UserRanking((String)user.getObject("nickname"),(int)user.getObject("score"));
-				usersRanking.add(u);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		*/
 		Collections.sort(competitionUsers, comparator);
 		String ranking = new String();
 		
@@ -138,12 +108,8 @@ public class Logics {
 		return ranking;
 	}
 	
-	public String rankingToString(){
-		String ranking = new String();
+	public String createTimeComp(int hour, int minute, int duration){
 		
-		for (int i = 0; i<usersRanking.size();i++){
-			ranking += usersRanking.get(i).getNickname()+"/"+usersRanking.get(i).getPunctuation()+"#";
-		}
-		return ranking;
+		return "START:"+hour+"/"+minute+"/"+duration;
 	}
 }

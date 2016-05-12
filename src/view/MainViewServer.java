@@ -57,6 +57,13 @@ public class MainViewServer extends JFrame{
 	
 	private JLabel label = new JLabel("meh");
 	
+	//atributs de config
+	private JComboBox starthlist;
+	private String [] starthstring = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"};
+	private JComboBox startmlist;
+	private String [] startmstring = { "00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55" };
+	private JLabel jlselecttime;
+	
 	public MainViewServer(){
 		setTitle("MemoTournament");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -109,8 +116,6 @@ public class MainViewServer extends JFrame{
 		jbBack.addActionListener(actionListener);
 	}
 	
-	
-	
 	public void createConfigCard(){
 		
 		JPanel titol = new JPanel();
@@ -135,11 +140,8 @@ public class MainViewServer extends JFrame{
 		JLabel jlstart = new JLabel("Start (hh/mm)");
 		jlstart.setFont(new java.awt.Font("Geneva", 1, 14));
 		
-		String [] starthstring = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"};
-		JComboBox starthlist = new JComboBox(starthstring);
-		
-		String [] startmstring = { "00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55" };
-		JComboBox startmlist = new JComboBox(startmstring);
+		starthlist = new JComboBox(starthstring);
+		startmlist = new JComboBox(startmstring);
 		
 		JPanel jpstart = new JPanel();
 		jpstart.setLayout(new GridLayout(1,5));
@@ -160,24 +162,19 @@ public class MainViewServer extends JFrame{
 		Font font = new Font("Geneva", 1, 12);
 		jsduration.setFont(font);
 		
-		
-
-		
-		JLabel jlselecttime = new JLabel("30 mins",  SwingConstants.CENTER);
-		
+		jlselecttime = new JLabel("30 mins",  SwingConstants.CENTER);
 		jlselecttime.setFont(new java.awt.Font("Geneva", 1, 14));
 		
 		// common listener for all sliders
-	      clSlider = new ChangeListener()
-	         {
-	    	  	@Override
-	            public void stateChanged(ChangeEvent event)
-	            {
-	               // update text field when the slider value changes
-	               JSlider source = (JSlider) event.getSource();
-	               jlselecttime.setText("" + source.getValue() + " mins");
-	            }
-	         };
+		clSlider = new ChangeListener(){
+			@Override
+			public void stateChanged(ChangeEvent event){
+				// update text field when the slider value changes
+				JSlider source = (JSlider) event.getSource();
+				jlselecttime.setText("" + source.getValue() + " mins");
+			}
+		};
+		
 		jsduration.addChangeListener(clSlider);
 		JPanel jptime = new JPanel();
 		jptime.setLayout(new GridLayout(1,5));
@@ -200,6 +197,18 @@ public class MainViewServer extends JFrame{
 		
 		jpConfigCard.add(titol);
 		
+	}
+	
+	public int getHourConfig(){
+		return Integer.parseInt(starthstring[starthlist.getSelectedIndex()]);
+	}
+	
+	public int getMinuteConfig(){
+		return Integer.parseInt(startmstring[startmlist.getSelectedIndex()]);
+	}
+	
+	public int getDurationConfig(){
+		return Integer.parseInt(jlselecttime.getText());
 	}
 	
 	public void createMenuCard(){
@@ -295,11 +304,13 @@ public class MainViewServer extends JFrame{
 	public void createUserManageCard(){
 		
 	}
+	
 	public void refreshRanking(){
 		//splits separar nom de puntuacio del string del model que primer haure de passar pel controlador
 		//crear nou tipus usuari al model(logics)  i crear llista arraylist; nous metodes per fer split(mirar el reateRanking()) i per endreçar. top 10 passarho a string
 		//for() dels usuaris.dins del bucle: afegir l'element a la taula.
 	}
+	
 	public void createRankingCard(){
 		
 		
