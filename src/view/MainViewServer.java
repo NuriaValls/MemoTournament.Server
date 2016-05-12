@@ -293,9 +293,6 @@ public class MainViewServer extends JFrame{
 		title.setLayout(new FlowLayout());
 		jpRankingCard.add(title, BorderLayout.PAGE_START);
 		
-		
-		
-		
 		String[] columnNames = {"First Name",
                 "Last Name",
                 "Sport",
