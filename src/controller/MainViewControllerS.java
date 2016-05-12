@@ -29,6 +29,7 @@ public class MainViewControllerS implements ActionListener{
 		if (((JButton)e.getSource()).getText().equals("Create Competition")){
 			message = "START:18/00/5";
 			server.setStartMessage(message);
+			view.showMenu();
 		}
 		
 		if (((JButton)e.getSource()).getText().equals("Competitors Register")){
