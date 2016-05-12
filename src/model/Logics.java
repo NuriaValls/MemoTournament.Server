@@ -10,14 +10,26 @@ import network.ConectorDB;
 public class Logics {
 	private ArrayList<UserRanking> usersRanking;
 	private UserRanking comparator = new UserRanking();
+	private static ArrayList<UserRanking> competitionUsers;
+	private static boolean competition = false;
 	
 	public static boolean addUser(String message){
 		String[] array = new String[2];
+		boolean ok = false;
 		
 		message = message.substring(4);
 		array = message.split("/");
 		
-		return ConectorDB.insertUser(array[0],array[1]);
+		if (ConectorDB.insertUser(array[0],array[1])){
+			if (competition){
+				competitionUsers.add(new UserRanking(array[0],0));
+			}
+			ok = true;
+		}else{
+			ok = false;
+		}
+		
+		return ok;
 	}
 	
 	public static boolean checkUser(String message){
@@ -32,6 +44,10 @@ public class Logics {
 		try {
 			while(user.next()){
 				if(user.getObject("pasword").equals(array[1])){
+					UserRanking u = new UserRanking(array[0],Integer.parseInt(array[1]));
+					if (!competitionUsers.contains(u)){
+						competitionUsers.add(u);
+					}
 					ok = true;
 				}else{
 					ok = false;
@@ -55,11 +71,17 @@ public class Logics {
 		
 		try {
 			while(user.next()){
-				score = (int) user.getObject("score");
+				score = (int) user.getObject("score")+Integer.parseInt(array[2]);
 			}
 			
 			ConectorDB.insertGame(array[0],array[1],Integer.parseInt(array[2]));
 			ConectorDB.updateScore(array[0],score);
+			
+			for (UserRanking u: competitionUsers){
+				if (u.getNickname().equals(array[0])){
+					u.setPunctuation(score);
+				}
+			}
 			ok = true;
 			
 		} catch (SQLException e) {
@@ -70,7 +92,7 @@ public class Logics {
 		return ok;
 	}
 	
-	public static String createRanking(){
+	/*public static String createRanking(){
 		String ranking = new String();
 		
 		ResultSet user = ConectorDB.selectAllUsers();
@@ -84,10 +106,11 @@ public class Logics {
 		}
 		
 		return ranking;
-	}
+	}*/
+	
 	public String toArray(){
 		//quan el client afegeixi informacio s'ha d'actualitzar
-		usersRanking = new ArrayList<UserRanking>();
+		/*usersRanking = new ArrayList<UserRanking>();
 		
 		ResultSet user = ConectorDB.selectAllUsers();
 		
@@ -99,12 +122,12 @@ public class Logics {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
-		Collections.sort(usersRanking, comparator);
+		*/
+		Collections.sort(competitionUsers, comparator);
 		String ranking = new String();
 		
-		for (int i = 0; i<10 && i<usersRanking.size();i++){
-			ranking += usersRanking.get(i).getNickname()+"/"+usersRanking.get(i).getPunctuation()+"#";
+		for (int i = 0; i<10 && i<competitionUsers.size();i++){
+			ranking += competitionUsers.get(i).getNickname()+"/"+competitionUsers.get(i).getPunctuation()+"#";
 		}
 		
 		return ranking;
