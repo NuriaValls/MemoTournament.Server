@@ -2,8 +2,11 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 import network.ConectorDB;
 
@@ -12,6 +15,12 @@ public class Logics {
 	private UserRanking comparator = new UserRanking();
 	private static ArrayList<UserRanking> competitionUsers = new ArrayList<UserRanking>();
 	private static boolean competition = false;
+	
+	private Time time;
+	
+	public Logics(Time time){
+		this.time = time;
+	}
 	
 	public static boolean addUser(String message){
 		String[] array = new String[2];
@@ -108,8 +117,30 @@ public class Logics {
 		return ranking;
 	}
 	
-	public String createTimeComp(int hour, int minute, int duration){
+	public boolean createTimeComp(int hour, int minute, int duration){
+		boolean timeOK = false;
 		
-		return "START:"+hour+"/"+minute+"/"+duration;
+		String localTime = time.getTime();
+		localTime.substring(12);
+		
+		String startTime = hour+":"+minute+":00";
+		
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+		try {
+			Date localDate = format.parse(localTime);
+			Date startDate = format.parse(startTime);
+			
+			long difference = startDate.getTime() - localDate.getTime();
+			if (difference > 0){
+				
+				
+				
+				timeOK = true;
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return timeOK;
 	}
 }
