@@ -302,7 +302,22 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public void createUserManageCard(){
+		JPanel title = new JPanel();
+		JLabel nameTitle = new JLabel("Users Management");
+		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));
+		String[] columnNames = {"NickName"};
+		Object[][] data = {};
 		
+		
+		JTable table = new JTable(data, columnNames);
+		
+		
+		JScrollPane panell = new JScrollPane(table);
+		panell.setSize(500, 400);
+		panell.setPreferredSize(new Dimension(500, 300));
+		panell.setWheelScrollingEnabled(true);
+		//afegir listeners per gestionar usuaris!
+		jpUserManageCard.add(panell);
 	}
 	
 	public void refreshRanking(){
@@ -437,7 +452,30 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public void createUserGraphCard(){
-		
+		JPanel jpUGC = new JPanel(new GridLayout(1,2));
+		JPanel jpGraph = new JPanel();
+        JTable jtabUsers = new JTable();
+        // Fuente de Datos
+        /*DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
+        line_chart_dataset.addValue(80, "visitas", "Julio");
+        line_chart_dataset.addValue(300, "visitas", "Agosto");
+        line_chart_dataset.addValue(600, "visitas", "Septiembre");
+        line_chart_dataset.addValue(1200, "visitas", "Octubre");
+        line_chart_dataset.addValue(2400, "visitas", "Noviembre");  
+ 
+        // Creando el Grafico
+        JFreeChart chart=ChartFactory.createLineChart("Trafico en el Blog",
+                "Mes","Visitas",line_chart_dataset,PlotOrientation.VERTICAL,
+                true,true,false);  
+        
+        // Mostrar Grafico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        jpGraph.add(chartPanel);
+        */
+        jpUGC.add(jtabUsers);
+        jpUGC.add(jpGraph);
+        
+        
 	}
 	
 	public void showRegister(){
