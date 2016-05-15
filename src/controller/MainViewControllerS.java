@@ -30,7 +30,7 @@ public class MainViewControllerS implements ActionListener{
 		if (((JButton)e.getSource()).getText().equals("Create Competition")){
 			if (logics.createTimeComp(view.getHourConfig(),view.getMinuteConfig(),view.getDurationConfig())){
 				message = "START:"+view.getHourConfig()+"/"+view.getMinuteConfig()+"/"+view.getDurationConfig();
-				makeDialog("The competition has started!", true);
+				makeDialog("The countdown fot the competition has started!", true);
 				view.showMenu();
 			}else{
 				makeDialog("The time of the competition is not valid.", false);

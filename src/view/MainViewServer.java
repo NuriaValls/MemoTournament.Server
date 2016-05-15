@@ -63,6 +63,7 @@ public class MainViewServer extends JFrame{
 	private JComboBox startmlist;
 	private String [] startmstring = { "00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55" };
 	private JLabel jlselecttime;
+	private JSlider jsduration;
 	
 	public MainViewServer(){
 		setTitle("MemoTournament");
@@ -154,7 +155,8 @@ public class MainViewServer extends JFrame{
 		JLabel jltime = new JLabel("Duration (mins)");
 		jltime.setFont(new java.awt.Font("Geneva", 1, 14));
 		
-		JSlider jsduration = new JSlider(JSlider.HORIZONTAL, T_MIN, T_MAX, T_INIT);
+		jsduration = new JSlider(JSlider.HORIZONTAL, T_MIN, T_MAX, T_INIT);
+		
 		jsduration.setMajorTickSpacing(10);
 		jsduration.setMinorTickSpacing(2);
 		jsduration.setPaintTicks(true);
@@ -208,7 +210,7 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public int getDurationConfig(){
-		return Integer.parseInt(jlselecttime.getText());
+		return jsduration.getValue();
 	}
 	
 	public void createMenuCard(){

@@ -121,7 +121,6 @@ public class Logics {
 		boolean timeOK = false;
 		
 		String localTime = time.getTime();
-		localTime.substring(12);
 		
 		String startTime = hour+":"+minute+":00";
 		
@@ -132,9 +131,9 @@ public class Logics {
 			
 			long difference = startDate.getTime() - localDate.getTime();
 			if (difference > 0){
-				
-				
-				
+				difference = difference/1000;
+				duration = duration*60;
+				time.startCompetitionTime((int)difference, duration);
 				timeOK = true;
 			}
 		} catch (ParseException e) {

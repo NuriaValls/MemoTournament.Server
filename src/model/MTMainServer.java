@@ -25,6 +25,7 @@ public class MTMainServer {
 				
 				serverView.registerController(controller);
 				server.registerController(controller);
+				time.registerController(controller);
 				server.startServer();
 				serverView.setVisible(true);
 				

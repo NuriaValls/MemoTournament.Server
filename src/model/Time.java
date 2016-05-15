@@ -8,6 +8,8 @@ import java.util.GregorianCalendar;
 
 import javax.swing.Timer;
 
+import controller.MainViewControllerS;
+
 public class Time extends Thread{
 	
 	private Timer countdownTimer;
@@ -15,16 +17,20 @@ public class Time extends Thread{
 	private Timer competitionTimer;
 	private int competition;
 	
+	private MainViewControllerS controller;
+	
 	public Time(){
 		countdownTimer = new Timer(1000, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (countdown >= 0){
+				if (countdown > 0){
 					countdown--;
+					System.out.println(countdown);
 				}else{
 					competitionTimer.start();
 					countdownTimer.stop();
+					controller.makeDialog("The competition has started!", true);
 				}
 			}
 			
@@ -34,8 +40,9 @@ public class Time extends Thread{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (competition >= 0){
+				if (competition > 0){
 					competition--;
+					System.out.println("comp: "+competition);
 				}else{
 					competitionTimer.stop();
 				}
@@ -54,8 +61,12 @@ public class Time extends Thread{
 	public String getTime(){
 		Date date = new GregorianCalendar().getTime();
 
-		String time= new SimpleDateFormat("dd MMM yyyy HH:mm:ss").format(date.getTime());
+		String time= new SimpleDateFormat("HH:mm:ss").format(date.getTime());
 		
 		return time;
+	}
+	
+	public void registerController(MainViewControllerS controller){
+		this.controller = controller;
 	}
 }
