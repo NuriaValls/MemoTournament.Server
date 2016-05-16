@@ -66,5 +66,9 @@ public class MainViewControllerS implements ActionListener{
 	public String createRankingServer(){
 		return logics.toArray();
 	}
+	
+	public boolean getComp(){
+		return logics.getCompetition();
+	}
 
 }

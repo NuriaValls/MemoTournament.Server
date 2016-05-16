@@ -69,4 +69,12 @@ public class Time extends Thread{
 	public void registerController(MainViewControllerS controller){
 		this.controller = controller;
 	}
+	
+	public int getCountdown(){
+		return countdown;
+	}
+	
+	public int getCompetition(){
+		return competition;
+	}
 }

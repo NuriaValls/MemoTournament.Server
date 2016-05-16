@@ -142,4 +142,13 @@ public class Logics {
 		
 		return timeOK;
 	}
+	
+	public boolean getCompetition(){
+		return competition;
+	}
+	
+	public String getCountdownTime(){
+		
+		return null;
+	}
 }
