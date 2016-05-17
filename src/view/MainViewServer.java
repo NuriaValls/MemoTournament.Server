@@ -321,6 +321,7 @@ public class MainViewServer extends JFrame{
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				if(e.isPopupTrigger()){
+					System.out.println("menu");
 					//afegir menu
 				}
 			}
@@ -330,11 +331,11 @@ public class MainViewServer extends JFrame{
 		panell.setPreferredSize(new Dimension(500, 300));
 		panell.setWheelScrollingEnabled(true);
 		jpUserManageCard.add(title, BorderLayout.NORTH);
-		jpUserManageCard.add(panell,BorderLayout.CENTER);
+		jpUserManageCard.add(panell,BorderLayout.SOUTH);
 	}
 	
 	public String[][] refreshRanking(String sTopTen){
-		String matrix[][] = new String [10][2];
+		String matrix[][] = new String [11][2];
 		String[] users = sTopTen.split("#");
 		int j = 0;
 		for(int i=0;i<users.length;i++){				
@@ -353,10 +354,10 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.setLayout(new FlowLayout());
 		jpRankingCard.add(title, BorderLayout.NORTH);
-		String[] columnNames = {"NickName","Punctuation"};
+		String[] columnNames = {"NickName","Punctuation",};
 		JTable table = new JTable(mTopTen, columnNames);
 		table.setPreferredSize(new Dimension(500, 300));
-		jpRankingCard.add(table, BorderLayout.CENTER);
+		jpRankingCard.add(table, BorderLayout.SOUTH);
 	}
 	
 	public void createUserGraphCard(){
