@@ -53,7 +53,9 @@ public class Time extends Thread{
 	
 	public void startCompetitionTime(int countdown, int competition){
 		this.countdown = countdown;
+		countdown = countdown-4;
 		this.competition = competition;
+		competition = competition*60;
 		
 		countdownTimer.start();
 	}
