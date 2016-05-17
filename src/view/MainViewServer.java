@@ -9,6 +9,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -27,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import model.UserRanking;
 import controller.MainViewControllerS;
 
 public class MainViewServer extends JFrame{
@@ -74,8 +76,10 @@ public class MainViewServer extends JFrame{
 		createConfigCard();
 		createMenuCard();
 		createRegisterCard();
-		createUserManageCard();
-		createRankingCard();
+		ArrayList<UserRanking> allUsers = new ArrayList<UserRanking>();
+		createUserManageCard(allUsers);
+		String matrix[][] = new String [10][2];
+		createRankingCard(matrix);
 		createUserGraphCard(); 
 		
 		jpMenu = new JPanel();
@@ -303,154 +307,55 @@ public class MainViewServer extends JFrame{
 		jpRegisterCard.add(titol);
 	}
 	
-	public void createUserManageCard(){
+	public void createUserManageCard(ArrayList<UserRanking> allUsers){
 		JPanel title = new JPanel();
 		JLabel nameTitle = new JLabel("Users Management");
 		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));
 		String[] columnNames = {"NickName"};
-		Object[][] data = {};
-		
-		
-		JTable table = new JTable(data, columnNames);
-		
-		
+		String[][] list = new String [allUsers.size()][0];
+		for(int i = 0;i<allUsers.size();i++){
+			list[i][0]= allUsers.get(i).getNickname();
+		}
+		JTable table = new JTable(list,columnNames);
+		table.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				if(e.isPopupTrigger()){
+					//afegir menu
+				}
+			}
+			});
 		JScrollPane panell = new JScrollPane(table);
 		panell.setSize(500, 400);
 		panell.setPreferredSize(new Dimension(500, 300));
 		panell.setWheelScrollingEnabled(true);
-		//afegir listeners per gestionar usuaris!
-		jpUserManageCard.add(panell);
+		jpUserManageCard.add(title, BorderLayout.PAGE_START);
+		jpUserManageCard.add(panell,BorderLayout.CENTER);
 	}
 	
-	public void refreshRanking(){
-		//splits separar nom de puntuacio del string del model que primer haure de passar pel controlador
-		//crear nou tipus usuari al model(logics)  i crear llista arraylist; nous metodes per fer split(mirar el reateRanking()) i per endreçar. top 10 passarho a string
-		//for() dels usuaris.dins del bucle: afegir l'element a la taula..
+	public String[][] refreshRanking(String sTopTen){
+		String matrix[][] = new String [10][2];
+		String[] users = sTopTen.split("#");
+		int j = 0;
+		for(int i=0;i<users.length;i++){				
+			String[] aux = sTopTen.split("/");
+			matrix[j] = aux;
+			j++;
+		}
+		return matrix;
 	}
 	
-	public void createRankingCard(){
-		
-		
-		//elements Ranking han de ser locals
+	public void createRankingCard(String[][] mTopTen){
 		
 		JPanel title = new JPanel();
 		JLabel nameTitle = new JLabel("Top 10 Ranking");
 		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));
-		//title.add(Box.createVerticalStrut(15));
 		title.add(nameTitle);
-		//title.add(Box.createVerticalStrut(25));
 		title.setLayout(new FlowLayout());
-		jpRankingCard.add(title, BorderLayout.PAGE_START);
-		
-		String[] columnNames = {"First Name",
-                "Last Name",
-                "Sport",
-                "# of Years",
-                "Vegetarian"};
-		
-		Object[][] data = {
-			    {"Kathy", "Smith",
-			     "Snowboarding", new Integer(5), new Boolean(false)},
-			    {"John", "Doe",
-			     "Rowing", new Integer(3), new Boolean(true)},
-			    {"Sue", "Black",
-			     "Knitting", new Integer(2), new Boolean(false)},
-			    {"Jane", "White",
-			     "Speed reading", new Integer(20), new Boolean(true)},
-			    {"Joe", "Brown",
-			     "Pool", new Integer(10), new Boolean(false)},
-			    {"John", "Doe",
-				     "Rowing", new Integer(3), new Boolean(true)},
-				    {"Sue", "Black",
-				     "Knitting", new Integer(2), new Boolean(false)},
-				    {"Jane", "White",
-				     "Speed reading", new Integer(20), new Boolean(true)},
-				    {"Joe", "Brown",
-				     "Pool", new Integer(10), new Boolean(false)},
-				    {"John", "Doe",
-					     "Rowing", new Integer(3), new Boolean(true)},
-					    {"Sue", "Black",
-					     "Knitting", new Integer(2), new Boolean(false)},
-					    {"Jane", "White",
-					     "Speed reading", new Integer(20), new Boolean(true)},
-					    {"Joe", "Brown",
-					     "Pool", new Integer(10), new Boolean(false)},
-					    {"John", "Doe",
-						     "Rowing", new Integer(3), new Boolean(true)},
-						    {"Sue", "Black",
-						     "Knitting", new Integer(2), new Boolean(false)},
-						    {"Jane", "White",
-						     "Speed reading", new Integer(20), new Boolean(true)},
-						    {"Joe", "Brown",
-						     "Pool", new Integer(10), new Boolean(false)},
-						    {"John", "Doe",
-							     "Rowing", new Integer(3), new Boolean(true)},
-							    {"Sue", "Black",
-							     "Knitting", new Integer(2), new Boolean(false)},
-							    {"Jane", "White",
-							     "Speed reading", new Integer(20), new Boolean(true)},
-							    {"Joe", "Brown",
-							     "Pool", new Integer(10), new Boolean(false)},
-							    {"John", "Doe",
-								     "Rowing", new Integer(3), new Boolean(true)},
-								    {"Sue", "Black",
-								     "Knitting", new Integer(2), new Boolean(false)},
-								    {"Jane", "White",
-								     "Speed reading", new Integer(20), new Boolean(true)},
-								    {"Joe", "Brown",
-								     "Pool", new Integer(10), new Boolean(false)}
-			};
-		
-		JTable table = new JTable(data, columnNames);
-		
-		
-		JScrollPane panell = new JScrollPane(table);
-		panell.setSize(500, 400);
-		panell.setPreferredSize(new Dimension(500, 300));
-
-		
-		panell.setWheelScrollingEnabled(true);
-		
-		
-		
-		/* JPanel pRanking = new JPanel();	
-		GridLayout glRanking = new GridLayout(11,2);
-		pRanking.setLayout(glRanking);
-		
-		//pRanking.add(top10);
-
-		JLabel nickName = new JLabel("NICKNAME");
-		nickName.setBorder(BorderFactory.createLineBorder(Color.black));
-		pRanking.add(nickName);
-		//pRanking.setBorder(new EmptyBorder(10, 10, 10, 10));
-		JLabel punctuation = new JLabel("PUNTUACIO");
-		punctuation.setBorder(BorderFactory.createLineBorder(Color.black));
-		pRanking.add(punctuation);
-		
-		
-		for(int i=0; i<20; i++){
-			nickName = new JLabel("POL");
-			//pRanking.add(nickName);
-			nickName.setBorder(BorderFactory.createLineBorder(Color.black));
-			pRanking.add(nickName);
-			i++;
-			punctuation = new JLabel("350");
-			punctuation.setBorder(BorderFactory.createLineBorder(Color.black));
-			pRanking.add(punctuation);
-			//pRanking.add(punctuation);
-		}
-			
-		//JScrollPane scrollPane = new JScrollPane();
-		//scrollPane.setBorder(BorderFactory.createTitledBorder("Llista Paraules"));
-		//pRanking.add(scrollPane);
-		
-		//pRanking.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		//pRanking.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		//pRanking.setLayout(new FlowLayout());
-		jpRankingCard.setLayout(new BoxLayout(jpRankingCard,BoxLayout.PAGE_AXIS));
-		//jpRankingCard.add(pRanking, BorderLayout.CENTER);
-		jpRankingCard.add(pRanking);*/
-		jpRankingCard.add(panell);
+		jpRankingCard.add(title, BorderLayout.NORTH);
+		String[] columnNames = {"NickName","Punctuation"};
+		JTable table = new JTable(mTopTen, columnNames);
+		table.setPreferredSize(new Dimension(500, 300));
+		jpRankingCard.add(table, BorderLayout.CENTER);
 	}
 	
 	public void createUserGraphCard(){
