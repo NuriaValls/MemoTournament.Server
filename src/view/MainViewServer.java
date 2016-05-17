@@ -329,7 +329,7 @@ public class MainViewServer extends JFrame{
 		panell.setSize(500, 400);
 		panell.setPreferredSize(new Dimension(500, 300));
 		panell.setWheelScrollingEnabled(true);
-		jpUserManageCard.add(title, BorderLayout.PAGE_START);
+		jpUserManageCard.add(title, BorderLayout.NORTH);
 		jpUserManageCard.add(panell,BorderLayout.CENTER);
 	}
 	
