@@ -310,6 +310,7 @@ public class MainViewServer extends JFrame{
 	public void createUserManageCard(ArrayList<UserRanking> allUsers){
 		JPanel title = new JPanel();
 		JLabel nameTitle = new JLabel("Users Management");
+		title.add(nameTitle);
 		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));
 		String[] columnNames = {"NickName"};
 		String[][] list = new String [allUsers.size()][0];
