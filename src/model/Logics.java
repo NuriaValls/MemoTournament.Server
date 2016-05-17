@@ -16,6 +16,8 @@ public class Logics {
 	private static boolean competition = false;
 	
 	private Time time;
+	private long difference;
+	private int duration;
 	
 	public Logics(Time time){
 		this.time = time;
@@ -147,6 +149,8 @@ public class Logics {
 			if (difference > 0){
 				difference = difference/1000;
 				duration = duration*60;
+				this.difference = difference;
+				this.duration = duration;
 				time.startCompetitionTime((int)difference, duration);
 				timeOK = true;
 			}
@@ -155,5 +159,17 @@ public class Logics {
 		}
 		
 		return timeOK;
+	}
+	
+	public long getDifference(){
+		return difference;
+	}
+	
+	public int getDuration(){
+		return duration;
+	}
+	
+	public boolean getCompetition(){
+		return competition;
 	}
 }
