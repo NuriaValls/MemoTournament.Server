@@ -15,6 +15,8 @@ public class Logics {
 	private UserRanking comparator = new UserRanking();
 	private static ArrayList<UserRanking> competitionUsers = new ArrayList<UserRanking>();
 	private static boolean competition = false;
+	private long difference;
+	private int duration;
 	
 	private Time time;
 	
@@ -119,6 +121,7 @@ public class Logics {
 	
 	public boolean createTimeComp(int hour, int minute, int duration){
 		boolean timeOK = false;
+		this.duration = duration;
 		
 		String localTime = time.getTime();
 		
@@ -129,7 +132,7 @@ public class Logics {
 			Date localDate = format.parse(localTime);
 			Date startDate = format.parse(startTime);
 			
-			long difference = startDate.getTime() - localDate.getTime();
+			difference = startDate.getTime() - localDate.getTime();
 			if (difference > 0){
 				difference = difference/1000;
 				duration = duration*60;
@@ -147,8 +150,12 @@ public class Logics {
 		return competition;
 	}
 	
-	public String getCountdownTime(){
-		
-		return null;
+	public long getDifference(){
+		return difference;
 	}
+	
+	public int getDuration(){
+		return duration;
+	}
+
 }

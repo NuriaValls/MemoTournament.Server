@@ -26,7 +26,7 @@ public class Time extends Thread{
 			public void actionPerformed(ActionEvent arg0) {
 				if (countdown > 0){
 					countdown--;
-					System.out.println(countdown);
+					//System.out.println(countdown);
 				}else{
 					competitionTimer.start();
 					countdownTimer.stop();
@@ -42,7 +42,7 @@ public class Time extends Thread{
 			public void actionPerformed(ActionEvent arg0) {
 				if (competition > 0){
 					competition--;
-					System.out.println("comp: "+competition);
+					//System.out.println("comp: "+competition);
 				}else{
 					competitionTimer.stop();
 				}
