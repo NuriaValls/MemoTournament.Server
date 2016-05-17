@@ -11,12 +11,9 @@ import java.util.Date;
 import network.ConectorDB;
 
 public class Logics {
-	private ArrayList<UserRanking> usersRanking;
 	private UserRanking comparator = new UserRanking();
 	private static ArrayList<UserRanking> competitionUsers = new ArrayList<UserRanking>();
 	private static boolean competition = false;
-	private long difference;
-	private int duration;
 	
 	private Time time;
 	
@@ -108,7 +105,22 @@ public class Logics {
 		return ok;
 	}
 	
-	public String toArray(){
+	public ArrayList<UserRanking> toArray(){
+		
+		ArrayList<UserRanking> allUsers = new ArrayList<UserRanking>();
+		ResultSet user = ConectorDB.selectAllUsers();
+		try {
+			while(user.next()){
+				UserRanking u = new UserRanking((String)user.getObject("nickname"),(int)user.getObject("score"));
+				allUsers.add(u);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return allUsers;
+	}
+	
+	public String toString(){
 		Collections.sort(competitionUsers, comparator);
 		String ranking = new String();
 		
@@ -121,7 +133,6 @@ public class Logics {
 	
 	public boolean createTimeComp(int hour, int minute, int duration){
 		boolean timeOK = false;
-		this.duration = duration;
 		
 		String localTime = time.getTime();
 		
@@ -132,7 +143,7 @@ public class Logics {
 			Date localDate = format.parse(localTime);
 			Date startDate = format.parse(startTime);
 			
-			difference = startDate.getTime() - localDate.getTime();
+			long difference = startDate.getTime() - localDate.getTime();
 			if (difference > 0){
 				difference = difference/1000;
 				duration = duration*60;
@@ -145,17 +156,4 @@ public class Logics {
 		
 		return timeOK;
 	}
-	
-	public boolean getCompetition(){
-		return competition;
-	}
-	
-	public long getDifference(){
-		return difference;
-	}
-	
-	public int getDuration(){
-		return duration;
-	}
-
 }
