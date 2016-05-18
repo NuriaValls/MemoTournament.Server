@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -85,8 +86,7 @@ public class MainViewServer extends JFrame{
 		createUserManageCard(allUsers);
 		String matrix[][] = new String [10][2];
 		createRankingCard(matrix);
-		createUserGraphCard(); 
-		
+		createUserGraphCard(allUsers); 
 		jpMenu = new JPanel();
 		jpMenu.setLayout(cardLayout);
 		
@@ -374,13 +374,23 @@ public class MainViewServer extends JFrame{
 		jpRankingCard.add(table, BorderLayout.SOUTH);
 	}
 	
-	public void createUserGraphCard(){
+	public void createUserGraphCard(ArrayList<UserRanking> allUsers){
 		JPanel jpUGC = new JPanel(new GridLayout(1,2));
 		JPanel jpGraph = new JPanel();
-        JTable jtabUsers = new JTable();
-     
-  
        
+        
+        //Graphics g = null;
+        //g.drawLine(30, 300, 200, 30);
+        
+        String[] columnNames = {"Users"};
+		String[][] list = new String [allUsers.size()][0];
+		for(int i = 0;i<allUsers.size();i++){
+			list[i][0]= allUsers.get(i).getNickname();
+		}
+     
+        JTable jtabUsers = new JTable(list,columnNames);
+        JScrollPane panell = new JScrollPane(jtabUsers);
+      
         // Fuente de Datos
         /*DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
         line_chart_dataset.addValue(80, "visitas", "Julio");
@@ -398,9 +408,12 @@ public class MainViewServer extends JFrame{
         ChartPanel chartPanel = new ChartPanel(chart);
         jpGraph.add(chartPanel);
         */
-        jpUGC.add(jtabUsers);
+     
+		panell.setPreferredSize(new Dimension(500, 300));
+		panell.setWheelScrollingEnabled(true);
+        jpUGC.add(panell);
         jpUGC.add(jpGraph);
-        
+        jpUserGraphCard.add(jpUGC);
         
 	}
 	
