@@ -18,8 +18,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
@@ -27,6 +30,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import com.sun.javafx.geom.Rectangle;
 
 import model.UserRanking;
 import controller.MainViewControllerS;
@@ -308,6 +313,14 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public void createUserManageCard(ArrayList<UserRanking> allUsers){
+		JPopupMenu popup = new JPopupMenu();
+		JMenu jm = new JMenu();
+		JMenuItem iadd = new JMenuItem("Add");
+		JMenuItem idelete = new JMenuItem("Delete");
+		//jm.action(evt, what)
+		//jm.addActionListener(l);
+	
+		
 		JPanel title = new JPanel();
 		JLabel nameTitle = new JLabel("Users Management");
 		title.add(nameTitle);
@@ -327,6 +340,7 @@ public class MainViewServer extends JFrame{
 			}
 			});
 		JScrollPane panell = new JScrollPane(table);
+
 		panell.setSize(500, 400);
 		panell.setPreferredSize(new Dimension(500, 300));
 		panell.setWheelScrollingEnabled(true);
@@ -364,6 +378,9 @@ public class MainViewServer extends JFrame{
 		JPanel jpUGC = new JPanel(new GridLayout(1,2));
 		JPanel jpGraph = new JPanel();
         JTable jtabUsers = new JTable();
+     
+  
+       
         // Fuente de Datos
         /*DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
         line_chart_dataset.addValue(80, "visitas", "Julio");
