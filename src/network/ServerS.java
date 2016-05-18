@@ -18,8 +18,6 @@ public class ServerS extends Thread{
 	private static DataOutputStream dataOut;
 	private MainViewControllerS controller;
 	
-	private String startMessage = new String();
-	
 	public ServerS(){
 		try{
 			sServer = new ServerSocket(5200);
@@ -65,11 +63,7 @@ public class ServerS extends Thread{
 				}
 				
 				if (message.startsWith("LOG")){
-					if(Logics.checkUser(message)){
-						dataOut.writeUTF("OK");
-					}else{
-						dataOut.writeUTF("KO");
-					}
+					dataOut.writeUTF(Logics.checkUser(message));
 				}
 				
 				if (message.startsWith("RANK")){
@@ -90,10 +84,10 @@ public class ServerS extends Thread{
 				}
 				
 				if (message.startsWith("START")){
-					if (startMessage == null){
+					if (!controller.getComp()){
 						dataOut.writeUTF("NOT STARTED");
 					}else{
-						dataOut.writeUTF(startMessage);
+						dataOut.writeUTF(controller.setStartMessage());
 					}
 				}
 				
@@ -104,9 +98,5 @@ public class ServerS extends Thread{
 				
 			}
 		}
-	}
-
-	public void setStartMessage(String startMessage) {
-		this.startMessage = startMessage;
 	}
 }

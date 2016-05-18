@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import controller.MainViewControllerS;
 import network.ConectorDB;
 
 public class Logics {
@@ -42,36 +43,45 @@ public class Logics {
 		return ok;
 	}
 	
-	public static boolean checkUser(String message){
-		boolean ok = false;
+	public static String checkUser(String message){
 		boolean found = false;
 		String[] array = new String[2];
 		
+		String answer = new String();
+		
 		message = message.substring(4);
 		array = message.split("/");
-		
-		ResultSet user = ConectorDB.selectUser(array[0]);
-		
-		try {
-			while(user.next()){
-				if(user.getObject("pasword").equals(array[1])){
-					if (!competitionUsers.isEmpty()){
-						for (UserRanking u: competitionUsers){
-							if (u.getNickname().equals(array[0])){
-								found = true;
+		try {	
+			ResultSet user = ConectorDB.selectUser(array[0]);
+			
+			try {
+				while(user.next()){
+					if(user.getObject("pasword").equals(array[1])){
+						if (!competitionUsers.isEmpty()){
+							for (UserRanking u: competitionUsers){
+								if (u.getNickname().equals(array[0])){
+									found = true;
+									
+								}
 							}
 						}
+						if (!found){
+							competitionUsers.add(new UserRanking(array[0],0));
+							answer = "OK:0";
+						}else{
+							answer = "OK:"+user.getObject("score");
+						}
+					}else{
+						answer = "KO";
 					}
-					if (!found) competitionUsers.add(new UserRanking(array[0],0));
-					ok = true;
-				}else{
-					ok = false;
 				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		}catch (Exception e2){
+			e2.printStackTrace();
 		}
-		return ok;
+		return answer;
 	}
 	
 	public static boolean updateScore(String message){
@@ -162,14 +172,18 @@ public class Logics {
 	}
 	
 	public long getDifference(){
-		return difference;
+		return time.getCountdown();
 	}
 	
 	public int getDuration(){
-		return duration;
+		return time.getCompetition();
 	}
 	
 	public boolean getCompetition(){
 		return competition;
+	}
+	
+	public void setCompetition(boolean competition){
+		this.competition = competition;
 	}
 }

@@ -12,7 +12,7 @@ import view.MainViewServer;
 
 public class MainViewControllerS implements ActionListener{
 
-	private MainViewServer view;
+	private static MainViewServer view;
 	private ServerS server;
 	private Logics logics;
 	
@@ -31,11 +31,11 @@ public class MainViewControllerS implements ActionListener{
 			if (logics.createTimeComp(view.getHourConfig(),view.getMinuteConfig(),view.getDurationConfig())){
 				message = "START:"+(int)logics.getDifference()+"/"+logics.getDuration();
 				makeDialog("The countdown fot the competition has started!", true);
+				logics.setCompetition(true);
 				view.showMenu();
 			}else{
 				makeDialog("The time of the competition is not valid.", false);
 			}
-			server.setStartMessage(message);
 		}
 		
 		if (((JButton)e.getSource()).getText().equals("Competitors Register")){
@@ -59,7 +59,7 @@ public class MainViewControllerS implements ActionListener{
 		}
 	}
 	
-	public void makeDialog(String message, boolean type){
+	public static void makeDialog(String message, boolean type){
 		view.makeDialog(message,type);
 	}
 	
@@ -69,6 +69,11 @@ public class MainViewControllerS implements ActionListener{
 	
 	public boolean getComp(){
 		return logics.getCompetition();
+	}
+	
+	public String setStartMessage(){
+		String message = "START:"+(int)logics.getDifference()+"/"+logics.getDuration();
+		return message;
 	}
 
 }
