@@ -374,7 +374,6 @@ public class MainViewServer extends JFrame{
 		JLabel nameTitle = new JLabel("Top 10 Ranking");
 		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));
 		title.add(nameTitle);
-		title.setLayout(new FlowLayout());
 		jpRankingCard.add(title, BorderLayout.NORTH);
 		String [][] mTopTen = new String [11][2];
 		table = new JTable(mTopTen, columnNames);
