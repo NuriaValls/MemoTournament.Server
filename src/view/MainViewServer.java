@@ -73,6 +73,10 @@ public class MainViewServer extends JFrame{
 	private JLabel jlselecttime;
 	private JSlider jsduration;
 	
+	//atributs ranking
+	private JTable table;
+	private String[] columnNames = {"NickName","Punctuation",};
+	
 	public MainViewServer(){
 		setTitle("MemoTournament");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -84,8 +88,9 @@ public class MainViewServer extends JFrame{
 		createRegisterCard();
 		ArrayList<UserRanking> allUsers = new ArrayList<UserRanking>();
 		createUserManageCard(allUsers);
-		String matrix[][] = new String [10][2];
-		createRankingCard(matrix);
+		//String matrix[][] = new String [10][2];
+		
+		createRankingCard();
 		createUserGraphCard(allUsers); 
 		jpMenu = new JPanel();
 		jpMenu.setLayout(cardLayout);
@@ -348,7 +353,7 @@ public class MainViewServer extends JFrame{
 		jpUserManageCard.add(panell,BorderLayout.SOUTH);
 	}
 	
-	public String[][] refreshRanking(String sTopTen){
+	public void refreshRanking(String sTopTen){
 		String matrix[][] = new String [11][2];
 		String[] users = sTopTen.split("#");
 		int j = 0;
@@ -357,10 +362,11 @@ public class MainViewServer extends JFrame{
 			matrix[j] = aux;
 			j++;
 		}
-		return matrix;
+		table = new JTable(matrix,columnNames);
+		
 	}
 	
-	public void createRankingCard(String[][] mTopTen){
+	public void createRankingCard(){
 		
 		JPanel title = new JPanel();
 		JLabel nameTitle = new JLabel("Top 10 Ranking");
@@ -368,8 +374,8 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.setLayout(new FlowLayout());
 		jpRankingCard.add(title, BorderLayout.NORTH);
-		String[] columnNames = {"NickName","Punctuation",};
-		JTable table = new JTable(mTopTen, columnNames);
+		String [][] mTopTen = new String [11][2];
+		table = new JTable(mTopTen, columnNames);
 		table.setPreferredSize(new Dimension(500, 300));
 		jpRankingCard.add(table, BorderLayout.SOUTH);
 	}
