@@ -65,6 +65,7 @@ public class MainViewControllerS implements ActionListener{
 	
 	public String createRankingServer(){
 		String ranking = new String(logics.toString());
+		System.out.println(ranking);
 		view.refreshRanking(ranking);
 		return ranking;
 	}
@@ -104,6 +105,6 @@ public class MainViewControllerS implements ActionListener{
 		}else{
 			print = "The competition will start in: "+hour+min+sec+"hours.";
 		}
-		System.out.println(print);
+		view.refreshTime(print);
 	}
 }

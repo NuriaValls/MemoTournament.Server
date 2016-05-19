@@ -279,6 +279,10 @@ public class MainViewServer extends JFrame{
 		
 	}
 	
+	public void refreshTime(String time){
+		tempsmenu.setText(time);
+	}
+	
 	public void createRegisterCard(){
 		
 		JPanel titol = new JPanel();
@@ -419,7 +423,8 @@ public class MainViewServer extends JFrame{
 			j++;
 		}
 		table = new JTable(matrix,columnNames);
-		
+		table.setPreferredSize(new Dimension(500, 250));
+		table.setAlignmentX(Component.CENTER_ALIGNMENT);
 	}
 	
 	public void createRankingCard(){
@@ -435,10 +440,11 @@ public class MainViewServer extends JFrame{
 		
 		JPanel panell = new JPanel();
 		
-		String [][] mTopTen = new String [11][2];
-		table = new JTable(mTopTen, columnNames);
-		table.setPreferredSize(new Dimension(500, 250));
-		table.setAlignmentX(Component.CENTER_ALIGNMENT);
+		//String [][] mTopTen = new String [11][2];
+		//table = new JTable(mTopTen, columnNames);
+		//table = new JTable();
+		//table.setPreferredSize(new Dimension(500, 250));
+		//table.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panell.add(table);
 		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
 		title.add(panell);
