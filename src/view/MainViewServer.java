@@ -371,14 +371,25 @@ public class MainViewServer extends JFrame{
 	public void createRankingCard(){
 		
 		JPanel title = new JPanel();
+		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
 		JLabel nameTitle = new JLabel("Top 10 Ranking");
-		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));
+		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));	
+		title.add(Box.createVerticalStrut(15));
+		nameTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		title.add(nameTitle);
-		jpRankingCard.add(title, BorderLayout.NORTH);
+		title.add(Box.createVerticalStrut(15));
+		
+		JPanel panell = new JPanel();
+		
 		String [][] mTopTen = new String [11][2];
 		table = new JTable(mTopTen, columnNames);
-		table.setPreferredSize(new Dimension(500, 300));
-		jpRankingCard.add(table, BorderLayout.SOUTH);
+		table.setPreferredSize(new Dimension(500, 250));
+		table.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panell.add(table);
+		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(panell);
+		jpRankingCard.add(title);
+		
 	}
 	
 	public void createUserGraphCard(ArrayList<UserRanking> allUsers){
