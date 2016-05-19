@@ -486,8 +486,8 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.add(Box.createVerticalStrut(15));
 		
-		JPanel jpUGC = new JPanel(new GridLayout(1,2));
-		JPanel jpGraph = new JPanel();
+		//JPanel jpUGC = new JPanel(new GridLayout(1,2));
+		//JPanel jpGraph = new JPanel();
        
         
         String[] columnNames = {"Users"};
@@ -496,8 +496,8 @@ public class MainViewServer extends JFrame{
 			list[i][0]= allUsers.get(i).getNickname();
 		}
      
-        JTable jtabUsers = new JTable(list,columnNames);
-        JScrollPane panell = new JScrollPane(jtabUsers);
+        //JTable jtabUsers = new JTable(list,columnNames);
+       // JScrollPane panell = new JScrollPane(jtabUsers);
       
         // Fuente de Datos
         /*DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
@@ -516,20 +516,39 @@ public class MainViewServer extends JFrame{
         ChartPanel chartPanel = new ChartPanel(chart);
         jpGraph.add(chartPanel);
         */
+        
+        
+        
+        JTabbedPane tabbedPane = new JTabbedPane();
+
+
+        JComponent panel1 = makeTextPanel("Panel #1");
+        tabbedPane.addTab("Tab 1", panel1);
+        //panel1.setPreferredSize(new Dimension(300, 250));
+
+        JComponent panel2 = makeTextPanel("Panel #2");
+        tabbedPane.addTab("Tab 2", panel2);
+        //panel2.setPreferredSize(new Dimension(300, 250));
      
 		panell.setPreferredSize(new Dimension(500, 250));
-		panell.setWheelScrollingEnabled(true);
-		//panell.setAlignmentX(Component.CENTER_ALIGNMENT);
-        jpUGC.add(panell);
-        jpUGC.add(jpGraph);
-        jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.add(jpUGC);
-        
-        Grafic g = new Grafic();
-        jpUGC.add(g);
+		//panell.setWheelScrollingEnabled(true);
+		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //jpUGC.add(panell);
+        //jpUGC.add(jpGraph);
+        //jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //title.add(jpUGC);
+        tabbedPane.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.add(tabbedPane);
+        //Grafic g = new Grafic();
+        //jpUGC.add(g);
         jpUserGraphCard.add(title);
 	}
 	
+	private JComponent makeTextPanel(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public void showRegister(){
 		cardLayout.show(jpMenu, "3");
 		
