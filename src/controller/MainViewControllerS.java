@@ -26,7 +26,7 @@ public class MainViewControllerS implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		String message = new String(); 
+		String message = new String();  
 		
 		if (((JButton)e.getSource()).getText().equals("Create Competition")){
 			if (logics.createTimeComp(view.getHourConfig(),view.getMinuteConfig(),view.getDurationConfig())){
