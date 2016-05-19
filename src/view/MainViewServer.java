@@ -60,6 +60,7 @@ public class MainViewServer extends JFrame{
 	
 	private static JButton jbCompetition = new JButton("Create Competition");
 	private static JButton jbRegister = new JButton("Competitors Register");
+	private static JButton jbRegisterUser = new JButton("Register");
 	private static JButton jbUserManage = new JButton("Users Management");
 	private static JButton jbRanking = new JButton("Show Ranking");
 	private static JButton jbUserGraph = new JButton("Show User Graphic");
@@ -83,6 +84,10 @@ public class MainViewServer extends JFrame{
 	private JTable table;
 	private String[] columnNames = {"NickName","Score",};
 	private JPanel title;
+	
+	//atributs registre
+	private JTextField jtfnickname;
+	private JPasswordField jpfpassword;
 	
 	public MainViewServer(){
 		setTitle("MemoTournament");
@@ -117,8 +122,10 @@ public class MainViewServer extends JFrame{
 		jpButtonMenu.add(jbRanking);
 		jpButtonMenu.add(jbUserGraph);
 		jpButtonMenu.add(jbBack);
+		jpButtonMenu.add(jbRegisterUser);
 		
 		jbRegister.setVisible(false);
+		jbRegisterUser.setVisible(false);
 		jbUserManage.setVisible(false);
 		jbRanking.setVisible(false);
 		jbUserGraph.setVisible(false);
@@ -136,6 +143,7 @@ public class MainViewServer extends JFrame{
 		jbRanking.addActionListener(actionListener);
 		jbUserGraph.addActionListener(actionListener);
 		jbBack.addActionListener(actionListener);
+		jbRegisterUser.addActionListener(actionListener);
 	}
 	
 	public void createConfigCard(){
@@ -325,7 +333,7 @@ public class MainViewServer extends JFrame{
 		
 		JLabel jlnickname = new JLabel("Nickname");
 		jlnickname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfnickname = new JTextField();
+		jtfnickname = new JTextField();
 		JPanel jpnickname = new JPanel();
 		jpnickname.setLayout(new GridLayout(1,4));
 		jpnickname.add(new JPanel());
@@ -335,7 +343,7 @@ public class MainViewServer extends JFrame{
 		
 		JLabel jlpassword = new JLabel("Password");
 		jlpassword.setFont(new java.awt.Font("Geneva", 1, 14));
-		JPasswordField jpfpassword = new JPasswordField();
+		jpfpassword = new JPasswordField();
 		JPanel jppassword = new JPanel();
 		jppassword.setLayout(new GridLayout(1,4));
 		jppassword.add(new JPanel());
@@ -371,6 +379,15 @@ public class MainViewServer extends JFrame{
 		titol.add(register);
 		
 		jpRegisterCard.add(titol);
+	}
+	
+	public String getNickname(){
+		return jtfnickname.getText();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getPasword(){
+		return jpfpassword.getText();
 	}
 	
 	public void createUserManageCard(ArrayList<UserRanking> allUsers){
@@ -520,7 +537,8 @@ public class MainViewServer extends JFrame{
 		jbRanking.setVisible(false);
 		jbUserGraph.setVisible(false);
 		
-		jbBack.setVisible(true); 
+		jbBack.setVisible(true);
+		jbRegisterUser.setVisible(true);
 	}
 	
 	public void showUserManage(){
@@ -566,6 +584,7 @@ public class MainViewServer extends JFrame{
 		
 		jbCompetition.setVisible(false);
 		jbBack.setVisible(false);
+		jbRegisterUser.setVisible(false);
 	}
 	
 	public void makeDialog(String message, boolean type){

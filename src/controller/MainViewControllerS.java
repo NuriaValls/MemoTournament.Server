@@ -7,6 +7,7 @@ import javax.swing.JButton;
 
 import model.Logics;
 import model.Time;
+import network.ConectorDB;
 import network.ServerS;
 import view.MainViewServer;
 
@@ -40,6 +41,12 @@ public class MainViewControllerS implements ActionListener{
 		
 		if (((JButton)e.getSource()).getText().equals("Competitors Register")){
 			view.showRegister();
+		}
+		
+		if (((JButton)e.getSource()).getText().equals("Register")){
+			if(logics.checkNickname(view.getNickname()) && logics.checkPasword(view.getPasword())){
+				ConectorDB.insertUser(view.getNickname(), view.getPasword());
+			}
 		}
 		
 		if (((JButton)e.getSource()).getText().equals("Users Management")){

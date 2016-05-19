@@ -186,4 +186,15 @@ public class Logics {
 	public void setCompetition(boolean competition){
 		this.competition = competition;
 	}
+	
+	public boolean checkNickname(String nickname){
+		return !nickname.equals("GUEST");
+	}
+	
+	public boolean checkPasword(String pasword){
+		if(pasword.length()>6){
+			
+		}
+		return true;
+	}
 }
