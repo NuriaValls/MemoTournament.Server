@@ -65,7 +65,8 @@ public class MainViewServer extends JFrame{
 	
 	//atributs menu
 	
-	private JLabel label = new JLabel("meh");
+	private JLabel tempsmenu = new JLabel("X mins");
+	private JLabel bestplayer = new JLabel("Nom Jugador");
 	
 	//atributs de config
 	private JComboBox starthlist;
@@ -230,7 +231,52 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public void createMenuCard(){
-		jpMenuCard.add(label);
+		
+		JPanel titol = new JPanel();
+		titol.setLayout(new BoxLayout(titol, BoxLayout.PAGE_AXIS));
+		JLabel nomtitol = new JLabel("Menu");
+		nomtitol.setFont(new java.awt.Font("Geneva", 1, 34));
+		titol.add(Box.createVerticalStrut(15));
+		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(nomtitol);
+		titol.add(Box.createVerticalStrut(35));
+		
+		JPanel jpmenu = new JPanel();
+		jpmenu.setLayout(new BoxLayout(jpmenu, BoxLayout.PAGE_AXIS));
+		
+		JLabel jltcompetition = new JLabel("Comp. Time");
+		jltcompetition.setFont(new java.awt.Font("Geneva", 1, 14));
+		tempsmenu.setFont(new java.awt.Font("Geneva", 1, 14));
+		JPanel jptcompetition = new JPanel();
+		jptcompetition.setLayout(new GridLayout(1,5));
+		jptcompetition.add(new JPanel());
+		jptcompetition.add(jltcompetition);
+		jptcompetition.add(new JPanel());
+		jptcompetition.add(tempsmenu);
+		jptcompetition.add(new JPanel());
+		
+		JLabel jlplayer = new JLabel("Best Player");
+		jlplayer.setFont(new java.awt.Font("Geneva", 1, 14));
+		bestplayer.setFont(new java.awt.Font("Geneva", 1, 14));
+		JPanel jpplayer = new JPanel();
+		jpplayer.setLayout(new GridLayout(1,5));
+		jpplayer.add(new JPanel());
+		jpplayer.add(jlplayer);
+		jpplayer.add(new JPanel());
+		jpplayer.add(bestplayer);
+		jpplayer.add(new JPanel());
+		
+		jptcompetition.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jpplayer.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		jpmenu.add(jptcompetition);
+		jpmenu.add(Box.createVerticalStrut(10));
+		jpmenu.add(jpplayer);
+		
+		jpmenu.setAlignmentX(Component.CENTER_ALIGNMENT);
+		titol.add(jpmenu);
+		jpMenuCard.add(titol);
+		
 	}
 	
 	public void createRegisterCard(){
@@ -329,9 +375,14 @@ public class MainViewServer extends JFrame{
 	
 		
 		JPanel title = new JPanel();
+		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
 		JLabel nameTitle = new JLabel("Users Management");
-		title.add(nameTitle);
 		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));
+		title.add(Box.createVerticalStrut(15));
+		nameTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(nameTitle);
+		title.add(Box.createVerticalStrut(15));
+		
 		String[] columnNames = {"NickName"};
 		String[][] list = new String [allUsers.size()][0];
 		for(int i = 0;i<allUsers.size();i++){
@@ -346,13 +397,16 @@ public class MainViewServer extends JFrame{
 				}
 			}
 			});
+		
 		JScrollPane panell = new JScrollPane(table);
 
 		panell.setSize(500, 400);
-		panell.setPreferredSize(new Dimension(500, 300));
+		panell.setPreferredSize(new Dimension(500, 250));
 		panell.setWheelScrollingEnabled(true);
-		jpUserManageCard.add(title, BorderLayout.NORTH);
-		jpUserManageCard.add(panell,BorderLayout.SOUTH);
+		//panell.add(table);
+		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(panell);
+		jpUserManageCard.add(title);
 	}
 	
 	public void refreshRanking(String sTopTen){
@@ -393,10 +447,19 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public void createUserGraphCard(ArrayList<UserRanking> allUsers){
+		//s'ha d'acabar de centrar tot
+		JPanel title = new JPanel();
+		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
+		JLabel nameTitle = new JLabel("User Graphic");
+		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));	
+		title.add(Box.createVerticalStrut(15));
+		nameTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(nameTitle);
+		title.add(Box.createVerticalStrut(15));
+		
 		JPanel jpUGC = new JPanel(new GridLayout(1,2));
 		JPanel jpGraph = new JPanel();
        
-        
         
         String[] columnNames = {"Users"};
 		String[][] list = new String [allUsers.size()][0];
@@ -425,14 +488,17 @@ public class MainViewServer extends JFrame{
         jpGraph.add(chartPanel);
         */
      
-		panell.setPreferredSize(new Dimension(500, 300));
+		panell.setPreferredSize(new Dimension(500, 250));
 		panell.setWheelScrollingEnabled(true);
+		//panell.setAlignmentX(Component.CENTER_ALIGNMENT);
         jpUGC.add(panell);
         jpUGC.add(jpGraph);
+        jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.add(jpUGC);
         
         Grafic g = new Grafic();
-        jpUserGraphCard.add(jpUGC);
         jpUGC.add(g);
+        jpUserGraphCard.add(title);
 	}
 	
 	public void showRegister(){
