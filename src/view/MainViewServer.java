@@ -31,6 +31,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.sun.javafx.geom.Rectangle;
 
@@ -77,8 +79,10 @@ public class MainViewServer extends JFrame{
 	private JSlider jsduration;
 	
 	//atributs ranking
+	private JPanel panell;
 	private JTable table;
-	private String[] columnNames = {"NickName","Punctuation",};
+	private String[] columnNames = {"NickName","Score",};
+	private JPanel title;
 	
 	public MainViewServer(){
 		setTitle("MemoTournament");
@@ -418,18 +422,18 @@ public class MainViewServer extends JFrame{
 		String[] users = sTopTen.split("#");
 		int j = 0;
 		for(int i=0;i<users.length;i++){				
-			String[] aux = sTopTen.split("/");
+			String[] aux = users[i].split("/");
 			matrix[j] = aux;
 			j++;
 		}
-		table = new JTable(matrix,columnNames);
-		table.setPreferredSize(new Dimension(500, 250));
-		table.setAlignmentX(Component.CENTER_ALIGNMENT);
+		DefaultTableModel model = new DefaultTableModel(matrix,columnNames);
+		table.setModel(model);
+		model.fireTableDataChanged();
 	}
 	
 	public void createRankingCard(){
 		
-		JPanel title = new JPanel();
+		title = new JPanel();
 		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
 		JLabel nameTitle = new JLabel("Top 10 Ranking");
 		nameTitle.setFont(new java.awt.Font("Geneva", 1, 34));	
@@ -438,13 +442,14 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.add(Box.createVerticalStrut(15));
 		
-		JPanel panell = new JPanel();
+		panell = new JPanel();
 		
-		//String [][] mTopTen = new String [11][2];
-		//table = new JTable(mTopTen, columnNames);
-		//table = new JTable();
-		//table.setPreferredSize(new Dimension(500, 250));
-		//table.setAlignmentX(Component.CENTER_ALIGNMENT);
+		String [][] mTopTen = new String [11][2];
+		table = new JTable(mTopTen, columnNames);
+		
+		table.setPreferredSize(new Dimension(500, 250));
+		table.setOpaque(false);
+		table.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panell.add(table);
 		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
 		title.add(panell);
