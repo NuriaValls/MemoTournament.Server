@@ -17,6 +17,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -26,9 +27,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
@@ -68,8 +71,8 @@ public class MainViewServer extends JFrame{
 	
 	//atributs menu
 	
-	private JLabel tempsmenu = new JLabel("X mins");
-	private JLabel bestplayer = new JLabel("Nom Jugador");
+	private JLabel tempsmenu = new JLabel(" X mins ");
+	private JLabel bestplayer = new JLabel("Nom Jugador", SwingConstants.LEFT);
 	
 	//atributs de config
 	private JComboBox starthlist;
@@ -251,23 +254,21 @@ public class MainViewServer extends JFrame{
 		titol.add(Box.createVerticalStrut(15));
 		nomtitol.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titol.add(nomtitol);
-		titol.add(Box.createVerticalStrut(35));
+		titol.add(Box.createVerticalStrut(10));
 		
 		JPanel jpmenu = new JPanel();
 		jpmenu.setLayout(new BoxLayout(jpmenu, BoxLayout.PAGE_AXIS));
 		
-		JLabel jltcompetition = new JLabel("Comp. Time");
-		jltcompetition.setFont(new java.awt.Font("Geneva", 1, 14));
-		tempsmenu.setFont(new java.awt.Font("Geneva", 1, 14));
-		JPanel jptcompetition = new JPanel();
-		jptcompetition.setLayout(new GridLayout(1,5));
-		jptcompetition.add(new JPanel());
-		jptcompetition.add(jltcompetition);
-		jptcompetition.add(new JPanel());
-		jptcompetition.add(tempsmenu);
-		jptcompetition.add(new JPanel());
+		Border border = BorderFactory.createLineBorder(Color.YELLOW, 2);
+		tempsmenu.setFont(new java.awt.Font("Geneva", 1, 16));
+		tempsmenu.setBackground(Color.WHITE);
+		tempsmenu.setOpaque(true);
+		tempsmenu.setBorder(border);
 		
-		JLabel jlplayer = new JLabel("Best Player");
+		JPanel jptcompetition = new JPanel();
+		jptcompetition.add(tempsmenu);
+	
+		JLabel jlplayer = new JLabel("Best Player", SwingConstants.RIGHT);
 		jlplayer.setFont(new java.awt.Font("Geneva", 1, 14));
 		bestplayer.setFont(new java.awt.Font("Geneva", 1, 14));
 		JPanel jpplayer = new JPanel();
@@ -282,7 +283,7 @@ public class MainViewServer extends JFrame{
 		jpplayer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		jpmenu.add(jptcompetition);
-		jpmenu.add(Box.createVerticalStrut(10));
+		jpmenu.add(Box.createVerticalStrut(25));
 		jpmenu.add(jpplayer);
 		
 		jpmenu.setAlignmentX(Component.CENTER_ALIGNMENT);
