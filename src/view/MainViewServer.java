@@ -63,6 +63,8 @@ public class MainViewServer extends JFrame{
 	private static JButton jbUserGraph = new JButton("Show User Graphic");
 	private static JButton jbBack = new JButton("Menu");
 	
+	//atributs menu
+	
 	private JLabel label = new JLabel("meh");
 	
 	//atributs de config
@@ -385,8 +387,6 @@ public class MainViewServer extends JFrame{
 		JPanel jpGraph = new JPanel();
        
         
-        //Graphics g = null;
-        //g.drawLine(30, 300, 200, 30);
         
         String[] columnNames = {"Users"};
 		String[][] list = new String [allUsers.size()][0];
@@ -419,8 +419,10 @@ public class MainViewServer extends JFrame{
 		panell.setWheelScrollingEnabled(true);
         jpUGC.add(panell);
         jpUGC.add(jpGraph);
-        jpUserGraphCard.add(jpUGC);
         
+        Grafic g = new Grafic();
+        jpUserGraphCard.add(jpUGC);
+        jpUGC.add(g);
 	}
 	
 	public void showRegister(){
