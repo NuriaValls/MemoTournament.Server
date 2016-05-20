@@ -96,7 +96,7 @@ public class MainViewServer extends JFrame{
 		setTitle("MemoTournament");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setSize(1000, 400);
+		setSize(1000, 500);
 		
 		createConfigCard();
 		createMenuCard();
@@ -486,9 +486,8 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.add(Box.createVerticalStrut(15));
 		
-		JPanel jpUGC = new JPanel(new GridLayout(1,2));
-		JPanel jpGraph = new JPanel();
-		
+		JPanel jpUGC = new JPanel(new GridLayout(1,4));
+		JPanel jpGraph = new JPanel(); 
 		JTabbedPane tabbedPane = new JTabbedPane();
 
         JComponent panel1 = makeTextPanel("Panel #1");
@@ -512,11 +511,16 @@ public class MainViewServer extends JFrame{
 
         JTable jtabUsers = new JTable(list,columnNames);
         JScrollPane panell = new JScrollPane(jtabUsers);
-        panell.setPreferredSize(new Dimension(500, 250));
+        panell.setPreferredSize(new Dimension(200, 300));
         panell.setWheelScrollingEnabled(true);
+        panell.setAlignmentX(Component.LEFT_ALIGNMENT);
+        jpGraph.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jpUGC.add(panell);
+		jpUGC.add(new JPanel());
 		jpUGC.add(jpGraph);
-        
+		jpUGC.add(new JPanel());
+		
+		//jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.add(jpUGC);
         
         //Grafic g = new Grafic();
@@ -538,7 +542,9 @@ public class MainViewServer extends JFrame{
 		jbUserGraph.setVisible(false);
 		
 		jbBack.setVisible(true);
+		//jbRegisterUser.setLocation(0,0);
 		jbRegisterUser.setVisible(true);
+		
 	}
 	
 	public void showUserManage(){
