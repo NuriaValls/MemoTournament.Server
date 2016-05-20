@@ -46,6 +46,10 @@ public class MainViewControllerS implements ActionListener{
 		if (((JButton)e.getSource()).getText().equals("Register")){
 			if(logics.checkNickname(view.getNickname()) && logics.checkPasword(view.getPasword())){
 				ConectorDB.insertUser(view.getNickname(), view.getPasword());
+				makeDialog("The user has been successfuly registered!", true);
+				view.showMenu();
+			}else{
+				makeDialog("The user couldn't be registered.", false);
 			}
 		}
 		

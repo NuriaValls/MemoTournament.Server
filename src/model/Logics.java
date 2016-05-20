@@ -192,9 +192,19 @@ public class Logics {
 	}
 	
 	public boolean checkPasword(String pasword){
+		boolean num = false;
+		boolean letter = false;
 		if(pasword.length()>6){
-			
+			if(pasword.matches(".*\\d+.*")){
+				num = true;
+			}
+			if(pasword.matches(".*[a-zA-Z]+.*")){
+				letter = true;
+			}
+			if(num && letter){
+				return true;
+			}
 		}
-		return true;
+		return false;
 	}
 }
