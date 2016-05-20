@@ -9,7 +9,8 @@ import javax.swing.JPanel;
 import model.UserRanking;
 
 public class Grafic extends JPanel{
-	private int[] punctuations;
+	private int[] punctuations1;
+	private int[] punctuations2;
 	private int typeGraph;
 	public Grafic(){
 		
@@ -29,20 +30,32 @@ public class Grafic extends JPanel{
         
         if (typeGraph == 1){
         	int maxPunctuation = 0;
-        	for(int i=0;i<punctuations.length;i++){
-        		if (punctuations[i]>maxPunctuation){
-        			maxPunctuation = punctuations[i];
+        	for(int i=0;i<punctuations1.length;i++){
+        		if (punctuations1[i]>maxPunctuation){
+        			maxPunctuation = punctuations1[i];
         		}
         	}
         	
         	int scale = 500/maxPunctuation;
         	int ix = 0;
-        	for(int i=0;i<punctuations.length;i++){
-        		g.drawLine(ix,punctuations[i]*scale-500,ix+30,punctuations[i+1]*scale-500);
+        	for(int i=0;i<punctuations1.length;i++){
+        		g.drawLine(ix,punctuations1[i]*scale-500,ix+30,punctuations1[i+1]*scale-500);
         		ix= ix+30;
         	}
         }else{
+        	int maxPunctuation = 0;
+        	for(int i=0;i<punctuations2.length;i++){
+        		if (punctuations2[i]>maxPunctuation){
+        			maxPunctuation = punctuations2[i];
+        		}
+        	}
         	
+        	int scale = 500/maxPunctuation;
+        	int ix = 0;
+        	for(int i=0;i<punctuations2.length;i++){
+        		g.drawLine(ix,punctuations2[i]*scale-500,ix+30,punctuations2[i+1]*scale-500);
+        		ix= ix+30;
+        	}
         }
 		
 	}
