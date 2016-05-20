@@ -25,8 +25,11 @@ public class Grafic extends JPanel{
 		
 		
 		//eixos
+		
 		g.drawLine(0, 20, 0, 500);
         g.drawLine(0, 250, 500, 250);
+        g.drawString("Puntuació",0 , 500);
+        g.drawString("Partides", 250, 0);
         
         if (typeGraph == 1){
         	int maxPunctuation = 0;
@@ -35,6 +38,29 @@ public class Grafic extends JPanel{
         			maxPunctuation = punctuations1[i];
         		}
         	}
+        	//Pintar numeros eix Y:
+        	int incrementy=0;
+        	incrementy = maxPunctuation/5;
+        	g.drawString("0", 0, 0);
+        	int y = 0;
+        	for(int i=0;i<punctuations1.length;i++){
+            	g.drawString(String.valueOf(incrementy),0,y + 50);
+            	y=y+100;
+            	incrementy = incrementy + incrementy;
+            }
+        	
+        	
+        	//Pintar numeros eix X:
+        	
+        	int incrementx=0;
+        	incrementx = punctuations1.length/5;
+        	g.drawString("0", 0, 0);
+        	int eixX = 0;
+        	for(int i=0;i<punctuations1.length;i++){
+            	g.drawString(String.valueOf(incrementx),0,eixX+ 100);
+            	eixX=eixX+100;
+            	incrementx = incrementx + incrementx;
+            }
         	
         	int scale = 500/maxPunctuation;
         	int ix = 0;
