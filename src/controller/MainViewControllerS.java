@@ -2,11 +2,13 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
 import model.Logics;
 import model.Time;
+import model.UserRanking;
 import network.ConectorDB;
 import network.ServerS;
 import view.MainViewServer;
@@ -76,7 +78,6 @@ public class MainViewControllerS implements ActionListener{
 	
 	public String createRankingServer(){
 		String ranking = new String(logics.toString());
-		System.out.println(ranking);
 		view.refreshRanking(ranking);
 		return ranking;
 	}
@@ -117,5 +118,21 @@ public class MainViewControllerS implements ActionListener{
 			print = "The competition will start in: "+hour+min+sec+"hours.";
 		}
 		view.refreshTime(print);
+	}
+	
+	public void refreshList(){
+		ArrayList<UserRanking> competitionUsers;
+		competitionUsers = logics.getCompetitors();
+		if(!competitionUsers.isEmpty()){
+			view.refreshList(competitionUsers);
+		}
+	}
+	
+	public void refreshAllUsers(){
+		ArrayList<UserRanking> allUsers;
+		allUsers = logics.toArray();
+		if(!allUsers.isEmpty()){
+			view.refreshList(allUsers);
+		}
 	}
 }

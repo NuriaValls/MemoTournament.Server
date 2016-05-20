@@ -91,6 +91,13 @@ public class MainViewServer extends JFrame{
 	//atributs registre
 	private JTextField jtfnickname;
 	private JPasswordField jpfpassword;
+	private JTextField jtfname;
+	private JTextField jtflastname;
+	
+	//atributs manage
+	private String[] columnNamesL = {"NickName"};
+	private JTable tableL;
+	private JScrollPane panellL;
 	
 	public MainViewServer(){
 		setTitle("MemoTournament");
@@ -314,7 +321,7 @@ public class MainViewServer extends JFrame{
 		
 		JLabel jlname = new JLabel("Name");
 		jlname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtfname = new JTextField();
+		jtfname = new JTextField();
 		JPanel jpname = new JPanel();
 		jpname.setLayout(new GridLayout(1,4));
 		jpname.add(new JPanel());
@@ -324,7 +331,7 @@ public class MainViewServer extends JFrame{
 		
 		JLabel jllastname = new JLabel("Last Name");
 		jllastname.setFont(new java.awt.Font("Geneva", 1, 14));
-		JTextField jtflastname = new JTextField();
+		jtflastname = new JTextField();
 		JPanel jplastname = new JPanel();
 		jplastname.setLayout(new GridLayout(1,4));
 		jplastname.add(new JPanel());
@@ -391,14 +398,24 @@ public class MainViewServer extends JFrame{
 		return jpfpassword.getText();
 	}
 	
+	public void refreshList(ArrayList<UserRanking> competitionUsers){
+		String matrix[][] = new String [competitionUsers.size()][1];
+		
+		for(int i=0;i<competitionUsers.size();i++){
+			matrix[i][0] = competitionUsers.get(i).getNickname();
+		}
+		
+		DefaultTableModel model = new DefaultTableModel(matrix,columnNamesL);
+		tableL.setModel(model);
+		model.fireTableDataChanged();
+	}
+	
 	public void createUserManageCard(ArrayList<UserRanking> allUsers){
 		JPopupMenu popup = new JPopupMenu();
 		JMenu jm = new JMenu();
 		JMenuItem iadd = new JMenuItem("Add");
 		JMenuItem idelete = new JMenuItem("Delete");
-		//jm.action(evt, what)
-		//jm.addActionListener(l);
-	
+		
 		
 		JPanel title = new JPanel();
 		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
@@ -409,29 +426,25 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.add(Box.createVerticalStrut(15));
 		
-		String[] columnNames = {"NickName"};
-		String[][] list = new String [allUsers.size()][0];
-		for(int i = 0;i<allUsers.size();i++){
-			list[i][0]= allUsers.get(i).getNickname();
-		}
-		JTable table = new JTable(list,columnNames);
-		table.addMouseListener(new java.awt.event.MouseAdapter() {
+		String[][] list = new String [14][1];
+		tableL = new JTable(list,columnNamesL);
+		/*table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				if(e.isPopupTrigger()){
 					System.out.println("menu");
 					//afegir menu
 				}
 			}
-			});
+			});*/
 		
-		JScrollPane panell = new JScrollPane(table);
+		panellL = new JScrollPane(tableL);
 
-		panell.setSize(500, 400);
-		panell.setPreferredSize(new Dimension(500, 250));
-		panell.setWheelScrollingEnabled(true);
+		panellL.setSize(500, 400);
+		panellL.setPreferredSize(new Dimension(500, 250));
+		panellL.setWheelScrollingEnabled(true);
 		//panell.add(table);
-		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
-		title.add(panell);
+		panellL.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(panellL);
 		jpUserManageCard.add(title);
 	}
 	
@@ -534,6 +547,9 @@ public class MainViewServer extends JFrame{
 	}
 
 	public void showRegister(){
+		jtfnickname.setText("");
+		jpfpassword.setText("");
+		
 		cardLayout.show(jpMenu, "3");
 		
 		jbRegister.setVisible(false);

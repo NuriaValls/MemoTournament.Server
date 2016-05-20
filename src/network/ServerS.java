@@ -57,6 +57,8 @@ public class ServerS extends Thread{
 				if (message.startsWith("ADD")){
 					if(Logics.addUser(message)){
 						dataOut.writeUTF("OK");
+						controller.refreshList();
+						controller.refreshAllUsers();
 					}else{
 						dataOut.writeUTF("KO");
 					}

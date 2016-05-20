@@ -20,8 +20,14 @@ public class Logics {
 	private long difference;
 	private int duration;
 	
+	private static MainViewControllerS controller;
+	
 	public Logics(Time time){
 		this.time = time;
+	}
+	
+	public void registerController(MainViewControllerS controller){
+		this.controller = controller;
 	}
 	
 	public static boolean addUser(String message){
@@ -61,13 +67,13 @@ public class Logics {
 							for (UserRanking u: competitionUsers){
 								if (u.getNickname().equals(array[0])){
 									found = true;
-									
 								}
 							}
 						}
 						if (!found){
 							competitionUsers.add(new UserRanking(array[0],0));
 							answer = "OK:0";
+							controller.refreshList();
 						}else{
 							answer = "OK:"+user.getObject("score");
 						}
@@ -128,8 +134,12 @@ public class Logics {
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
 		return allUsers;
+	}
+	
+	public ArrayList<UserRanking> getCompetitors(){
+		return competitionUsers;
 	}
 	
 	public String toString(){
