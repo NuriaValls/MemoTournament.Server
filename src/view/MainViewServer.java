@@ -44,6 +44,8 @@ import controller.MainViewControllerS;
 
 public class MainViewServer extends JFrame{
 	
+	private MainViewControllerS controller;
+	
 	static final int T_MIN = 0;
 	static final int T_MAX = 60;
 	static final int T_INIT = 30;  
@@ -99,7 +101,11 @@ public class MainViewServer extends JFrame{
 	private JTable tableL;
 	private JScrollPane panellL;
 	
-	public MainViewServer(){
+	//atributs graphic
+	private String[] columnNamesG = {"Users"};
+	private JTable jtabUsers;
+	
+ 	public MainViewServer(){
 		setTitle("MemoTournament");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -108,12 +114,10 @@ public class MainViewServer extends JFrame{
 		createConfigCard();
 		createMenuCard();
 		createRegisterCard();
-		ArrayList<UserRanking> allUsers = new ArrayList<UserRanking>();
-		createUserManageCard(allUsers);
-		//String matrix[][] = new String [10][2];
-		
+		createUserManageCard();
 		createRankingCard();
-		createUserGraphCard(allUsers); 
+		createUserGraphCard();
+		
 		jpMenu = new JPanel();
 		jpMenu.setLayout(cardLayout);
 		
@@ -154,6 +158,8 @@ public class MainViewServer extends JFrame{
 		jbUserGraph.addActionListener(actionListener);
 		jbBack.addActionListener(actionListener);
 		jbRegisterUser.addActionListener(actionListener);
+		
+		this.controller = actionListener;
 	}
 	
 	public void createConfigCard(){
@@ -410,7 +416,7 @@ public class MainViewServer extends JFrame{
 		model.fireTableDataChanged();
 	}
 	
-	public void createUserManageCard(ArrayList<UserRanking> allUsers){
+	public void createUserManageCard(){
 		JPopupMenu popup = new JPopupMenu();
 		JMenu jm = new JMenu();
 		JMenuItem iadd = new JMenuItem("Add");
@@ -475,7 +481,7 @@ public class MainViewServer extends JFrame{
 		
 		panell = new JPanel();
 		
-		String [][] mTopTen = new String [11][2];
+		String [][] mTopTen = new String [10][2];
 		table = new JTable(mTopTen, columnNames);
 		
 		table.setPreferredSize(new Dimension(500, 250));
@@ -488,7 +494,20 @@ public class MainViewServer extends JFrame{
 		
 	}
 	
-	public void createUserGraphCard(ArrayList<UserRanking> allUsers){
+	public void refreshAllUsers(ArrayList<UserRanking> allUsers){
+		String matrix[][] = new String [allUsers.size()][1];
+		System.out.println("meh");
+		for(int i=0;i<allUsers.size();i++){
+			matrix[i][0] = allUsers.get(i).getNickname();
+			System.out.println(i);
+		}
+		
+		DefaultTableModel model = new DefaultTableModel(matrix,columnNamesG);
+		jtabUsers.setModel(model);
+		model.fireTableDataChanged();
+	}
+	
+	public void createUserGraphCard(){
 		
 		JPanel title = new JPanel();
 		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
@@ -512,22 +531,18 @@ public class MainViewServer extends JFrame{
         Grafic g2 = new Grafic();
         //panel2.add(g2);
         tabbedPane.addTab("Tab 2", panel2);
-   	
-		jpGraph.add(tabbedPane);
+        
+        jpGraph.add(tabbedPane);
 		
-		String[] columnNames = {"Users"};
-		String[][] list = new String [allUsers.size()][0];
-		for(int i = 0;i<allUsers.size();i++){
-			list[i][0]= allUsers.get(i).getNickname();
-		}
-     
-
-        JTable jtabUsers = new JTable(list,columnNames);
-        JScrollPane panell = new JScrollPane(jtabUsers);
-        panell.setPreferredSize(new Dimension(200, 300));
-        panell.setWheelScrollingEnabled(true);
-        panell.setAlignmentX(Component.LEFT_ALIGNMENT);
-        jpGraph.setAlignmentX(Component.CENTER_ALIGNMENT);
+		String[][] list = new String [14][1];
+		jtabUsers = new JTable(list,columnNamesG);
+		
+		JScrollPane panell = new JScrollPane(jtabUsers);
+		
+		panell.setPreferredSize(new Dimension(200, 300));
+		panell.setWheelScrollingEnabled(true);
+		panell.setAlignmentX(Component.LEFT_ALIGNMENT);
+		jpGraph.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jpUGC.add(panell);
 		jpUGC.add(new JPanel());
 		jpUGC.add(jpGraph);

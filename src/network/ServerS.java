@@ -66,6 +66,7 @@ public class ServerS extends Thread{
 				
 				if (message.startsWith("LOG")){
 					dataOut.writeUTF(Logics.checkUser(message));
+					controller.refreshAllUsers();
 				}
 				
 				if (message.startsWith("RANK")){

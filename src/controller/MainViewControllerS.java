@@ -64,6 +64,7 @@ public class MainViewControllerS implements ActionListener{
 		}
 		
 		if (((JButton)e.getSource()).getText().equals("Show User Graphic")){
+			refreshAllUsers();
 			view.showUserGraph();
 		}
 		
@@ -132,7 +133,7 @@ public class MainViewControllerS implements ActionListener{
 		ArrayList<UserRanking> allUsers;
 		allUsers = logics.toArray();
 		if(!allUsers.isEmpty()){
-			view.refreshList(allUsers);
+			view.refreshAllUsers(allUsers);
 		}
 	}
 }
