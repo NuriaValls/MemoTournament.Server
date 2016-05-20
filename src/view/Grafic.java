@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -18,8 +19,13 @@ public class Grafic extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		//pintar eixos.
+		
+		Dimension x = this.getSize();
+		System.out.println("Dimensio x " + x.getWidth() + " y " + x.getHeight() );
+		
 		g.drawLine(0, 20, 0, 500);
-        g.drawLine(0, 300, 0, 300);
+        g.drawLine(0, 250, 100, 250);
+        
         if (typeGraph == 1){
         	for(int i=0;i<allUsers.size();i++){
         		
