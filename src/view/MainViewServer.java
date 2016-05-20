@@ -476,7 +476,7 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public void createUserGraphCard(ArrayList<UserRanking> allUsers){
-		//s'ha d'acabar de centrar tot
+		
 		JPanel title = new JPanel();
 		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS));
 		JLabel nameTitle = new JLabel("User Graphic");
@@ -486,59 +486,39 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.add(Box.createVerticalStrut(15));
 		
-		//JPanel jpUGC = new JPanel(new GridLayout(1,2));
-		//JPanel jpGraph = new JPanel();
-       
+		JPanel jpUGC = new JPanel(new GridLayout(1,2));
+		JPanel jpGraph = new JPanel();
+		
+		JTabbedPane tabbedPane = new JTabbedPane();
+
+        JComponent panel1 = makeTextPanel("Panel #1");
+        Grafic g1 = new Grafic();
+        //panel1.add(g1);
+        tabbedPane.addTab("Tab 1", panel1);
         
-        String[] columnNames = {"Users"};
+        JComponent panel2 = makeTextPanel("Panel #2");
+        Grafic g2 = new Grafic();
+        //panel2.add(g2);
+        tabbedPane.addTab("Tab 2", panel2);
+   	
+		jpGraph.add(tabbedPane);
+		
+		String[] columnNames = {"Users"};
 		String[][] list = new String [allUsers.size()][0];
 		for(int i = 0;i<allUsers.size();i++){
 			list[i][0]= allUsers.get(i).getNickname();
 		}
      
-        //JTable jtabUsers = new JTable(list,columnNames);
-       // JScrollPane panell = new JScrollPane(jtabUsers);
-      
-        // Fuente de Datos
-        /*DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-        line_chart_dataset.addValue(80, "visitas", "Julio");
-        line_chart_dataset.addValue(300, "visitas", "Agosto");
-        line_chart_dataset.addValue(600, "visitas", "Septiembre");
-        line_chart_dataset.addValue(1200, "visitas", "Octubre");
-        line_chart_dataset.addValue(2400, "visitas", "Noviembre");  
- 
-        // Creando el Grafico
-        JFreeChart chart=ChartFactory.createLineChart("Trafico en el Blog",
-                "Mes","Visitas",line_chart_dataset,PlotOrientation.VERTICAL,
-                true,true,false);  
-        
-        // Mostrar Grafico
-        ChartPanel chartPanel = new ChartPanel(chart);
-        jpGraph.add(chartPanel);
-        */
-        
-        
-        
-        JTabbedPane tabbedPane = new JTabbedPane();
 
-
-        JComponent panel1 = makeTextPanel("Panel #1");
-        tabbedPane.addTab("Tab 1", panel1);
-        //panel1.setPreferredSize(new Dimension(300, 250));
-
-        JComponent panel2 = makeTextPanel("Panel #2");
-        tabbedPane.addTab("Tab 2", panel2);
-        //panel2.setPreferredSize(new Dimension(300, 250));
-     
-		panell.setPreferredSize(new Dimension(500, 250));
-		//panell.setWheelScrollingEnabled(true);
-		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
-        //jpUGC.add(panell);
-        //jpUGC.add(jpGraph);
-        //jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
-        //title.add(jpUGC);
-        tabbedPane.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.add(tabbedPane);
+        JTable jtabUsers = new JTable(list,columnNames);
+        JScrollPane panell = new JScrollPane(jtabUsers);
+        panell.setPreferredSize(new Dimension(500, 250));
+        panell.setWheelScrollingEnabled(true);
+		jpUGC.add(panell);
+		jpUGC.add(jpGraph);
+        
+        title.add(jpUGC);
+        
         //Grafic g = new Grafic();
         //jpUGC.add(g);
         jpUserGraphCard.add(title);
