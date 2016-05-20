@@ -496,10 +496,8 @@ public class MainViewServer extends JFrame{
 	
 	public void refreshAllUsers(ArrayList<UserRanking> allUsers){
 		String matrix[][] = new String [allUsers.size()][1];
-		System.out.println("meh");
 		for(int i=0;i<allUsers.size();i++){
 			matrix[i][0] = allUsers.get(i).getNickname();
-			System.out.println(i);
 		}
 		
 		DefaultTableModel model = new DefaultTableModel(matrix,columnNamesG);
@@ -548,12 +546,16 @@ public class MainViewServer extends JFrame{
 		jpUGC.add(jpGraph);
 		jpUGC.add(new JPanel());
 		
-		//jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.add(jpUGC);
         
-        //Grafic g = new Grafic();
-        //jpUGC.add(g);
+        Grafic g = new Grafic();
+        jpUGC.add(g);
         jpUserGraphCard.add(title);
+	}
+	
+	private void refreshGraphic(){
+		
 	}
 	
 	private JComponent makeTextPanel(String string) {
