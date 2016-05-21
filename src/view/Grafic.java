@@ -24,7 +24,6 @@ public class Grafic extends JPanel{
 		score1[3]=100;
 		score1[7]=40;
 
-
 	}
 	
 	
@@ -37,9 +36,9 @@ public class Grafic extends JPanel{
 		
 		//eixos
 		typeGraph = 1;
-		g.drawLine(30, 30, 30, 240);
+		g.drawLine(30, 20, 30, 240);
         g.drawLine(30, 240, 240, 240); 
-        g.drawString("Score",0 ,20);
+        g.drawString("Score",0 ,10);
         g.drawString("Game", 240, 240);
         g.drawString("0", 10, 232);
         
@@ -55,12 +54,12 @@ public class Grafic extends JPanel{
         	int incrementy=0;
         	int incrementp = maxPunctuation/4;
         	
-        	int y = 250;
+        	int y = 240;
         	int n=0;
         	for(int i=0;i<score1.length-1;i++){
        			if (n<4){
-       				g.drawString(String.valueOf(incrementy + incrementp),0,y - 46);
-                  	y=y-46;
+       				g.drawString(String.valueOf(incrementy + incrementp),0,y - 54);
+                  	y=y-54;
                   	n++;
                   	incrementy = incrementy + incrementp;
        			}
@@ -84,9 +83,17 @@ public class Grafic extends JPanel{
         	System.out.println(scale);
         	int ix = 30;
         	for(int j=0;j<score1.length-1;j++){
-        		g.drawLine(ix,250-(score1[j]*scale),ix+(210/score1.length),250-(score1[j+1]*scale));
-        		ix= ix+(210/score1.length);
+        		g.drawLine(ix,240-(score1[j]*scale),ix+(200/score1.length),240-(score1[j+1]*scale));
+        		ix= ix+(200/score1.length);
         	}
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+     //aquesta part es igual que l'anterior pel cas typeGraph=2
         }else{
         	int maxPunctuation = 0;
         	for(int i=0;i<score2.length;i++){
