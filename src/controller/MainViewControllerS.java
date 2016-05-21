@@ -79,7 +79,9 @@ public class MainViewControllerS implements ActionListener{
 			
 			if (((JMenuItem)e.getSource()).getText().equals("Block")){
 				String userNickname = new String(view.getSelectedUser(true));
+				System.out.println("clicked");
 				logics.blockUser(userNickname);
+				refreshList();
 			}
 			
 			if (((JMenuItem)e.getSource()).getText().equals("Delete")){
@@ -141,11 +143,7 @@ public class MainViewControllerS implements ActionListener{
 	public void refreshList(){
 		ArrayList<UserRanking> competitionUsers;
 		competitionUsers = logics.getCompetitors();
-		System.out.println(competitionUsers.size());
-		if(!competitionUsers.isEmpty()){
-			System.out.println("AASDFGHJKLÑLKJHGFDSA");
-			view.refreshList(competitionUsers);
-		}
+		view.refreshList(competitionUsers);
 	}
 	
 	public void refreshAllUsers(){

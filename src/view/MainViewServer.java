@@ -410,21 +410,32 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public void refreshList(ArrayList<UserRanking> competitionUsers){
-		String matrix[][] = new String [competitionUsers.size()][1];
-		boolean[] array = new boolean[competitionUsers.size()];
 		
-		for(int i=0;i<competitionUsers.size();i++){
-			matrix[i][0] = competitionUsers.get(i).getNickname();
-			if(competitionUsers.get(i).getBlocked()){
-				array[i] = true;
+		if(!competitionUsers.isEmpty()){
+			String matrix[][] = new String [competitionUsers.size()][1];
+			for(int i=0;i<competitionUsers.size();i++){
+				if(competitionUsers.get(i).getBlocked()){
+					matrix[i][0] = competitionUsers.get(i).getNickname()+" /blocked";
+				}else{
+					matrix[i][0] = competitionUsers.get(i).getNickname();
+				}
 			}
+			tableL.setEnabled(true);
+			
+			tableL.clearSelection();
+			DefaultTableModel model = new DefaultTableModel(matrix,columnNamesL);
+			tableL.setModel(model);
+			model.fireTableDataChanged();
+		}else{
+			String matrix[][] = new String [1][1];
+			matrix[0][0] = "There are no competitors registered on the competition.";
+			tableL.setEnabled(false);
+			
+			tableL.clearSelection();
+			DefaultTableModel model = new DefaultTableModel(matrix,columnNamesL);
+			tableL.setModel(model);
+			model.fireTableDataChanged();
 		}
-		
-		tableL.clearSelection();
-		DefaultTableModel model = new DefaultTableModel(matrix,columnNamesL);
-		tableL.setModel(model);
-		model.fireTableDataChanged();
-		
 	}
 	
 	public void createUserManageCard(){
@@ -470,15 +481,23 @@ public class MainViewServer extends JFrame{
 	public String getSelectedUser(boolean manage){
 		int index;
 		int column;
-		String selectedUser;
+		String selectedUser = new String();
 		
 		if (manage){
 			index = tableL.getSelectedRow();
 			column = tableL.getSelectedColumn();
-			selectedUser = tableL.getModel().getValueAt(index, column).toString();
+			if(index != -1){
+				selectedUser = tableL.getModel().getValueAt(index, column).toString();
+			}else{
+				makeDialog("Select a user and then click the left button.", true);
+			}
 		}else{
 			index = jtabUsers.getSelectedRow();
-			selectedUser = jtabUsers.getModel().getValueAt(index, 1).toString();
+			if(index != -1){
+				selectedUser = jtabUsers.getModel().getValueAt(index, 1).toString();
+			}else{
+				makeDialog("Select a user and then click the left button.", true);
+			}
 		}
 		return selectedUser;
 	}

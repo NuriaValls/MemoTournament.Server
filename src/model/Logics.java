@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import controller.MainViewControllerS;
 import network.ConectorDB;
 
@@ -220,12 +222,14 @@ public class Logics {
 	
 	public void blockUser(String nickname){
 		for(int i=0; i<competitionUsers.size(); i++){
-			if(competitionUsers.get(i).getNickname().equals(nickname)){
-				if(competitionUsers.get(i).getBlocked()){
+			CharSequence blocked = "/blocked";
+			if(nickname.contains(blocked)){;
+				if (nickname.contains((CharSequence)competitionUsers.get(i).getNickname())){
 					competitionUsers.get(i).setBlocked(false);
-				}else{
-					competitionUsers.get(i).setBlocked(true);
 				}
+			}
+			if(competitionUsers.get(i).getNickname().equals(nickname)){
+				competitionUsers.get(i).setBlocked(true);
 			}
 		}
 	}
