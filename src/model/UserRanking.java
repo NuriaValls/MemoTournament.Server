@@ -5,6 +5,7 @@ import java.util.Comparator;
 public class UserRanking implements Comparator<UserRanking>, Comparable<UserRanking>{
 	private String nickname;
 	private int punctuation;
+	private boolean blocked = false;
 	
 	public UserRanking(String nickname, int punctuation){
 		this.nickname = nickname;
@@ -25,6 +26,15 @@ public class UserRanking implements Comparator<UserRanking>, Comparable<UserRank
 	public void setPunctuation(int punctuation) {
 		this.punctuation = punctuation;
 	}
+	
+	public void setBlocked(boolean blocked){
+		this.blocked = blocked;
+	}
+	
+	public boolean getBlocked(){
+		return blocked;
+	}
+	
 	
 	
 	@Override

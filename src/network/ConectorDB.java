@@ -66,7 +66,7 @@ public class ConectorDB {
         }
     }
     
-    public void deleteUser(String nickname){
+    public static void deleteUser(String nickname){
     	String query = new String("DELETE FROM usuari WHERE nickname='"+nickname+"'");
     	try {
             s =(Statement) conn.createStatement();

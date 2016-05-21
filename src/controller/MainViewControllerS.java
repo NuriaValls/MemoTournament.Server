@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 
 import model.Logics;
 import model.Time;
@@ -30,46 +31,62 @@ public class MainViewControllerS implements ActionListener{
 		
 		String message = new String();  
 		
-		if (((JButton)e.getSource()).getText().equals("Create Competition")){
-			if (logics.createTimeComp(view.getHourConfig(),view.getMinuteConfig(),view.getDurationConfig())){
-				message = "START:"+(int)logics.getDifference()+"/"+logics.getDuration();
-				makeDialog("The countdown fot the competition has started!", true);
-				logics.setCompetition(true);
-				view.showMenu();
-			}else{
-				makeDialog("The time of the competition is not valid.", false);
+		if (e.getSource().toString().startsWith("javax.swing.JButton")){
+			
+			if (((JButton)e.getSource()).getText().equals("Create Competition")){
+				if (logics.createTimeComp(view.getHourConfig(),view.getMinuteConfig(),view.getDurationConfig())){
+					message = "START:"+(int)logics.getDifference()+"/"+logics.getDuration();
+					makeDialog("The countdown fot the competition has started!", true);
+					logics.setCompetition(true);
+					view.showMenu();
+				}else{
+					makeDialog("The time of the competition is not valid.", false);
+				}
 			}
-		}
-		
-		if (((JButton)e.getSource()).getText().equals("Competitors Register")){
-			view.showRegister();
-		}
-		
-		if (((JButton)e.getSource()).getText().equals("Register")){
-			if(logics.checkNickname(view.getNickname()) && logics.checkPasword(view.getPasword())){
-				ConectorDB.insertUser(view.getNickname(), view.getPasword());
-				makeDialog("The user has been successfuly registered!", true);
-				view.showMenu();
-			}else{
-				makeDialog("The user couldn't be registered.", false);
+			
+			if (((JButton)e.getSource()).getText().equals("Competitors Register")){
+				view.showRegister();
 			}
-		}
+			
+			if (((JButton)e.getSource()).getText().equals("Register")){
+				if(logics.checkNickname(view.getNickname()) && logics.checkPasword(view.getPasword())){
+					ConectorDB.insertUser(view.getNickname(), view.getPasword());
+					makeDialog("The user has been successfuly registered!", true);
+					view.showMenu();
+				}else{
+					makeDialog("The user couldn't be registered.", false);
+				}
+			}
+			
+			if (((JButton)e.getSource()).getText().equals("Users Management")){
+				view.showUserManage();
+			}
+			
+			if (((JButton)e.getSource()).getText().equals("Show Ranking")){
+				view.showRanking();
+			}
+			
+			if (((JButton)e.getSource()).getText().equals("Show User Graphic")){
+				refreshAllUsers();
+				view.showUserGraph();
+			}
+			
+			if (((JButton)e.getSource()).getText().equals("Menu")){
+				view.showMenu();
+			}
 		
-		if (((JButton)e.getSource()).getText().equals("Users Management")){
-			view.showUserManage();
-		}
-		
-		if (((JButton)e.getSource()).getText().equals("Show Ranking")){
-			view.showRanking();
-		}
-		
-		if (((JButton)e.getSource()).getText().equals("Show User Graphic")){
-			refreshAllUsers();
-			view.showUserGraph();
-		}
-		
-		if (((JButton)e.getSource()).getText().equals("Menu")){
-			view.showMenu();
+		}else{
+			
+			if (((JMenuItem)e.getSource()).getText().equals("Block")){
+				String userNickname = new String(view.getSelectedUser(true));
+				logics.blockUser(userNickname);
+			}
+			
+			if (((JMenuItem)e.getSource()).getText().equals("Delete")){
+				String userNickname = new String(view.getSelectedUser(true));
+				logics.deleteUser(userNickname);
+				refreshList();
+			}
 		}
 	}
 	
@@ -124,7 +141,9 @@ public class MainViewControllerS implements ActionListener{
 	public void refreshList(){
 		ArrayList<UserRanking> competitionUsers;
 		competitionUsers = logics.getCompetitors();
+		System.out.println(competitionUsers.size());
 		if(!competitionUsers.isEmpty()){
+			System.out.println("AASDFGHJKLÑLKJHGFDSA");
 			view.refreshList(competitionUsers);
 		}
 	}

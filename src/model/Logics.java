@@ -217,4 +217,25 @@ public class Logics {
 		}
 		return false;
 	}
+	
+	public void blockUser(String nickname){
+		for(int i=0; i<competitionUsers.size(); i++){
+			if(competitionUsers.get(i).getNickname().equals(nickname)){
+				if(competitionUsers.get(i).getBlocked()){
+					competitionUsers.get(i).setBlocked(false);
+				}else{
+					competitionUsers.get(i).setBlocked(true);
+				}
+			}
+		}
+	}
+	
+	public void deleteUser(String nickname){
+		for(int i=0; i<competitionUsers.size(); i++){
+			if(competitionUsers.get(i).getNickname().equals(nickname)){
+				competitionUsers.remove(i);
+			}
+		}
+		System.out.println("abans de refresh");
+	}
 }

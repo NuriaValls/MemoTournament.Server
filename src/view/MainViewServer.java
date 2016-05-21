@@ -100,6 +100,8 @@ public class MainViewServer extends JFrame{
 	private String[] columnNamesL = {"NickName"};
 	private JTable tableL;
 	private JScrollPane panellL;
+	private JMenuItem jmiblock;
+	private JMenuItem jmidelete;
 	
 	//atributs graphic
 	private String[] columnNamesG = {"Users"};
@@ -158,6 +160,9 @@ public class MainViewServer extends JFrame{
 		jbUserGraph.addActionListener(actionListener);
 		jbBack.addActionListener(actionListener);
 		jbRegisterUser.addActionListener(actionListener);
+		
+		jmiblock.addActionListener(actionListener);
+		jmidelete.addActionListener(actionListener);
 		
 		this.controller = actionListener;
 	}
@@ -406,14 +411,20 @@ public class MainViewServer extends JFrame{
 	
 	public void refreshList(ArrayList<UserRanking> competitionUsers){
 		String matrix[][] = new String [competitionUsers.size()][1];
+		boolean[] array = new boolean[competitionUsers.size()];
 		
 		for(int i=0;i<competitionUsers.size();i++){
 			matrix[i][0] = competitionUsers.get(i).getNickname();
+			if(competitionUsers.get(i).getBlocked()){
+				array[i] = true;
+			}
 		}
 		
+		tableL.clearSelection();
 		DefaultTableModel model = new DefaultTableModel(matrix,columnNamesL);
 		tableL.setModel(model);
 		model.fireTableDataChanged();
+		
 	}
 	
 	public void createUserManageCard(){
@@ -432,16 +443,18 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.add(Box.createVerticalStrut(15));
 		
-		String[][] list = new String [14][1];
+		String[][] list = new String [10][1];
 		tableL = new JTable(list,columnNamesL);
-		/*table.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				if(e.isPopupTrigger()){
-					System.out.println("menu");
-					//afegir menu
-				}
-			}
-			});*/
+		//tableL.setEnabled(false);
+		
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		jmiblock = new JMenuItem("Block");
+		jmidelete = new JMenuItem("Delete");
+		popupMenu.add(jmiblock);
+		popupMenu.add(jmidelete);
+		
+		tableL.setComponentPopupMenu(popupMenu);
 		
 		panellL = new JScrollPane(tableL);
 
@@ -454,6 +467,22 @@ public class MainViewServer extends JFrame{
 		jpUserManageCard.add(title);
 	}
 	
+	public String getSelectedUser(boolean manage){
+		int index;
+		int column;
+		String selectedUser;
+		
+		if (manage){
+			index = tableL.getSelectedRow();
+			column = tableL.getSelectedColumn();
+			selectedUser = tableL.getModel().getValueAt(index, column).toString();
+		}else{
+			index = jtabUsers.getSelectedRow();
+			selectedUser = jtabUsers.getModel().getValueAt(index, 1).toString();
+		}
+		return selectedUser;
+	}
+
 	public void refreshRanking(String sTopTen){
 		String matrix[][] = new String [11][2];
 		String[] users = sTopTen.split("#");
