@@ -130,3 +130,4 @@ public class Grafic extends JPanel{
 	}
 
 }
+
