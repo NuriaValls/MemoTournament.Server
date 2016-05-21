@@ -59,6 +59,7 @@ public class ServerS extends Thread{
 						dataOut.writeUTF("OK");
 						controller.refreshList();
 						controller.refreshAllUsers();
+						controller.refreshTop1();
 					}else{
 						dataOut.writeUTF("KO");
 					}
@@ -67,6 +68,7 @@ public class ServerS extends Thread{
 				if (message.startsWith("LOG")){
 					dataOut.writeUTF(Logics.checkUser(message));
 					controller.refreshAllUsers();
+					controller.refreshTop1();
 				}
 				
 				if (message.startsWith("RANK")){
@@ -81,6 +83,7 @@ public class ServerS extends Thread{
 					//actualitza puntuacio de la partida
 					if(Logics.updateScore(message)){
 						dataOut.writeUTF("OK");
+						controller.refreshTop1();
 					}else{
 						dataOut.writeUTF("KO");
 					}

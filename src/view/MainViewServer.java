@@ -74,7 +74,7 @@ public class MainViewServer extends JFrame{
 	//atributs menu
 	
 	private JLabel tempsmenu = new JLabel(" X mins ");
-	private JLabel bestplayer = new JLabel("Nom Jugador", SwingConstants.LEFT);
+	private JLabel bestplayer = new JLabel("There are no users on the competition.");
 	
 	//atributs de config
 	private JComboBox starthlist;
@@ -312,6 +312,10 @@ public class MainViewServer extends JFrame{
 	
 	public void refreshTime(String time){
 		tempsmenu.setText(time);
+	}
+	
+	public void refreshTop1(String top1){
+		bestplayer.setText(top1);
 	}
 	
 	public void createRegisterCard(){

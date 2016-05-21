@@ -153,4 +153,10 @@ public class MainViewControllerS implements ActionListener{
 			view.refreshAllUsers(allUsers);
 		}
 	}
+	
+	public void refreshTop1(){
+		ArrayList<UserRanking> top = logics.getCompetitors();
+		String top1 = new String("The best player of the competition is "+top.get(0).getNickname()+" with "+top.get(0).getPunctuation()+" points.");
+		view.refreshTop1(top1);
+	}
 }
