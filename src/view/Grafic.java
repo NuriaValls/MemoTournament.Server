@@ -84,8 +84,8 @@ public class Grafic extends JPanel{
         	int ix = 30;
         	//quan maxPunctuation>240 no pinta dins del panell
         	for(int j=0;j<score1.length-1;j++){
-        		g.drawLine(ix,240-(score1[j]/scale),ix+(200/score1.length),240-(score1[j+1]/scale));
-        		ix= ix+(200/score1.length);
+        		g.drawLine(ix,240-(score1[j]/scale),ix+(210/score1.length),240-(score1[j+1]/scale));
+        		ix= ix+(210/score1.length);
         	}
         	
         	
