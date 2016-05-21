@@ -14,12 +14,17 @@ public class Grafic extends JPanel{
 	private int typeGraph;
 	
 	public Grafic(){
-		int[] array = new int[10];
-		for(int i=0;i<10;i++){
-			array[i] = i;
+		int[] array = new int[13];
+		for(int i=0;i<13;i= i + 1){
+			array[i] = i+100;
 		}
 		this.score1 = array;
 		this.score2 = array;
+		score1[2]=220;
+		score1[3]=100;
+		score1[7]=40;
+
+
 	}
 	
 	
@@ -31,11 +36,12 @@ public class Grafic extends JPanel{
 		
 		
 		//eixos
-		
-		g.drawLine(0, 20, 0, 500);
-        g.drawLine(0, 250, 500, 250); 
-        g.drawString("Score",0 , 500);
-        g.drawString("Game", 250, 0);
+		typeGraph = 1;
+		g.drawLine(30, 30, 30, 240);
+        g.drawLine(30, 240, 240, 240); 
+        g.drawString("Score",0 ,20);
+        g.drawString("Game", 240, 240);
+        g.drawString("0", 10, 232);
         
         if (typeGraph == 1){
         	int maxPunctuation = 0;
@@ -44,37 +50,42 @@ public class Grafic extends JPanel{
         			maxPunctuation = score1[i];
         		}
         	}
+        	System.out.println(maxPunctuation);
         	//Pintar numeros eix Y:
         	int incrementy=0;
-        	incrementy = maxPunctuation/5;
-        	g.drawString("0", 0, 0);
-        	int y = 0;
-        	for(int i=0;i<score1.length;i++){
-            	g.drawString(String.valueOf(incrementy),0,y + 50);
-            	y=y+100;
-            	incrementy = incrementy + incrementy;
+        	int incrementp = maxPunctuation/4;
+        	
+        	int y = 250;
+        	int n=0;
+        	for(int i=0;i<score1.length-1;i++){
+       			if (n<4){
+       				g.drawString(String.valueOf(incrementy + incrementp),0,y - 46);
+                  	y=y-46;
+                  	n++;
+                  	incrementy = incrementy + incrementp;
+       			}
             }
         	
         	
         	//Pintar numeros eix X:
         	
-        	int incrementx=0;
-        	incrementx = score1.length/5;
-        	g.drawString("0", 0, 0);
-        	int eixX = 0;
-        	for(int i=0;i<score1.length;i++){
-            	g.drawString(String.valueOf(incrementx),0,eixX+ 100);
-            	eixX=eixX+100;
-            	incrementx = incrementx + incrementx;
+        	int partides = score1.length;
+        	int incrementP = 210/partides;
+        	int aux = incrementP;
+        	System.out.println(incrementP);
+        	for(int i=1;i<score1.length-1;i++){
+            	g.drawString(String.valueOf(i),incrementP+15,252);
+            	incrementP=incrementP+aux;
             }
         	
         	
         	//Pintar puntuacions
-        	int scale = 500/maxPunctuation;
-        	int ix = 0;
-        	for(int i=0;i<score1.length;i++){
-        		g.drawLine(ix,score1[i]*scale-500,ix+30,score1[i+1]*scale-500);
-        		ix= ix+30;
+        	int scale = maxPunctuation/210;
+        	System.out.println(scale);
+        	int ix = 30;
+        	for(int j=0;j<score1.length-1;j++){
+        		g.drawLine(ix,250-(score1[j]*scale),ix+(210/score1.length),250-(score1[j+1]*scale));
+        		ix= ix+(210/score1.length);
         	}
         }else{
         	int maxPunctuation = 0;
