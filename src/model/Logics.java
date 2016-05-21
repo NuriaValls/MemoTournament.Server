@@ -37,13 +37,13 @@ public class Logics {
 		message = message.substring(4);
 		array = message.split("/");
 		
-		if (ConectorDB.insertUser(array[0],array[1])){
-			if (competition){
-				competitionUsers.add(new UserRanking(array[0],0));
+		if(checkPasword(array[1]) && checkNickname(array[0])){
+			if (ConectorDB.insertUser(array[0],array[1])){
+				if (competition){
+					competitionUsers.add(new UserRanking(array[0],0));
+				}
+				ok = true;
 			}
-			ok = true;
-		}else{
-			ok = false;
 		}
 		
 		return ok;
@@ -65,7 +65,7 @@ public class Logics {
 					if(user.getObject("pasword").equals(array[1])){
 						if (!competitionUsers.isEmpty()){
 							for (UserRanking u: competitionUsers){
-								if (u.getNickname().equals(array[0])){
+								if (u.getNickname().equalsIgnoreCase(array[0])){
 									found = true;
 								}
 							}
@@ -197,11 +197,11 @@ public class Logics {
 		this.competition = competition;
 	}
 	
-	public boolean checkNickname(String nickname){
+	public static boolean checkNickname(String nickname){
 		return !nickname.equals("GUEST");
 	}
 	
-	public boolean checkPasword(String pasword){
+	public static boolean checkPasword(String pasword){
 		boolean num = false;
 		boolean letter = false;
 		if(pasword.length()>6){
