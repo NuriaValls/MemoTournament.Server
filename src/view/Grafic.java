@@ -14,8 +14,8 @@ public class Grafic extends JPanel{
 	private int typeGraph;
 	
 	public Grafic(){
-		int[] array = new int[13];
-		for(int i=0;i<13;i= i + 1){
+		int[] array = new int[10];
+		for(int i=0;i<10;i= i + 1){
 			array[i] = i+100;
 		}
 		this.score1 = array;
@@ -29,6 +29,8 @@ public class Grafic extends JPanel{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		
+		this.setSize(250, 250);
 				
 		Dimension x = this.getSize();
 		System.out.println("Dimensio x " + x.getWidth() + " y " + x.getHeight() );
@@ -37,12 +39,15 @@ public class Grafic extends JPanel{
 		//eixos
 		typeGraph = 1;
 		g.drawLine(30, 20, 30, 240);
-        g.drawLine(30, 240, 240, 240); 
-        g.drawString("Score",0 ,10);
-        g.drawString("Game", 240, 240);
+        g.drawLine(30, 239, 240, 239); 
+        g.drawString("Score",5 ,10);
+        g.drawString("Games", 210, 230);
         g.drawString("0", 10, 250);
+       
         
         if (typeGraph == 1){
+        	
+        	g.drawString("MEMORY",120,20);
         	int maxPunctuation = 0;
         	for(int i=0;i<score1.length;i++){
         		if (score1[i]>maxPunctuation){
@@ -56,7 +61,7 @@ public class Grafic extends JPanel{
         	
         	int y = 240;
         	int n=0;
-        	for(int i=0;i<score1.length-1;i++){
+        	for(int i=0;i<score1.length;i++){
        			if (n<4){
        				g.drawString(String.valueOf(incrementy + incrementp),0,y - 53);
                   	y=y-53;
@@ -72,8 +77,8 @@ public class Grafic extends JPanel{
         	int incrementP = 210/partides;
         	int aux = incrementP;
         	System.out.println(incrementP);
-        	for(int i=1;i<score1.length-1;i++){
-            	g.drawString(String.valueOf(i),incrementP+15,252);
+        	for(int i=1;i<score1.length;i++){
+            	g.drawString(String.valueOf(i),incrementP+15,250);
             	incrementP=incrementP+aux;
             }
         	
@@ -84,7 +89,7 @@ public class Grafic extends JPanel{
             	System.out.println(scale);
             	int ix = 30;
             	//quan maxPunctuation>240 no pinta dins del panell
-            	for(int j=0;j<score1.length-1;j++){
+            	for(int j=0;j<score1.length;j++){
             		g.drawLine(ix,260-(score1[j]/scale),ix+(210/score1.length),260-(score1[j+1]/scale));
             		ix= ix+(210/score1.length);
             	}
@@ -106,7 +111,8 @@ public class Grafic extends JPanel{
         	
      //aquesta part es igual que l'anterior pel cas typeGraph=2
         }else{
-        	
+        	g.drawString("CONCENTRATION",120,20);
+
           	int maxPunctuation = 0;
         	for(int i=0;i<score1.length;i++){
         		if (score1[i]>maxPunctuation){
@@ -120,7 +126,7 @@ public class Grafic extends JPanel{
         	
         	int y = 240;
         	int n=0;
-        	for(int i=0;i<score1.length-1;i++){
+        	for(int i=0;i<score1.length;i++){
        			if (n<4){
        				g.drawString(String.valueOf(incrementy + incrementp),0,y - 53);
                   	y=y-53;
@@ -136,7 +142,7 @@ public class Grafic extends JPanel{
         	int incrementP = 210/partides;
         	int aux = incrementP;
         	System.out.println(incrementP);
-        	for(int i=1;i<score1.length-1;i++){
+        	for(int i=1;i<score1.length;i++){
             	g.drawString(String.valueOf(i),incrementP+15,252);
             	incrementP=incrementP+aux;
             }
@@ -148,13 +154,13 @@ public class Grafic extends JPanel{
             	System.out.println(scale);
             	int ix = 30;
             	//quan maxPunctuation>240 no pinta dins del panell
-            	for(int j=0;j<score1.length-1;j++){
+            	for(int j=0;j<score1.length;j++){
             		g.drawLine(ix,260-(score1[j]/scale),ix+(210/score1.length),260-(score1[j+1]/scale));
             		ix= ix+(210/score1.length);
             	}
         	}else{
         		int ix=30;
-        		for(int j=0;j<score1.length-1;j++){
+        		for(int j=0;j<score1.length;j++){
             		g.drawLine(ix,260-(score1[j]),ix+(210/score1.length),260-(score1[j+1]));
             		ix= ix+(210/score1.length);
             	}

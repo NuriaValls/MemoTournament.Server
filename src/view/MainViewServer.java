@@ -317,14 +317,14 @@ public class MainViewServer extends JFrame{
 		JPanel jptcompetition = new JPanel();
 		jptcompetition.add(tempsmenu);
 	
-		JLabel jlplayer = new JLabel("Best Player", SwingConstants.RIGHT);
+		JLabel jlplayer = new JLabel("Best Player", SwingConstants.CENTER);
 		jlplayer.setFont(new java.awt.Font("Geneva", 1, 14));
 		bestplayer.setFont(new java.awt.Font("Geneva", 1, 14));
 		JPanel jpplayer = new JPanel();
-		jpplayer.setLayout(new GridLayout(1,5));
+		jpplayer.setLayout(new GridLayout(1,4));
 		jpplayer.add(new JPanel());
 		jpplayer.add(jlplayer);
-		jpplayer.add(new JPanel());
+		//jpplayer.add(new JPanel());
 		jpplayer.add(bestplayer);
 		jpplayer.add(new JPanel());
 		
@@ -599,41 +599,34 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.add(Box.createVerticalStrut(15));
 		
-		JPanel jpUGC = new JPanel(new GridLayout(1,4));
+		JPanel jpUGC = new JPanel(new GridLayout(1,3));
 		JPanel jpGraph = new JPanel(); 
-		JTabbedPane tabbedPane = new JTabbedPane();
-
-        JComponent panel1 = makeTextPanel("Panel #1");
+		
         Grafic g1 = new Grafic();
-        //panel1.add(g1);
-        tabbedPane.addTab("Tab 1", panel1);
         
-        JComponent panel2 = makeTextPanel("Panel #2");
         Grafic g2 = new Grafic();
-        //panel2.add(g2);
-        tabbedPane.addTab("Tab 2", panel2);
-        
-        jpGraph.add(tabbedPane);
+    
 		
 		String[][] list = new String [14][1];
+		
 		jtabUsers = new JTable(list,columnNamesG);
 		
 		JScrollPane panell = new JScrollPane(jtabUsers);
-		
-		panell.setPreferredSize(new Dimension(200, 300));
+		panell.setMaximumSize(new Dimension(100, 200));
 		panell.setWheelScrollingEnabled(true);
 		panell.setAlignmentX(Component.LEFT_ALIGNMENT);
-		jpGraph.setAlignmentX(Component.CENTER_ALIGNMENT);
-		jpUGC.add(panell);
-		jpUGC.add(new JPanel());
-		jpUGC.add(jpGraph);
-		jpUGC.add(new JPanel());
 		
+		jpGraph.setAlignmentX(Component.CENTER_ALIGNMENT);
+		jpUGC.setPreferredSize(new Dimension(1000, 300));
+		jpUGC.add(panell);
+		g1.setPreferredSize(new Dimension(250, 300));
+		g2.setPreferredSize(new Dimension(250, 300));
+		jpUGC.add(g1);
+		jpUGC.add(g2);
+
 		jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.add(jpUGC);
-        
-        Grafic g = new Grafic();
-        jpUGC.add(g);
+      
         jpUserGraphCard.add(title);
 	}
 	
