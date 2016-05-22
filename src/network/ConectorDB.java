@@ -11,15 +11,16 @@ public class ConectorDB {
 	static String password;
 	static String db;
 	static int port;
-	static String url = "jdbc:mysql://localhost";
+	static String url = "jdbc:mysql://";
 	static Connection conn = null;
 	static Statement s;
     
-	public ConectorDB(String usr, String pass, String db, int port) {
+	public ConectorDB(String usr, String pass, String db, int port, String ip) {
 		ConectorDB.userName = usr;
 		ConectorDB.password = pass;
 		ConectorDB.db = db;
 		ConectorDB.port = port;
+		ConectorDB.url += ip;
 		ConectorDB.url += ":"+port+"/";
 		ConectorDB.url += db;
 	}
@@ -27,7 +28,8 @@ public class ConectorDB {
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = (Connection) DriverManager.getConnection(url, "root", "root");
+
+            conn = (Connection) DriverManager.getConnection(url, userName, password);
             if (conn != null) {
                 System.out.println("Conexi� a base de dades "+url+" ... Ok");
             }

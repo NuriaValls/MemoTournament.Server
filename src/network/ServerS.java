@@ -18,9 +18,9 @@ public class ServerS extends Thread{
 	private static DataOutputStream dataOut;
 	private MainViewControllerS controller;
 	
-	public ServerS(){
+	public ServerS(int portClient){
 		try{
-			sServer = new ServerSocket(5200);
+			sServer = new ServerSocket(portClient);
 			isOn = false;
 		}catch(IOException e){
 			e.printStackTrace();
@@ -47,9 +47,7 @@ public class ServerS extends Thread{
 		
 		while(isOn){
 			try{
-				//System.out.println("Buscant client");
 				sClient = sServer.accept();
-				//System.out.println("client connectat");
 				dataIn = new DataInputStream(sClient.getInputStream());
 				dataOut = new DataOutputStream(sClient.getOutputStream());
 				message = dataIn.readUTF();
@@ -74,7 +72,6 @@ public class ServerS extends Thread{
 				if (message.startsWith("RANK")){
 					//retorna una string amb tots els usuaris i puntuacions
 					String ranking = new String();
-					//ranking = 
 					ranking = controller.createRankingServer();
 					dataOut.writeUTF("RANK:"+ranking);
 				}
