@@ -77,14 +77,24 @@ public class Grafic extends JPanel{
             	int ix = 30;
             	//quan maxPunctuation>240 no pinta dins del panell
             	for(int j=0;j<score1.length;j++){
-            		g.drawLine(ix,260-(score1[j]/scale),ix+(210/score1.length),260-(score1[j+1]/scale));
-            		ix= ix+(210/score1.length);
+            		if(score1[j]<10){
+        				g.drawLine(ix,239-(score1[j]),ix+(210/score1.length),239-(score1[j+1]));
+                		ix = ix+(210/score1.length);
+        			}else{
+        				g.drawLine(ix,260-(score1[j]/scale),ix+(210/score1.length),260-(score1[j+1]/scale));
+                		ix= ix+(210/score1.length);
+        			}
             	}
         	}else{
         		int ix=30;
         		for(int j=0;j<score1.length-1;j++){
-            		g.drawLine(ix,260-(score1[j]),ix+(210/score1.length),260-(score1[j+1]));
-            		ix= ix+(210/score1.length);
+        			if(score1[j]<10){
+        				g.drawLine(ix,239-(score1[j]),ix+(210/score1.length),239-(score1[j+1]));
+                		ix = ix+(210/score1.length);
+        			}else{
+        				g.drawLine(ix,260-(score1[j]),ix+(210/score1.length),260-(score1[j+1]));
+                		ix= ix+(210/score1.length);
+        			}
             	}
         	}
   	
@@ -93,8 +103,8 @@ public class Grafic extends JPanel{
 
           	int maxPunctuation2 = 0;
         	for(int i=0;i<score2.length;i++){
-        		if (score1[i]>maxPunctuation2){
-        			maxPunctuation2 = score1[i];
+        		if (score2[i]>maxPunctuation2){
+        			maxPunctuation2 = score2[i];
         		}
         	}
         	
@@ -140,20 +150,18 @@ public class Grafic extends JPanel{
             	//quan maxPunctuation>240 no pinta dins del panell
             	for(int j=0;j<score2.length;j++){
             		if(score2[j]<10){
-            			g.drawLine(ix2,239-(score2[j]),ix2+(210/score2.length),260-(score2[j+1]));
+            			g.drawLine(ix2,239-(score2[j]),ix2+(210/score2.length),239-(score2[j+1]));
                 		ix2 = ix2+(210/score2.length);
             		}else{
             			g.drawLine(ix2,260-(score2[j]/scale),ix2+(210/score2.length),260-(score2[j+1]/scale));
                 		ix2 = ix2+(210/score2.length);
             		}
-            		
-
             	}
         	}else{
         		int ix2=250+30;
         		for(int j=0;j<score2.length-1;j++){
         			if(score2[j]<10){
-        				g.drawLine(ix2,239-(score2[j]),ix2+(210/score2.length),260-(score2[j+1]));
+        				g.drawLine(ix2,239-(score2[j]),ix2+(210/score2.length),239-(score2[j+1]));
                 		ix2 = ix2+(210/score2.length);
         			}else{
         				g.drawLine(ix2,260-(score2[j]),ix2+(210/score2.length),260-(score2[j+1]));
