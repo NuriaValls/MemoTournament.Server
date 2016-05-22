@@ -27,7 +27,7 @@ public class ConectorDB {
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = (Connection) DriverManager.getConnection(url, "root", "");
+            conn = (Connection) DriverManager.getConnection(url, "root", "root");
             if (conn != null) {
                 System.out.println("Conexi� a base de dades "+url+" ... Ok");
             }
