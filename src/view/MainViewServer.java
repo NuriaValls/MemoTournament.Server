@@ -448,7 +448,7 @@ public class MainViewServer extends JFrame{
 		return jpfpassword.getText();
 	}
 	/**
-	 * Aquest mètode actualitza la llista de tots els usuaris de la competicio amb les seves respectives puntuacions.
+	 * Aquest metode actualitza la llista de tots els usuaris de la competicio amb les seves respectives puntuacions.
 	 * @param competitionUsers
 	 */
 	public void refreshList(ArrayList<UserRanking> competitionUsers){
@@ -480,7 +480,7 @@ public class MainViewServer extends JFrame{
 		}
 	}
 	/**
-	 * Aquest mètode genera la vista per a gestionar els usuaris. Es mostra una llista amb tots els usuaris on en podrem afegir-ne més o eliminar algun directament.
+	 * Aquest metode genera la vista per a gestionar els usuaris. Es mostra una llista amb tots els usuaris on en podrem afegir-ne mes o eliminar algun directament.
 	 */
 	public void createUserManageCard(){
 		JPopupMenu popup = new JPopupMenu();
@@ -546,8 +546,8 @@ public class MainViewServer extends JFrame{
 		return selectedUser;
 	}
 	/**
-	 * Actualitza la vista del Ranking a partir de l'String sTopTen que contindrà els 10 millors usuaris.
-	 * @param sTopTen : String que conté en nickname i la puntuació dels usuaris concatenats.
+	 * Actualitza la vista del Ranking a partir de l'String sTopTen que contindra els 10 millors usuaris.
+	 * @param sTopTen : String que conte en nickname i la puntuacio dels usuaris concatenats.
 	 */
 	public void refreshRanking(String sTopTen){
 		String matrix[][] = new String [11][2];
@@ -605,7 +605,7 @@ public class MainViewServer extends JFrame{
 		model.fireTableDataChanged();
 	}
 	/**
-	 * Crea les dues gràfiques en funció dels usuaris seleccionats.
+	 * Crea les dues grafiques en funcio dels usuaris seleccionats.
 	 */
 	public void createUserGraphCard(){
 		

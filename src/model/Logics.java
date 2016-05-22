@@ -153,7 +153,7 @@ public class Logics {
 		return allUsers;
 	}
 	/**
-	 * retorna l'array que conté l'informació dels competidors
+	 * retorna l'array que conte l'informació dels competidors
 	 * @return
 	 */
 	public ArrayList<UserRanking> getCompetitors(){

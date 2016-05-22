@@ -32,7 +32,7 @@ public class UserRanking implements Comparator<UserRanking>, Comparable<UserRank
 		return blocked;
 	}
 	/**
-	 * Compara la puntuació dels usuaris per a ordenar l'array en funció de la puntuació(per ordre descendent).
+	 * Compara la puntuacio dels usuaris per a ordenar l'array en funcio de la puntuaci0(per ordre descendent).
 	 */
 	@Override
 	public int compare(UserRanking o1, UserRanking o2) {
@@ -42,7 +42,7 @@ public class UserRanking implements Comparator<UserRanking>, Comparable<UserRank
 		return -1;
 	}
 	/**
-	 * Compara la puntuació dels usuaris per a ordenar l'array en funció de la puntuació(per ordre descendent).
+	 * Compara la puntuacio dels usuaris per a ordenar l'array en funcio de la puntuacio(per ordre descendent).
 	 */
 	@Override
 	public int compareTo(UserRanking o) {
