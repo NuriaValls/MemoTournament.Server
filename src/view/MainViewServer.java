@@ -42,6 +42,12 @@ import com.sun.javafx.geom.Rectangle;
 import model.UserRanking;
 import controller.MainViewControllerS;
 
+/**
+ * Crea el Frame corresponent a la vista del servidor, fa visibles o oculta les diferents cartes i
+ * llegeix les interaccions de l'usuari amb la vista.
+ * @author nvall
+ *
+ */
 public class MainViewServer extends JFrame{
 	
 	private MainViewControllerS controller;
@@ -107,6 +113,9 @@ public class MainViewServer extends JFrame{
 	private String[] columnNamesG = {"Users"};
 	private JTable jtabUsers;
 	
+	/**
+	 * Construeix el Frame i inicialitza cadascuna de les Cards mostrant la primera d'elles.
+	 */
  	public MainViewServer(){
 		setTitle("MemoTournament");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -152,6 +161,10 @@ public class MainViewServer extends JFrame{
 		add(jpMenu, BorderLayout.NORTH);
 	}
 	
+ 	/**
+ 	 * Vincula el controlador de la vista amb els elements que l'usuari pot utilitzar per interactuar amb la vista.
+ 	 * @param actionListener
+ 	 */
 	public void registerController(MainViewControllerS actionListener){
 		jbCompetition.addActionListener(actionListener);
 		jbRegister.addActionListener(actionListener);
@@ -167,6 +180,9 @@ public class MainViewServer extends JFrame{
 		this.controller = actionListener;
 	}
 	
+	/**
+	 * Crea la vista de la carta de configuracio del servidor.
+	 */
 	public void createConfigCard(){
 		
 		JPanel titol = new JPanel();
@@ -251,18 +267,33 @@ public class MainViewServer extends JFrame{
 		
 	}
 	
+	/**
+	 * Retorna el valor corresponent a l'element seleccionat en la JComboBox corresponent a la hora d'inici de la competicio.
+	 * @return
+	 */
 	public int getHourConfig(){
 		return Integer.parseInt(starthstring[starthlist.getSelectedIndex()]);
 	}
 	
+	/**
+	 * Retorna el valor corresponent a l'element seleccionat en la JComboBoc corresponent al minut d'inici de la competicio.
+	 * @return
+	 */
 	public int getMinuteConfig(){
 		return Integer.parseInt(startmstring[startmlist.getSelectedIndex()]);
 	}
 	
+	/**
+	 * Retorna el valor corresponent a l'element JSlider que correspon a la duracio en minuts de la competicio.
+	 * @return
+	 */
 	public int getDurationConfig(){
 		return jsduration.getValue();
 	}
 	
+	/**
+	 * Crea la vista de la carta que mostrara el menu principal del servidor.
+	 */
 	public void createMenuCard(){
 		
 		JPanel titol = new JPanel();
