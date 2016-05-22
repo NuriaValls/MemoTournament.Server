@@ -80,11 +80,18 @@ public class MainViewServer extends JFrame{
 	private static JButton jbUserGraph = new JButton("Show User Graphic");
 	private static JButton jbBack = new JButton("Menu");
 	
-	//atributs menu
 	
+	/**
+	 * Atributs que serveixen per mostrar el temps de competicio i el millor jugador.
+	 */
+	//atributs menu
 	private JLabel tempsmenu = new JLabel(" X mins ");
 	private JLabel bestplayer = new JLabel("There are no users on the competition.");
 	
+	
+	/**
+	 * Atributs de la Configuration Card que serveixen per fer poder seleccionar l'hora i minut de la partida i la seva duracio.
+	 */
 	//atributs de config
 	private JComboBox starthlist;
 	private String [] starthstring = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"};
@@ -93,12 +100,20 @@ public class MainViewServer extends JFrame{
 	private JLabel jlselecttime;
 	private JSlider jsduration;
 	
+	
+	/**
+	 * Atributs del raking.
+	 */
 	//atributs ranking
 	private JPanel panell;
 	private JTable table;
 	private String[] columnNames = {"NickName","Score",};
 	private JPanel title;
 	
+	
+	/**
+	 * Atributs de la carta de configuracio per poder afegir noms i contraseya d'un jugador.
+	 */
 	//atributs registre
 	private JTextField jtfnickname;
 	private JPasswordField jpfpassword;
