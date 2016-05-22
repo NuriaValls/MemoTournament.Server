@@ -97,6 +97,14 @@ public class ServerS extends Thread{
 					}
 				}
 				
+				if (message.startsWith("BLOCKED")){
+					if (controller.checkBlocked(message)){
+						dataOut.writeUTF("BLOCKED");
+					}else{
+						dataOut.writeUTF("NOT BLOCKED");
+					}
+				}
+				
 				dataIn.close();
 				dataOut.close();
 				sClient.close();

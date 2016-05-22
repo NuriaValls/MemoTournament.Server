@@ -125,6 +125,16 @@ public class Logics {
 		return ok;
 	}
 	
+	public boolean checkBlocked(String message){
+		message = message.substring(8);
+		for (UserRanking user: competitionUsers){
+			if (user.getNickname().equals(message)){
+				return user.getBlocked();
+			}
+		}
+		return false;
+	}
+	
 	public ArrayList<UserRanking> toArray(){
 		
 		ArrayList<UserRanking> allUsers = new ArrayList<UserRanking>();
