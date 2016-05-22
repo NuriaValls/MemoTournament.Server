@@ -54,6 +54,7 @@ public class MainViewServer extends JFrame{
 	
 	private MainViewControllerS controller;
 	
+	//les T_ son constants per el jslider
 	static final int T_MIN = 0;
 	static final int T_MAX = 60;
 	static final int T_INIT = 30;  
@@ -353,6 +354,10 @@ public class MainViewServer extends JFrame{
 		bestplayer.setText(top1);
 	}
 	
+	
+	/**
+	 * Crea la vista de la carta del registre on s'introdueixen les dades de l'usuari que es vol afegir.
+	 */
 	public void createRegisterCard(){
 		
 		JPanel titol = new JPanel();
@@ -618,7 +623,7 @@ public class MainViewServer extends JFrame{
 		title.add(nameTitle);
 		title.add(Box.createVerticalStrut(55));
 		
-		JPanel jpUGC = new JPanel(new GridLayout(1,9));
+		JPanel jpUGC = new JPanel(new GridLayout(1,8));
 		JPanel jpGraph = new JPanel(); 
 		
         g1 = new Grafic();
@@ -655,8 +660,8 @@ public class MainViewServer extends JFrame{
 		jpUGC.add(new JPanel());
 		jpUGC.add(new JPanel());
 		//jpUGC.add(g2);
-		//jpUGC.add(new JPanel());
-		//jpUGC.add(new JPanel());
+		jpUGC.add(new JPanel());
+		jpUGC.add(new JPanel());
 		
 
 		jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
