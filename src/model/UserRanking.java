@@ -12,7 +12,6 @@ public class UserRanking implements Comparator<UserRanking>, Comparable<UserRank
 		this.punctuation = punctuation;
 	}
 	public UserRanking() {
-		// TODO Auto-generated constructor stub
 	}
 	public String getNickname() {
 		return nickname;
@@ -26,17 +25,15 @@ public class UserRanking implements Comparator<UserRanking>, Comparable<UserRank
 	public void setPunctuation(int punctuation) {
 		this.punctuation = punctuation;
 	}
-	
 	public void setBlocked(boolean blocked){
 		this.blocked = blocked;
 	}
-	
 	public boolean getBlocked(){
 		return blocked;
 	}
-	
-	
-	
+	/**
+	 * Compara la puntuació dels usuaris per a ordenar l'array en funció de la puntuació(per ordre descendent).
+	 */
 	@Override
 	public int compare(UserRanking o1, UserRanking o2) {
 		if (o1.getPunctuation() - o2.getPunctuation() < 0) {
@@ -44,6 +41,9 @@ public class UserRanking implements Comparator<UserRanking>, Comparable<UserRank
 		}
 		return -1;
 	}
+	/**
+	 * Compara la puntuació dels usuaris per a ordenar l'array en funció de la puntuació(per ordre descendent).
+	 */
 	@Override
 	public int compareTo(UserRanking o) {
 		if (this.getPunctuation() - o.getPunctuation() < 0) {

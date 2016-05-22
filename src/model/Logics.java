@@ -134,7 +134,10 @@ public class Logics {
 		}
 		return false;
 	}
-	
+	/**
+	 * Connecta amb el servidor per rebre l'informació dels usuaris i guarda-la en un array.
+	 * @return
+	 */
 	public ArrayList<UserRanking> toArray(){
 		
 		ArrayList<UserRanking> allUsers = new ArrayList<UserRanking>();
@@ -149,11 +152,16 @@ public class Logics {
 		}
 		return allUsers;
 	}
-	
+	/**
+	 * retorna l'array que conté l'informació dels competidors
+	 * @return
+	 */
 	public ArrayList<UserRanking> getCompetitors(){
 		return competitionUsers;
 	}
-	
+	/**
+	 * Guarda i concatena en una String tota l'informacio dels competidors
+	 */
 	public String toString(){
 		Collections.sort(competitionUsers, comparator);
 		String ranking = new String();
