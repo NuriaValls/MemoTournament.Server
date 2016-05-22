@@ -8,14 +8,36 @@ import java.net.Socket;
 
 import controller.MainViewControllerS;
 import model.Logics;
-
+/**
+ * Aquesta classe permet establir una connexio amb el programa client i escoltar el que ens diu
+ * per poder respondre amb la informacio corresponent.
+ * @author nvall
+ *
+ */
 public class ServerS extends Thread{
-	
+	/**
+	 * indica si el servidor esta activat.
+	 */
 	private boolean isOn;
+	/**
+	 * permet establir la connexio amb el cient.
+	 */
 	private static ServerSocket sServer;
+	/**
+	 * instancia del client que escoltem.
+	 */
 	private static Socket sClient;
+	/**
+	 * permet rebre la informacio que ens envia el client.
+	 */
 	private DataInputStream dataIn;
+	/**
+	 * permet enviar informacio al client.
+	 */
 	private static DataOutputStream dataOut;
+	/**
+	 * instancia del controlador.
+	 */
 	private MainViewControllerS controller;
 	
 	public ServerS(int portClient){
@@ -30,17 +52,23 @@ public class ServerS extends Thread{
 	public void registerController(MainViewControllerS controller){
 		this.controller = controller;
 	}
-	
+	/**
+	 * inicia el servidor.
+	 */
 	public void startServer(){
 		isOn = true;
 		super.start();
 		System.out.println("Obrint servidor...");
 	}
-	
+	/**
+	 * tanca el servidor.
+	 */
 	public void stopServer(){
 		isOn = false;
 	}
-	
+	/**
+	 * escolta les peticons de connexio del client i en funcio del que rep respon amb la infromacio correpsonent.
+	 */
 	public void run(){
 
 		String message = new String();

@@ -6,15 +6,37 @@ import java.io.FileReader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+/**
+ * Aquesta classe ens permet llegir la informacio de configuracio d'un fitxer.json i guardarla en atributs locals.
+ */
 public class Configuration {
+	/**
+	 * Guarda el port de connexio amb la base de dades.
+	 */
 	private String portDB = new String();
+	/**
+	 * guarda la ip de la connecio amb el client.
+	 */
 	private String IP = new String();
+	/**
+	 * guarda el nom de la base de dades.
+	 */
 	private String nameDB = new String();
+	/**
+	 * Guarda el nom de l'usuari de connexio amb la base de dades.
+	 */
 	private String user = new String();
+	/**
+	 * Guarda la contrassenya de conssexio amb la base de dades.
+	 */
 	private String password = new String();
+	/**
+	 * Guarda el port de connexio amb el client.
+	 */
 	private int portClient;
-	
+	/**
+	 * Metode que llegeix el fitxer .json i escriu el seu contingut als atributs de la classe. Retorna false si no troba el fitxer.
+	 */
 	public boolean configurate(){
 		Gson gson = new GsonBuilder().create();
 		BufferedReader br;

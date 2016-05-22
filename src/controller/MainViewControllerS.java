@@ -13,11 +13,23 @@ import model.UserRanking;
 import network.ConectorDB;
 import network.ServerS;
 import view.MainViewServer;
-
+/**
+ * Classe que escolta els listeners vinculats a la vista del servidor i gestiona els events.
+ * @author nvall
+ *
+ */
 public class MainViewControllerS implements ActionListener{
-
+	/**
+	 * INstancia de la vista.
+	 */
 	private static MainViewServer view;
+	/**
+	 * Instancia de la comunicaio amb el client.
+	 */
 	private ServerS server;
+	/**
+	 * Instancia de laa logica del programa.
+	 */
 	private Logics logics;
 	
 	public MainViewControllerS(MainViewServer view, ServerS server, Logics logics){
@@ -25,7 +37,9 @@ public class MainViewControllerS implements ActionListener{
 		this.server = server;
 		this.logics = logics;
 	}
-	
+	/**
+	 * Metode que gestiona els events creats per els listeners d ela vista.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -91,26 +105,36 @@ public class MainViewControllerS implements ActionListener{
 			}
 		}
 	}
-	
+	/**
+	 * metode que crea un dialg amb un missatge concret i una tipologia.
+	 */
 	public static void makeDialog(String message, boolean type){
 		view.makeDialog(message,type);
 	}
-	
+	/**
+	 * Metode que crea un ranquing i el passa a la vista perque el mostri.
+	 */
 	public String createRankingServer(){
 		String ranking = new String(logics.toString());
 		view.refreshRanking(ranking);
 		return ranking;
 	}
-	
+	/**
+	 * Retorna si hi ha una competico acrualment iniciada.
+	 */
 	public boolean getComp(){
 		return logics.getCompetition();
 	}
-	
+	/**
+	 * Crea un missatge en cas que hi haigui una competico iniciada amb el temps de competicio per enviar al client.
+	 */
 	public String setStartMessage(){
 		String message = "START:"+(int)logics.getDifference()+"/"+logics.getDuration();
 		return message;
 	}
-
+	/**
+	 * Mtode que actualitza el temps actual de competicio i el passa a la vista per mostrar-lo.
+	 */
 	public void refreshTime(int time, boolean comp){
 		String print = new String();
 		String hour = new String();
@@ -139,13 +163,17 @@ public class MainViewControllerS implements ActionListener{
 		}
 		view.refreshTime(print);
 	}
-	
+	/**
+	 * Metode que actualitza la llista d'usuaris a la competicio i li passa a la vista.
+	 */
 	public void refreshList(){
 		ArrayList<UserRanking> competitionUsers;
 		competitionUsers = logics.getCompetitors();
 		view.refreshList(competitionUsers);
 	}
-	
+	/**
+	 * Metode qua acutalitza una llista amb tots els usuaris i li pass a la vista.
+	 */
 	public void refreshAllUsers(){
 		ArrayList<UserRanking> allUsers;
 		allUsers = logics.toArray();
@@ -153,17 +181,23 @@ public class MainViewControllerS implements ActionListener{
 			view.refreshAllUsers(allUsers);
 		}
 	}
-	
+	/**
+	 * Metode que actualitza el competidor amb mes punts de la competicio i li passa a la vista.
+	 */
 	public void refreshTop1(){
 		ArrayList<UserRanking> top = logics.getCompetitors();
 		String top1 = new String("The best player of the competition is "+top.get(0).getNickname()+" with "+top.get(0).getPunctuation()+" points.");
 		view.refreshTop1(top1);
 	}
-	
+	/**
+	 * Comptova si un usuari esta bloquejat.
+	 */
 	public boolean checkBlocked(String message){
 		return logics.checkBlocked(message);
 	}
-	
+	/**
+	 * Actualitza la informacio del grafic i li envia a la vista.
+	 */
 	public void refreshGraphicInfo(String nickname){
 		int[] arrayM = new int[15];
 		int[] arrayC = new int[15];

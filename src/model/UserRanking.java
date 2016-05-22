@@ -1,10 +1,15 @@
 package model;
 
 import java.util.Comparator;
-
+/**
+ * Aquesta classe permet portar un registre de l'usuari registrat a la competicio.
+ */
 public class UserRanking implements Comparator<UserRanking>, Comparable<UserRanking>{
 	private String nickname;
 	private int punctuation;
+	/**
+	 * indica si l'usuari esta bloquejat o no.
+	 */
 	private boolean blocked = false;
 	
 	public UserRanking(String nickname, int punctuation){

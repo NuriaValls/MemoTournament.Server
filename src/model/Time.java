@@ -9,14 +9,31 @@ import java.util.GregorianCalendar;
 import javax.swing.Timer;
 
 import controller.MainViewControllerS;
-
+/**
+ * Aquesta classe permet controlar els temps del programa.
+ * @author nvall
+ *
+ */
 public class Time extends Thread{
-	
+	/**
+	 *Timer que cada segon resta un segon ala comptpa enrere perquee comenci la competicio.
+	 */
 	private Timer countdownTimer;
+	/**
+	 * comptador del compte enrereper la competicio.
+	 */
 	private int countdown;
+	/**
+	 * TImer que cada segon resta un segon al temps de la competicio.
+	 */
 	private Timer competitionTimer;
+	/**
+	 * temps que resta de la competicio.
+	 */
 	private int competition;
-	
+	/**
+	 * instancia del controlador.
+	 */
 	private MainViewControllerS controller;
 	
 	public Time(){
@@ -50,7 +67,9 @@ public class Time extends Thread{
 			
 		});
 	}
-	
+	/**
+	 * inicia el timmer de la competicio amb un compte enrere i un temps de competicio que rep per referencia.
+	 */
 	public void startCompetitionTime(int countdown, int competition){
 		//this.countdown = countdown;
 		this.countdown = 15;
@@ -60,7 +79,9 @@ public class Time extends Thread{
 		
 		countdownTimer.start();
 	}
-	
+	/**
+	 * retorna el temps local.
+	 */
 	public String getTime(){
 		Date date = new GregorianCalendar().getTime();
 

@@ -6,7 +6,11 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 
-
+/**
+ * aquesta classe permet printar un gr‡fic en funcio de les puntuaciosnde  les partides  dels usuaris.
+ * @author nvall
+ *
+ */
 public class Grafic extends JPanel{
 	private int[] score1 = new int[15];
 	private int[] score2 = new int[15];
@@ -15,14 +19,16 @@ public class Grafic extends JPanel{
 	public Grafic(){
 	}
 	
-
+	/**
+	 * actualitza la informacio de les partides de l'usuari.
+	 */
 	public void setInfo(int[] arrayM, int[] arrayC){
 		this.score1 = arrayM;
 		this.score2 = arrayC;
 	}
 	
 	/**
-	 * Aquest atribut dibuixa les 2 gr√†fiques de les puntuacions de les diferents partides dels usuaris.
+	 * Aquest metode dibuixa les 2 grafiques de les puntuacions de les diferents partides dels usuaris.
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

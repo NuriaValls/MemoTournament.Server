@@ -12,16 +12,39 @@ import com.sun.xml.internal.ws.util.StringUtils;
 
 import controller.MainViewControllerS;
 import network.ConectorDB;
-
+/**
+ * Aquesta classe conte els metodes que duen a terme tota la logica del programa.
+ * @author nvall
+ *
+ */
 public class Logics {
+	/**
+	 * Usuari auxiliar per guardar comparadors amb altres usuaris.
+	 */
 	private UserRanking comparator = new UserRanking();
+	/**
+	 * Llista de usuaris registrats a la competicico actual.
+	 */
 	private static ArrayList<UserRanking> competitionUsers = new ArrayList<UserRanking>();
+	/**
+	 * Boolea que indica si hi ha una competicio actualment.
+	 */
 	private static boolean competition = false;
-	
+	/**
+	 * instancia de la classe time.
+	 */
 	private Time time;
+	/**
+	 * marca el temps en segons del compte enrere per la competicio.
+	 */
 	private long difference;
+	/**
+	 * marca el temps en segons del temps que durarà la competicio.
+	 */
 	private int duration;
-	
+	/**
+	 * instancia de la classe controller.
+	 */
 	private static MainViewControllerS controller;
 	
 	public Logics(Time time){
@@ -31,7 +54,9 @@ public class Logics {
 	public void registerController(MainViewControllerS controller){
 		this.controller = controller;
 	}
-	
+	/**
+	 * Metode que envia un usuari per afegira la base de dades que rep com a paràmetre.
+	 */
 	public static boolean addUser(String message){
 		String[] array = new String[2];
 		boolean ok = false;
@@ -50,7 +75,9 @@ public class Logics {
 		
 		return ok;
 	}
-	
+	/**
+	 * Metode que envia un usuari que rep com a paràmetre perque la base de dades comprovi si esta registrat.
+	 */
 	public static String checkUser(String message){
 		boolean found = false;
 		String[] array = new String[2];
@@ -91,7 +118,9 @@ public class Logics {
 		}
 		return answer;
 	}
-	
+	/**
+	 * Metode que envia la informacio de la partida que rep com a paramentre per inserirla  a la base de edades.
+	 */
 	public static boolean updateScore(String message){
 		boolean ok = false;
 		int score = 0;
@@ -124,7 +153,9 @@ public class Logics {
 
 		return ok;
 	}
-	
+	/**
+	 * Comprova si un usuari ha estat bloquejat o no.
+	 */
 	public boolean checkBlocked(String message){
 		message = message.substring(8);
 		for (UserRanking user: competitionUsers){
@@ -172,7 +203,9 @@ public class Logics {
 		
 		return ranking;
 	}
-	
+	/**
+	 * Estableis la durada de la competicio i el temps de compta entere en funcio dels paramentres qu erep i del temps local.
+	 */
 	public boolean createTimeComp(int hour, int minute, int duration){
 		boolean timeOK = false;
 		
@@ -216,11 +249,15 @@ public class Logics {
 	public void setCompetition(boolean competition){
 		this.competition = competition;
 	}
-	
+	/**
+	 * comprova si el nom de l'usuari que es vol inserir es GUEST.
+	 */
 	public static boolean checkNickname(String nickname){
 		return !nickname.equals("GUEST");
 	}
-	
+	/**
+	 * comprova que el password que ha introduit l'usuari sigui valig peer registrar.
+	 */
 	public static boolean checkPasword(String pasword){
 		boolean num = false;
 		boolean letter = false;
@@ -237,7 +274,9 @@ public class Logics {
 		}
 		return false;
 	}
-	
+	/**
+	 * bloqueja un usuari.
+	 */
 	public void blockUser(String nickname){
 		for(int i=0; i<competitionUsers.size(); i++){
 			CharSequence blocked = "/blocked";
@@ -251,7 +290,9 @@ public class Logics {
 			}
 		}
 	}
-	
+	/**
+	 * elimina un usuari de la competicio.
+	 */
 	public void deleteUser(String nickname){
 		for(int i=0; i<competitionUsers.size(); i++){
 			if(competitionUsers.get(i).getNickname().equals(nickname)){
@@ -260,7 +301,9 @@ public class Logics {
 		}
 		System.out.println("abans de refresh");
 	}
-	
+	/**
+	 * retorna totes les partides que un usuari concret ha jugat en una modalitat concreta.
+	 */
 	public int[] getGames(String nickname, boolean concentration){
 		
 		ResultSet game = ConectorDB.selectGames(nickname);
