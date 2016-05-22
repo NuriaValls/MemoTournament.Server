@@ -443,7 +443,10 @@ public class MainViewServer extends JFrame{
 	public String getPasword(){
 		return jpfpassword.getText();
 	}
-	
+	/**
+	 * Aquest mètode actualitza la llista de tots els usuaris de la competicio amb les seves respectives puntuacions.
+	 * @param competitionUsers
+	 */
 	public void refreshList(ArrayList<UserRanking> competitionUsers){
 		
 		if(!competitionUsers.isEmpty()){
@@ -472,7 +475,9 @@ public class MainViewServer extends JFrame{
 			model.fireTableDataChanged();
 		}
 	}
-	
+	/**
+	 * Aquest mètode genera la vista per a gestionar els usuaris. Es mostra una llista amb tots els usuaris on en podrem afegir-ne més o eliminar algun directament.
+	 */
 	public void createUserManageCard(){
 		JPopupMenu popup = new JPopupMenu();
 		JMenu jm = new JMenu();
@@ -536,7 +541,10 @@ public class MainViewServer extends JFrame{
 		}
 		return selectedUser;
 	}
-
+	/**
+	 * Actualitza la vista del Ranking a partir de l'String sTopTen que contindrà els 10 millors usuaris.
+	 * @param sTopTen : String que conté en nickname i la puntuació dels usuaris concatenats.
+	 */
 	public void refreshRanking(String sTopTen){
 		String matrix[][] = new String [11][2];
 		String[] users = sTopTen.split("#");
@@ -550,7 +558,9 @@ public class MainViewServer extends JFrame{
 		table.setModel(model);
 		model.fireTableDataChanged();
 	}
-	
+	/**
+	 * Genera la vista del Ranking sense omplirlo.
+	 */
 	public void createRankingCard(){
 		
 		title = new JPanel();
@@ -576,7 +586,10 @@ public class MainViewServer extends JFrame{
 		jpRankingCard.add(title);
 		
 	}
-	
+	/**
+	 * Actualitza la matriu dels usuaris amb les seves funcions desde l'array allUsers.
+	 * @param allUsers
+	 */
 	public void refreshAllUsers(ArrayList<UserRanking> allUsers){
 		String matrix[][] = new String [allUsers.size()][1];
 		for(int i=0;i<allUsers.size();i++){
@@ -587,7 +600,9 @@ public class MainViewServer extends JFrame{
 		jtabUsers.setModel(model);
 		model.fireTableDataChanged();
 	}
-	
+	/**
+	 * Crea les dues gràfiques en funció dels usuaris seleccionats.
+	 */
 	public void createUserGraphCard(){
 		
 		JPanel title = new JPanel();

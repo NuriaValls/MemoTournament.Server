@@ -26,7 +26,9 @@ public class Grafic extends JPanel{
 
 	}
 	
-	
+	/**
+	 * Aquest atribut dibuixa les 2 gràfiques de les puntuacions de les diferents partides dels usuaris.
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
@@ -35,8 +37,6 @@ public class Grafic extends JPanel{
 		Dimension x = this.getSize();
 		System.out.println("Dimensio x " + x.getWidth() + " y " + x.getHeight() );
 		
-		
-		//eixos
 		typeGraph = 1;
 		g.drawLine(30, 20, 30, 240);
         g.drawLine(30, 239, 240, 239); 
@@ -55,7 +55,6 @@ public class Grafic extends JPanel{
         		}
         	}
         	System.out.println(maxPunctuation);
-        	//Pintar numeros eix Y:
         	int incrementy=0;
         	int incrementp = maxPunctuation/4;
         	
@@ -69,10 +68,7 @@ public class Grafic extends JPanel{
                   	incrementy = incrementy + incrementp;
        			}
             }
-        	
-        	
-        	//Pintar numeros eix X:
-        	
+        	        	
         	int partides = score1.length;
         	int incrementP = 210/partides;
         	int aux = incrementP;
@@ -100,16 +96,6 @@ public class Grafic extends JPanel{
             		ix= ix+(210/score1.length);
             	}
         	}
-        	
-        	
-        	
-        	
-        	
-        	
-        	
-        	
-        	
-     //aquesta part es igual que l'anterior pel cas typeGraph=2
         }else{
         	g.drawString("CONCENTRATION",120,20);
 
@@ -120,7 +106,6 @@ public class Grafic extends JPanel{
         		}
         	}
         	System.out.println(maxPunctuation);
-        	//Pintar numeros eix Y:
         	int incrementy=0;
         	int incrementp = maxPunctuation/4;
         	
@@ -135,9 +120,6 @@ public class Grafic extends JPanel{
        			}
             }
         	
-        	
-        	//Pintar numeros eix X:
-        	
         	int partides = score1.length;
         	int incrementP = 210/partides;
         	int aux = incrementP;
@@ -147,13 +129,10 @@ public class Grafic extends JPanel{
             	incrementP=incrementP+aux;
             }
         	
-        	
-        	//Pintar puntuacions
         	if (maxPunctuation>240){
         		int scale = maxPunctuation/240;
             	System.out.println(scale);
             	int ix = 30;
-            	//quan maxPunctuation>240 no pinta dins del panell
             	for(int j=0;j<score1.length;j++){
             		g.drawLine(ix,260-(score1[j]/scale),ix+(210/score1.length),260-(score1[j+1]/scale));
             		ix= ix+(210/score1.length);
