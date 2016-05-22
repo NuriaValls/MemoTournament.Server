@@ -71,8 +71,7 @@ public class Time extends Thread{
 	 * inicia el timmer de la competicio amb un compte enrere i un temps de competicio que rep per referencia.
 	 */
 	public void startCompetitionTime(int countdown, int competition){
-		//this.countdown = countdown;
-		this.countdown = 15;
+		this.countdown = countdown;
 		countdown = countdown-4;
 		this.competition = competition;
 		competition = competition*60;

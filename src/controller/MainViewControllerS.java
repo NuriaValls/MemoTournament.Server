@@ -93,7 +93,6 @@ public class MainViewControllerS implements ActionListener{
 			
 			if (((JMenuItem)e.getSource()).getText().equals("Block")){
 				String userNickname = new String(view.getSelectedUser(true));
-				System.out.println("clicked");
 				logics.blockUser(userNickname);
 				refreshList();
 			}
@@ -204,8 +203,6 @@ public class MainViewControllerS implements ActionListener{
 		
 		arrayM = logics.getGames(nickname, false);
 		arrayC = logics.getGames(nickname, true);
-		System.out.println(arrayM[0]);
-		System.out.println(arrayC[0]);
 		
 		view.refreshGraphic(arrayM, arrayC);
 	}

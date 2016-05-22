@@ -299,7 +299,6 @@ public class Logics {
 				competitionUsers.remove(i);
 			}
 		}
-		System.out.println("abans de refresh");
 	}
 	/**
 	 * retorna totes les partides que un usuari concret ha jugat en una modalitat concreta.

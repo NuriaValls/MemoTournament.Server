@@ -51,10 +51,15 @@ import controller.MainViewControllerS;
  *
  */
 public class MainViewServer extends JFrame{
-	
+
+	/**
+	 * instancia del controlador.
+	 */
 	private MainViewControllerS controller;
 	
-	//les T_ son constants per el jslider
+	/**
+	 * les T_ son constants per el jslider
+	 */
 	static final int T_MIN = 0;
 	static final int T_MAX = 60;
 	static final int T_INIT = 30;  
@@ -130,14 +135,18 @@ public class MainViewServer extends JFrame{
 	private JPasswordField jpfpassword;
 	private JTextField jtfname;
 	private JTextField jtflastname;
-	
+	/**
+	 * atributs per la carta de user manage.
+	 */
 	//atributs manage
 	private String[] columnNamesL = {"NickName"};
 	private JTable tableL;
 	private JScrollPane panellL;
 	private JMenuItem jmiblock;
 	private JMenuItem jmidelete;
-	
+	/**
+	 * atrobuts per la carte de mostrar el grafic dels usuaris.
+	 */
 	//atributs graphic
 	private String[] columnNamesG = {"Users"};
 	private JTable jtabUsers;
@@ -371,11 +380,15 @@ public class MainViewServer extends JFrame{
 		jpMenuCard.add(titol);
 		
 	}
-	
+	/**
+	 * actualitza el temps de la competicio.
+	 */
 	public void refreshTime(String time){
 		tempsmenu.setText(time);
 	}
-	
+	/**
+	 * actualitza l'usuari amb mes puntuacio de la competicio.
+	 */
 	public void refreshTop1(String top1){
 		bestplayer.setText(top1);
 	}
@@ -552,7 +565,9 @@ public class MainViewServer extends JFrame{
 		title.add(panellL);
 		jpUserManageCard.add(title);
 	}
-	
+	/**
+	 * Retorna el nom de l'usuari seleccionat de la tauala corresponent a la carta de manage o de graphic segons infica el boolea.
+	 */
 	public String getSelectedUser(boolean manage){
 		int index;
 		int column;
@@ -695,13 +710,17 @@ public class MainViewServer extends JFrame{
       
         jpUserGraphCard.add(title);
 	}
-	
+	/**
+	 * retonra el nom de l'usuari seleccionat a la taula de la carta de la grafica.
+	 */
 	public String getSelectedUserG(){
 		int index = jtabUsers.getSelectedRow();
 		int column = jtabUsers.getSelectedColumn();
 		return jtabUsers.getModel().getValueAt(index, column).toString();
 	}
-	
+	/**
+	 * actualitza els valors de les puntuacions des usuaris i pinta els grafics.
+	 */
 	public void refreshGraphic(int[] arrayM, int[] arrayC){
 		g1.setInfo(arrayM, arrayC);
 		g1.repaint();
@@ -709,11 +728,9 @@ public class MainViewServer extends JFrame{
 		//g2.repaint();
 	}
 	
-	private JComponent makeTextPanel(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	/**
+	 * mostra la carta de registre.
+	 */
 	public void showRegister(){
 		jtfnickname.setText("");
 		jpfpassword.setText("");
@@ -730,7 +747,9 @@ public class MainViewServer extends JFrame{
 		jbRegisterUser.setVisible(true);
 		
 	}
-	
+	/**
+	 * mostra la carte de gestio d'usuaris.
+	 */
 	public void showUserManage(){
 		cardLayout.show(jpMenu, "4");
 		
@@ -741,7 +760,9 @@ public class MainViewServer extends JFrame{
 		
 		jbBack.setVisible(true);
 	}
-	
+	/**
+	 * mostra la carta de ranquing.
+	 */
 	public void showRanking(){
 		cardLayout.show(jpMenu, "5");
 		
@@ -752,7 +773,9 @@ public class MainViewServer extends JFrame{
 		
 		jbBack.setVisible(true);
 	}
-	
+	/**
+	 * mostra la carta de grafics.
+	 */
 	public void showUserGraph(){
 		cardLayout.show(jpMenu, "6");
 		
@@ -763,7 +786,9 @@ public class MainViewServer extends JFrame{
 		
 		jbBack.setVisible(true);
 	}
-	
+	/**
+	 * mostra la carta de menu principal.
+	 */
 	public void showMenu(){
 		cardLayout.show(jpMenu, "2");
 		
@@ -776,7 +801,9 @@ public class MainViewServer extends JFrame{
 		jbBack.setVisible(false);
 		jbRegisterUser.setVisible(false);
 	}
-	
+	/**
+	 * crea un dialeg amb un missatge concret i una tipologia definida per un boolea.
+	 */
 	public void makeDialog(String message, boolean type){
 		if(type){
 			Dialog.DialogOK(message);
