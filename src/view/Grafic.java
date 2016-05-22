@@ -27,7 +27,7 @@ public class Grafic extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		this.setSize(250, 250);
+		this.setSize(600, 250);
 				
 		Dimension x = this.getSize();
 		
@@ -89,7 +89,7 @@ public class Grafic extends JPanel{
         	}
   	
      //aquesta part es igual que l'anterior pel cas typeGraph=2
-        	g.drawString("CONCENTRATION",120,20);
+        	g.drawString("CONCENTRATION",100+250,20);
 
           	int maxPunctuation2 = 0;
         	for(int i=0;i<score2.length;i++){
@@ -102,12 +102,17 @@ public class Grafic extends JPanel{
         	int incrementy2=0;
         	int incrementp2 = maxPunctuation2/4;
 
-        	
+        	g.drawLine(250+30, 20, 250+30, 240);
+            g.drawLine(250+30, 239, 250+240, 239); 
+            g.drawString("Score",250+5 ,10);
+            g.drawString("Games", 250+200, 230);
+            g.drawString("0", 250+10, 250);
+            
         	int y2 = 240;
         	int n2=0;
         	for(int i=0;i<score2.length;i++){
        			if (n2<4){
-       				g.drawString(String.valueOf(incrementy2 + incrementp2),0,y2 - 53);
+       				g.drawString(String.valueOf(incrementy2 + incrementp2),250,y2 - 53);
                   	y2=y2-53;
                   	n2++;
                   	incrementy2 = incrementy2 + incrementp2;
@@ -122,7 +127,7 @@ public class Grafic extends JPanel{
         	int incrementP2 = 210/partides2;
         	int aux2 = incrementP2;
         	for(int i=1;i<score2.length;i++){
-            	g.drawString(String.valueOf(i),incrementP2+15,252);
+            	g.drawString(String.valueOf(i),250+incrementP2+15,250);
             	incrementP2 = incrementP2 + aux2;
 
             }
@@ -131,18 +136,29 @@ public class Grafic extends JPanel{
         	//Pintar puntuacions
         	if (maxPunctuation2>240){
         		int scale = maxPunctuation2/240;
-            	int ix2 = 30;
+            	int ix2 = 250+30;
             	//quan maxPunctuation>240 no pinta dins del panell
             	for(int j=0;j<score2.length;j++){
-            		g.drawLine(ix2,260-(score2[j]/scale),ix2+(210/score2.length),260-(score2[j+1]/scale));
-            		ix2 = ix2+(210/score2.length);
+            		if(score2[j]<10){
+            			g.drawLine(ix2,239-(score2[j]),ix2+(210/score2.length),260-(score2[j+1]));
+                		ix2 = ix2+(210/score2.length);
+            		}else{
+            			g.drawLine(ix2,260-(score2[j]/scale),ix2+(210/score2.length),260-(score2[j+1]/scale));
+                		ix2 = ix2+(210/score2.length);
+            		}
+            		
 
             	}
         	}else{
-        		int ix2=30;
+        		int ix2=250+30;
         		for(int j=0;j<score2.length-1;j++){
-            		g.drawLine(ix2,260-(score2[j]),ix2+(210/score2.length),260-(score2[j+1]));
-            		ix2= ix2+(210/score2.length);
+        			if(score2[j]<10){
+        				g.drawLine(ix2,239-(score2[j]),ix2+(210/score2.length),260-(score2[j+1]));
+                		ix2 = ix2+(210/score2.length);
+        			}else{
+        				g.drawLine(ix2,260-(score2[j]),ix2+(210/score2.length),260-(score2[j+1]));
+                		ix2= ix2+(210/score2.length);
+        			}
             	}
         	}
         	
