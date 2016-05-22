@@ -317,14 +317,14 @@ public class MainViewServer extends JFrame{
 		JPanel jptcompetition = new JPanel();
 		jptcompetition.add(tempsmenu);
 	
-		JLabel jlplayer = new JLabel("Best Player", SwingConstants.RIGHT);
+		JLabel jlplayer = new JLabel("Best Player", SwingConstants.CENTER);
 		jlplayer.setFont(new java.awt.Font("Geneva", 1, 14));
 		bestplayer.setFont(new java.awt.Font("Geneva", 1, 14));
 		JPanel jpplayer = new JPanel();
-		jpplayer.setLayout(new GridLayout(1,5));
+		jpplayer.setLayout(new GridLayout(1,4));
 		jpplayer.add(new JPanel());
 		jpplayer.add(jlplayer);
-		jpplayer.add(new JPanel());
+		//jpplayer.add(new JPanel());
 		jpplayer.add(bestplayer);
 		jpplayer.add(new JPanel());
 		
