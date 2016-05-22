@@ -159,4 +159,8 @@ public class MainViewControllerS implements ActionListener{
 		String top1 = new String("The best player of the competition is "+top.get(0).getNickname()+" with "+top.get(0).getPunctuation()+" points.");
 		view.refreshTop1(top1);
 	}
+	
+	public boolean checkBlocked(String message){
+		return logics.checkBlocked(message);
+	}
 }
