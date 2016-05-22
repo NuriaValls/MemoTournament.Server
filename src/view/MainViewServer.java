@@ -34,6 +34,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -112,6 +114,8 @@ public class MainViewServer extends JFrame{
 	//atributs graphic
 	private String[] columnNamesG = {"Users"};
 	private JTable jtabUsers;
+	private Grafic g1;
+	private Grafic g2;
 	
 	/**
 	 * Construeix el Frame i inicialitza cadascuna de les Cards mostrant la primera d'elles.
@@ -602,14 +606,20 @@ public class MainViewServer extends JFrame{
 		JPanel jpUGC = new JPanel(new GridLayout(1,3));
 		JPanel jpGraph = new JPanel(); 
 		
-        Grafic g1 = new Grafic();
-        
-        Grafic g2 = new Grafic();
+        g1 = new Grafic();
+        g2 = new Grafic();
     
 		
 		String[][] list = new String [14][1];
 		
 		jtabUsers = new JTable(list,columnNamesG);
+		jtabUsers.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e){
+				if(!e.getValueIsAdjusting()){
+					controller.refreshGraphicInfo(getSelectedUserG());
+				}
+			}
+		});
 		
 		JScrollPane panell = new JScrollPane(jtabUsers);
 		panell.setMaximumSize(new Dimension(100, 200));
@@ -630,8 +640,17 @@ public class MainViewServer extends JFrame{
         jpUserGraphCard.add(title);
 	}
 	
-	private void refreshGraphic(){
-		
+	public String getSelectedUserG(){
+		int index = jtabUsers.getSelectedRow();
+		int column = jtabUsers.getSelectedColumn();
+		return jtabUsers.getModel().getValueAt(index, column).toString();
+	}
+	
+	public void refreshGraphic(int[] arrayM, int[] arrayC){
+		g1.setInfo(arrayM, true);
+		g1.repaint();
+		g2.setInfo(arrayC, false);
+		g2.repaint();
 	}
 	
 	private JComponent makeTextPanel(String string) {

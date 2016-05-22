@@ -252,4 +252,30 @@ public class Logics {
 		}
 		System.out.println("abans de refresh");
 	}
+	
+	public int[] getGames(String nickname, boolean concentration){
+		
+		ResultSet game = ConectorDB.selectGames(nickname);
+		int[] array = new int[15];
+		int i = 0;
+		try {
+			while(game.next()){
+				if(concentration){
+					if(game.getObject("mode").equals("concentracio") && i<15){
+						array[i] = (int)game.getObject("score");
+						i++;
+					}
+				}else{
+					if(game.getObject("mode").equals("memoria") && i<15){
+						array[i] = (int)game.getObject("score");
+						i++;
+					}
+				}
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
 }

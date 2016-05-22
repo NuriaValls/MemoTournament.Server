@@ -139,7 +139,7 @@ public class ConectorDB {
 		return rs;
     }
     
-    public ResultSet selectGames(String name){
+    public static ResultSet selectGames(String name){
     	ResultSet rs = null;
     	String query = new String("SELECT * FROM game WHERE name='"+name+"'");
     	try {

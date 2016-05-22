@@ -163,4 +163,16 @@ public class MainViewControllerS implements ActionListener{
 	public boolean checkBlocked(String message){
 		return logics.checkBlocked(message);
 	}
+	
+	public void refreshGraphicInfo(String nickname){
+		int[] arrayM = new int[15];
+		int[] arrayC = new int[15];
+		
+		arrayM = logics.getGames(nickname, false);
+		arrayC = logics.getGames(nickname, true);
+		System.out.println(arrayM[0]);
+		System.out.println(arrayC[0]);
+		
+		view.refreshGraphic(arrayM, arrayC);
+	}
 }
