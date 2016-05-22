@@ -40,7 +40,7 @@ public class Grafic extends JPanel{
         g.drawLine(30, 240, 240, 240); 
         g.drawString("Score",0 ,10);
         g.drawString("Game", 240, 240);
-        g.drawString("0", 10, 232);
+        g.drawString("0", 10, 250);
         
         if (typeGraph == 1){
         	int maxPunctuation = 0;
@@ -58,8 +58,8 @@ public class Grafic extends JPanel{
         	int n=0;
         	for(int i=0;i<score1.length-1;i++){
        			if (n<4){
-       				g.drawString(String.valueOf(incrementy + incrementp),0,y - 54);
-                  	y=y-54;
+       				g.drawString(String.valueOf(incrementy + incrementp),0,y - 53);
+                  	y=y-53;
                   	n++;
                   	incrementy = incrementy + incrementp;
        			}
@@ -79,14 +79,24 @@ public class Grafic extends JPanel{
         	
         	
         	//Pintar puntuacions
-        	int scale = maxPunctuation/210;
-        	System.out.println(scale);
-        	int ix = 30;
-        	//quan maxPunctuation>240 no pinta dins del panell
-        	for(int j=0;j<score1.length-1;j++){
-        		g.drawLine(ix,240-(score1[j]/scale),ix+(210/score1.length),240-(score1[j+1]/scale));
-        		ix= ix+(210/score1.length);
+        	if (maxPunctuation>240){
+        		int scale = maxPunctuation/240;
+            	System.out.println(scale);
+            	int ix = 30;
+            	//quan maxPunctuation>240 no pinta dins del panell
+            	for(int j=0;j<score1.length-1;j++){
+            		g.drawLine(ix,260-(score1[j]/scale),ix+(210/score1.length),260-(score1[j+1]/scale));
+            		ix= ix+(210/score1.length);
+            	}
+        	}else{
+        		int ix=30;
+        		for(int j=0;j<score1.length-1;j++){
+            		g.drawLine(ix,260-(score1[j]),ix+(210/score1.length),260-(score1[j+1]));
+            		ix= ix+(210/score1.length);
+            	}
         	}
+        	
+        	
         	
         	
         	
@@ -96,7 +106,8 @@ public class Grafic extends JPanel{
         	
      //aquesta part es igual que l'anterior pel cas typeGraph=2
         }else{
-        	int maxPunctuation = 0;
+        	
+          	int maxPunctuation = 0;
         	for(int i=0;i<score1.length;i++){
         		if (score1[i]>maxPunctuation){
         			maxPunctuation = score1[i];
@@ -111,8 +122,8 @@ public class Grafic extends JPanel{
         	int n=0;
         	for(int i=0;i<score1.length-1;i++){
        			if (n<4){
-       				g.drawString(String.valueOf(incrementy + incrementp),0,y - 54);
-                  	y=y-54;
+       				g.drawString(String.valueOf(incrementy + incrementp),0,y - 53);
+                  	y=y-53;
                   	n++;
                   	incrementy = incrementy + incrementp;
        			}
@@ -132,13 +143,23 @@ public class Grafic extends JPanel{
         	
         	
         	//Pintar puntuacions
-        	int scale = maxPunctuation/210;
-        	System.out.println(scale);
-        	int ix = 30;
-        	for(int j=0;j<score1.length-1;j++){
-        		g.drawLine(ix,240-(score1[j]/scale),ix+(200/score1.length),240-(score1[j+1]/scale));
-        		ix= ix+(200/score1.length);
+        	if (maxPunctuation>240){
+        		int scale = maxPunctuation/240;
+            	System.out.println(scale);
+            	int ix = 30;
+            	//quan maxPunctuation>240 no pinta dins del panell
+            	for(int j=0;j<score1.length-1;j++){
+            		g.drawLine(ix,260-(score1[j]/scale),ix+(210/score1.length),260-(score1[j+1]/scale));
+            		ix= ix+(210/score1.length);
+            	}
+        	}else{
+        		int ix=30;
+        		for(int j=0;j<score1.length-1;j++){
+            		g.drawLine(ix,260-(score1[j]),ix+(210/score1.length),260-(score1[j+1]));
+            		ix= ix+(210/score1.length);
+            	}
         	}
+        	
         }
 		
 	}
