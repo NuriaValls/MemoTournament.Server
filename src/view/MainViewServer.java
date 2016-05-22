@@ -61,6 +61,9 @@ public class MainViewServer extends JFrame{
 	private static JPanel jpMenu;
 	private static CardLayout cardLayout = new CardLayout();
 	
+	/**
+	 * Atributs que serveixen per mostrar els panells que toquin en cada carta.
+	 */
 	private static JPanel jpConfigCard = new JPanel();
 	private static JPanel jpMenuCard = new JPanel();
 	private static JPanel jpRegisterCard = new JPanel();
@@ -68,10 +71,18 @@ public class MainViewServer extends JFrame{
 	private static JPanel jpRankingCard = new JPanel();
 	private static JPanel jpUserGraphCard = new JPanel();
 	
+	
+	/**
+	 * Atribut per poder mostrar el valor de el slider de la duracio de la competicio.
+	 */
 	private ChangeListener clSlider;
 	
 	private JPanel jpButtonMenu;
 	
+	
+	/**
+	 * Atributs que serveixen per posar els botons a les cartes pertintnts
+	 */
 	private static JButton jbCompetition = new JButton("Create Competition");
 	private static JButton jbRegister = new JButton("Competitors Register");
 	private static JButton jbRegisterUser = new JButton("Register");
