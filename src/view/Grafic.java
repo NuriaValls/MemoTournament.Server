@@ -16,12 +16,9 @@ public class Grafic extends JPanel{
 	}
 	
 
-	public void setInfo(int[] array, boolean memoria){
-		if(memoria){
-			this.score1 = array;
-		}else{
-			this.score2 = array;
-		}
+	public void setInfo(int[] arrayM, int[] arrayC){
+		this.score1 = arrayM;
+		this.score2 = arrayC;
 	}
 	
 	/**

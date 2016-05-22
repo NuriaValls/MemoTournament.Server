@@ -622,7 +622,7 @@ public class MainViewServer extends JFrame{
 		JPanel jpGraph = new JPanel(); 
 		
         g1 = new Grafic();
-        g2 = new Grafic();
+        //g2 = new Grafic();
     
 		
 		String[][] list = new String [14][1];
@@ -649,14 +649,14 @@ public class MainViewServer extends JFrame{
 		jpUGC.add(new JPanel());
 		g1.setPreferredSize(new Dimension(250, 300));
 		g1.setAlignmentY(Component.LEFT_ALIGNMENT);
-		g2.setPreferredSize(new Dimension(250, 300));
-		g2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		//g2.setPreferredSize(new Dimension(250, 300));
+		//g2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jpUGC.add(g1);
 		jpUGC.add(new JPanel());
 		jpUGC.add(new JPanel());
-		jpUGC.add(g2);
-		jpUGC.add(new JPanel());
-		jpUGC.add(new JPanel());
+		//jpUGC.add(g2);
+		//jpUGC.add(new JPanel());
+		//jpUGC.add(new JPanel());
 		
 
 		jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -672,10 +672,10 @@ public class MainViewServer extends JFrame{
 	}
 	
 	public void refreshGraphic(int[] arrayM, int[] arrayC){
-		g1.setInfo(arrayM, true);
+		g1.setInfo(arrayM, arrayC);
 		g1.repaint();
-		g2.setInfo(arrayC, false);
-		g2.repaint();
+		//g2.setInfo(arrayC, false);
+		//g2.repaint();
 	}
 	
 	private JComponent makeTextPanel(String string) {
