@@ -597,9 +597,9 @@ public class MainViewServer extends JFrame{
 		title.add(Box.createVerticalStrut(15));
 		nameTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		title.add(nameTitle);
-		title.add(Box.createVerticalStrut(15));
+		title.add(Box.createVerticalStrut(55));
 		
-		JPanel jpUGC = new JPanel(new GridLayout(1,3));
+		JPanel jpUGC = new JPanel(new GridLayout(1,9));
 		JPanel jpGraph = new JPanel(); 
 		
         Grafic g1 = new Grafic();
@@ -614,15 +614,25 @@ public class MainViewServer extends JFrame{
 		JScrollPane panell = new JScrollPane(jtabUsers);
 		panell.setMaximumSize(new Dimension(100, 200));
 		panell.setWheelScrollingEnabled(true);
-		panell.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panell.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		jpGraph.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jpUGC.setPreferredSize(new Dimension(1000, 300));
+		
+		jpUGC.add(new JPanel());
 		jpUGC.add(panell);
+		jpUGC.add(new JPanel());
 		g1.setPreferredSize(new Dimension(250, 300));
+		g1.setAlignmentY(Component.LEFT_ALIGNMENT);
 		g2.setPreferredSize(new Dimension(250, 300));
+		g2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jpUGC.add(g1);
+		jpUGC.add(new JPanel());
+		jpUGC.add(new JPanel());
 		jpUGC.add(g2);
+		jpUGC.add(new JPanel());
+		jpUGC.add(new JPanel());
+		
 
 		jpUGC.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.add(jpUGC);
