@@ -356,17 +356,21 @@ public class MainViewServer extends JFrame{
 		
 		JPanel jptcompetition = new JPanel();
 		jptcompetition.add(tempsmenu);
-	
-		JLabel jlplayer = new JLabel("Best Player", SwingConstants.CENTER);
-		jlplayer.setFont(new java.awt.Font("Geneva", 1, 14));
+
+		Border border2 = BorderFactory.createLineBorder(Color.CYAN, 2);
+		//JLabel jlplayer = new JLabel("Best Player", SwingConstants.CENTER);
+		//jlplayer.setFont(new java.awt.Font("Geneva", 1, 14));
 		bestplayer.setFont(new java.awt.Font("Geneva", 1, 14));
+		bestplayer.setBackground(Color.WHITE);
+		bestplayer.setOpaque(true);
+		bestplayer.setBorder(border2);
 		JPanel jpplayer = new JPanel();
-		jpplayer.setLayout(new GridLayout(1,4));
-		jpplayer.add(new JPanel());
-		jpplayer.add(jlplayer);
+		//jpplayer.setLayout(new GridLayout(1,4));
+		//jpplayer.add(new JPanel());
+		//jpplayer.add(jlplayer);
 		//jpplayer.add(new JPanel());
 		jpplayer.add(bestplayer);
-		jpplayer.add(new JPanel());
+		//jpplayer.add(new JPanel());
 		
 		jptcompetition.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jpplayer.setAlignmentX(Component.CENTER_ALIGNMENT);
